@@ -11,7 +11,7 @@ export async function generateMetadata(): Promise<Metadata> {
   ];
     
   // 특정 날짜를 설정 (예: 2024-07-01)
-  const startDate = new Date('2024-07-30');
+  const startDate = new Date('2024-06-30');
     
   // 오늘 날짜를 가져오기
   const today = new Date();
@@ -36,7 +36,8 @@ export async function generateMetadata(): Promise<Metadata> {
     },
   };
 }
-export const metadata = await generateMetadata();
+
+
 
 
 export default function Home() {
@@ -44,8 +45,7 @@ export default function Home() {
     <div>
       <h1>Open Graph Image Example</h1>
       <p>This page's Open Graph image changes based on the date.</p>
-      <p>Days difference: {metadata.openGraph?.description?.split(': ')[1]}</p>
-      <img src={metadata.openGraph?.images as string} alt="Open Graph Image" />
+     
     </div>
   );
 }
