@@ -11,10 +11,10 @@ export async function generateMetadata(): Promise<Metadata> {
       ];
         
       // 특정 날짜를 설정 (예: 2024-07-01)
-      const startDate = new Date('2024-07-30');
+      const startDate = +new Date('2024-07-30');
         
       // 오늘 날짜를 가져오기
-      const today = new Date().valueOf();
+      const today = +new Date().;
       // 두 날짜의 밀리초 차이 계산
       const differenceInMilliseconds = today - startDate;
       // 하루의 밀리초
