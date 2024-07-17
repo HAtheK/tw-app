@@ -44,7 +44,7 @@ export default function Home() {
   return (
     <div>
       <h1>Open Graph Image Example</h1>
-      <p>This page's Open Graph image changes based on the date.</p>
+      <p>This pages Open Graph image changes based on the date.</p>
      
     </div>
   );
