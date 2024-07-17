@@ -33,7 +33,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title: 'Dynamic Open Graph Image',
       description: `This page dynamically changes the Open Graph image based on the date. Days difference: ${differenceInDays}`,
       images: ogImage
-    },
+    }
   };
 }
 
