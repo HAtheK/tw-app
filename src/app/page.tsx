@@ -14,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const startDate = new Date('2024-07-18');
     
   // 오늘 날짜를 가져오기
-  const today = new Date().toLocaleDateString();
+  const today = new Date();
   // 두 날짜의 밀리초 차이 계산
   const differenceInMilliseconds = +today - +startDate;
   // 하루의 밀리초
