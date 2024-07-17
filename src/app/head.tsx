@@ -27,8 +27,8 @@ export async function generateMetadata(): Promise<Metadata> {
       const ogRss = rss[period];
 
   return {
-    title: 'Open Graph Dynamic Image',
-    description: `This page dynamically changes the Open Graph image based on the date. Days difference`,
+    title: '신's RSS',
+    description: ogRss,
     openGraph: {
       title: 'Dynamic Open Graph Image',
       description: ogRss,
