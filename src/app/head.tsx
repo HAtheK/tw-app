@@ -27,7 +27,7 @@ export async function generateMetadata(): Promise<Metadata> {
       const ogRss = rss[period];
 
   return {
-    title: '신's RSS',
+    title: '신 RSS',
     description: ogRss,
     openGraph: {
       title: 'Dynamic Open Graph Image',
