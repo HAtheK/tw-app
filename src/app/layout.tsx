@@ -15,6 +15,27 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="icon" href="/favicon.ico" />
+        <style>
+          body {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              height: 100vh;
+              margin: 0;
+              background-color: #f4f4f4;
+          }
+          .banner {
+              position: relative;
+              width: 800px;
+              height: 400px;
+          }
+          .banner img {
+              width: 100%;
+              height: 100%;
+              border-radius: 8px;
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          }      
+    </style>
       </head>
       <body>{children}</body>
     </html>
