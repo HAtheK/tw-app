@@ -9,14 +9,10 @@ export async function generateMetadata(): Promise<Metadata> {
     
   // 특정 날짜를 설정 (예: 2024-07-01)
   const startDate = new Date('2024-07-16');
-  console.log('startDate:' + startDate);  
+    
   // 오늘 날짜를 가져오기
   const today = new Date();
 
-  const rss = [
-    today + "오늘의 자원지는 기름(Oil Field)",  // 나머지가 0일 때 사용할 이미지
-    today + "오늘의 자원지는 옥수수(Farmland)"   // 나머지가 1일 때 사용할 이미지
-  ];
   
   // 두 날짜의 밀리초 차이 계산
   const differenceInMilliseconds = +today - +startDate;
@@ -29,6 +25,21 @@ export async function generateMetadata(): Promise<Metadata> {
   const period= differenceInDays % 2;
   
   const ogImage = images[period];
+  
+  
+  const format = useFormatter();
+  // Renders "Nov 20, 2020"
+  format.dateTime(today, {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  });
+  
+  const rss = [
+    today + "오늘의 자원지는 기름(Oil Field)",  // 나머지가 0일 때 사용할 이미지
+    today + "오늘의 자원지는 옥수수(Farmland)"   // 나머지가 1일 때 사용할 이미지
+  ];
+  
   const ogRss = rss[period];
 
   return {
