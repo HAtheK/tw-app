@@ -41,7 +41,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 
-export const metadb = await generateMetadata();
+const metadb = await generateMetadata();
 
 
 export default function Home() {
