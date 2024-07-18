@@ -5,17 +5,19 @@ export async function generateMetadata(): Promise<Metadata> {
     "image0.jpg",  // 나머지가 0일 때 사용할 이미지
     "image1.jpg"   // 나머지가 1일 때 사용할 이미지
     ];
-  const rss = [
-    "오늘의 자원지는 기름(Oil Field)",  // 나머지가 0일 때 사용할 이미지
-    "오늘의 자원지는 옥수수(Farmland)"   // 나머지가 1일 때 사용할 이미지
-  ];
+
     
   // 특정 날짜를 설정 (예: 2024-07-01)
   const startDate = new Date('2024-07-16');
   console.log('startDate:' + startDate);  
   // 오늘 날짜를 가져오기
   const today = new Date();
-  console.log('today:' + today);
+
+  const rss = [
+    today + "오늘의 자원지는 기름(Oil Field)",  // 나머지가 0일 때 사용할 이미지
+    today + "오늘의 자원지는 옥수수(Farmland)"   // 나머지가 1일 때 사용할 이미지
+  ];
+  
   // 두 날짜의 밀리초 차이 계산
   const differenceInMilliseconds = +today - +startDate;
   console.log('differenceInMilliseconds:' + differenceInMilliseconds);
