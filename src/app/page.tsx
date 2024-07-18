@@ -46,7 +46,7 @@ const metadb = await generateMetadata();
 
 export default function Home() {
   return (
-    <div class="banner">
+    <div id="banner">
         <img src={metadb.openGraph?.images as string} alt="자원지"/>             
     </div>
   );
