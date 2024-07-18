@@ -41,13 +41,14 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 
+export const metadata = await generateMetadata();
 
 
 export default function Home() {
   return (
     <div>
-      <h1>Open Graph Image Example</h1>
-      <p>This pages Open Graph image changes based on the date.</p>
+      <p>오늘의 자원지 안내</p>
+      <img src={metadata.openGraph?.images as string} alt="Open Graph Image" />
      
     </div>
   );
