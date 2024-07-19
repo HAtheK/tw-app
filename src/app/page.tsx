@@ -20,12 +20,12 @@ export async function generateMetadata(): Promise<Metadata> {
 
 
   // UTC 시간 계산
-  const startDateUTC = startDate.getTime() + (startDate.getTimezoneOffset() * 60 * 1000);
+  //const startDateUTC = startDate.getTime() + (startDate.getTimezoneOffset() * 60 * 1000);
   const todayUTC = today.getTime() + (today.getTimezoneOffset() * 60 * 1000);
 
   // UTC to KST (UTC + 9시간)
   const KR_TIME_DIFF = 9 * 60 * 60 * 1000;
-  const startDateKST = new Date(startDateUTC + (KR_TIME_DIFF));
+  //const startDateKST = new Date(startDateUTC + (KR_TIME_DIFF));
   const todayKST = new Date(todayUTC + (KR_TIME_DIFF));
   //document.writeln("한국시간s : " + todayKST+"<BR>");
   //document.writeln("한국시간n : " + todayKST+"<BR>");
@@ -60,7 +60,7 @@ export async function generateMetadata(): Promise<Metadata> {
     description: `This page dynamically changes the Open Graph image based on the date. Days difference: ${differenceInDays}`,
     openGraph: {
       title: 'RSS 안내 - 신³⁴⁰⁷',
-      description: ogRss +'['+period + startDate +'/'+startDateUTC+'/'+startDateKST,
+      description: ogRss ,
       images: ogImage
     }
   };
