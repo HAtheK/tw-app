@@ -1,5 +1,10 @@
 import { Metadata } from 'next';
 
+//this line will avoid caching when deployed to vercel
+//value options
+// false | 0 | number
+export const revalidate = 0;
+
 export async function generateMetadata(): Promise<Metadata> {
   const images = [
     "image0.jpg",  // 나머지가 0일 때 사용할 이미지
