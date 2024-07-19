@@ -41,10 +41,16 @@ export async function generateMetadata(): Promise<Metadata> {
   const period= differenceInDays % 2;
   const ogImage = images[period];
   //document.writeln("인덱스 : " + period+"<BR>");
+
+  const yearKST = todayKST.getFullYear();
+  const monthKST = todayKST.getMonth() + 1;
+  const dateKST = todayKST.getDate();
+
+  
   
   const rss = [
-    "기준일:" + todayKST.toLocaleDateString() + " - 기름(Oil Field)",  // 나머지가 0일 때 사용할 이미지
-    "기준일:" + todayKST.toLocaleDateString() + " - 자원지:옥수수(Farmland)"   // 나머지가 1일 때 사용할 이미지
+    "[" + yearKST + "-" + monthKST + "-" + dateKST + "] 기름(Oil Field)",  // 나머지가 0일 때 사용할 이미지
+    "[" + yearKST + "-" + monthKST + "-" + dateKST + "] 자원지:옥수수(Farmland)"   // 나머지가 1일 때 사용할 이미지
   ];
   
   const ogRss = rss[period];
