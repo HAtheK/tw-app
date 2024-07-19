@@ -43,8 +43,8 @@ export async function generateMetadata(): Promise<Metadata> {
   //document.writeln("인덱스 : " + period+"<BR>");
   
   const rss = [
-    "자원지:기름(Oil Field)",  // 나머지가 0일 때 사용할 이미지
-    "자원지:옥수수(Farmland)"   // 나머지가 1일 때 사용할 이미지
+    "기준일:" + todayKST.toLocaleDateString() + " - 기름(Oil Field)",  // 나머지가 0일 때 사용할 이미지
+    "기준일:" + todayKST.toLocaleDateString() + " - 자원지:옥수수(Farmland)"   // 나머지가 1일 때 사용할 이미지
   ];
   
   const ogRss = rss[period];
@@ -53,8 +53,8 @@ export async function generateMetadata(): Promise<Metadata> {
     title: 'Open Graph Dynamic Image',
     description: `This page dynamically changes the Open Graph image based on the date. Days difference: ${differenceInDays}`,
     openGraph: {
-      title: '신³⁴⁰⁷'+ogRss,
-      description: '기준:'+ todayKST,
+      title: 'RSS 안내 - 신³⁴⁰⁷',
+      description: ogRss,
       images: ogImage
     }
   };
