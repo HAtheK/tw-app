@@ -31,7 +31,7 @@ export async function generateMetadata(): Promise<Metadata> {
   //document.writeln("한국시간n : " + todayKST+"<BR>");
 
   // 두 날짜의 밀리초 차이 계산
-  const differenceInMilliseconds = +todayKST - +startDateKST;
+  const differenceInMilliseconds = +todayKST - +startDate;
   //document.writeln("시간차 : " + differenceInMilliseconds+"<BR>");
   // 하루의 밀리초
   const oneDayInMilliseconds = 24 * 60 * 60 * 1000;
