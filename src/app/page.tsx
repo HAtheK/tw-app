@@ -50,7 +50,7 @@ export async function generateMetadata(): Promise<Metadata> {
   
   const rss = [
     "[" + yearKST + "-" + monthKST + "-" + dateKST + "] 기름(Oil Field)",  // 나머지가 0일 때 사용할 이미지
-    "[" + yearKST + "-" + monthKST + "-" + dateKST + "] 자원지:옥수수(Farmland)"   // 나머지가 1일 때 사용할 이미지
+    "[" + yearKST + "-" + monthKST + "-" + dateKST + "] 옥수수(Farmland)"   // 나머지가 1일 때 사용할 이미지
   ];
   
   const ogRss = rss[period];
@@ -60,7 +60,7 @@ export async function generateMetadata(): Promise<Metadata> {
     description: `This page dynamically changes the Open Graph image based on the date. Days difference: ${differenceInDays}`,
     openGraph: {
       title: 'RSS 안내 - 신³⁴⁰⁷',
-      description: ogRss,
+      description: ogRss +'['+period,
       images: ogImage
     }
   };
