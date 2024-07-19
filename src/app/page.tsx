@@ -49,7 +49,7 @@ export async function generateMetadata(): Promise<Metadata> {
     description: `This page dynamically changes the Open Graph image based on the date. Days difference: ${differenceInDays}`,
     openGraph: {
       title: '신³⁴⁰⁷'+ogRss,
-      description: '기준:'+ todayKST.toDateString() ,
+      description: '기준:'+ todayKST,
       images: ogImage
     }
   };
