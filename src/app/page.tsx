@@ -22,20 +22,20 @@ export async function generateMetadata(): Promise<Metadata> {
   const KR_TIME_DIFF = 9 * 60 * 60 * 1000;
   const startDateKST = new Date(startDateUTC + (KR_TIME_DIFF));
   const todayKST = new Date(todayUTC + (KR_TIME_DIFF));
-  document.writeln("한국시간s : " + todayKST+"<BR>");
-  document.writeln("한국시간n : " + todayKST+"<BR>");
+  //document.writeln("한국시간s : " + todayKST+"<BR>");
+  //document.writeln("한국시간n : " + todayKST+"<BR>");
 
   // 두 날짜의 밀리초 차이 계산
   const differenceInMilliseconds = +todayKST - +startDateKST;
-  document.writeln("시간차 : " + differenceInMilliseconds+"<BR>");
+  //document.writeln("시간차 : " + differenceInMilliseconds+"<BR>");
   // 하루의 밀리초
   const oneDayInMilliseconds = 24 * 60 * 60 * 1000;
   // 밀리초를 일 단위로 변환
   const differenceInDays = Math.floor(differenceInMilliseconds / oneDayInMilliseconds);
-  document.writeln("일차 : " + differenceInDays+"<BR>");
+  //document.writeln("일차 : " + differenceInDays+"<BR>");
   const period= differenceInDays % 2;
   const ogImage = images[period];
-  document.writeln("인덱스 : " + period+"<BR>");
+  //document.writeln("인덱스 : " + period+"<BR>");
   
   const rss = [
     "자원지:기름(Oil Field)",  // 나머지가 0일 때 사용할 이미지
@@ -49,7 +49,7 @@ export async function generateMetadata(): Promise<Metadata> {
     description: `This page dynamically changes the Open Graph image based on the date. Days difference: ${differenceInDays}`,
     openGraph: {
       title: '신³⁴⁰⁷'+ogRss,
-      description: '기준:'+ today,
+      description: '기준:'+ todayKST.toDateString() ,
       images: ogImage
     }
   };
