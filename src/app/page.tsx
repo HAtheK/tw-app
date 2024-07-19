@@ -60,7 +60,7 @@ export async function generateMetadata(): Promise<Metadata> {
     description: `This page dynamically changes the Open Graph image based on the date. Days difference: ${differenceInDays}`,
     openGraph: {
       title: 'RSS 안내 - 신³⁴⁰⁷',
-      description: ogRss +'['+period,
+      description: ogRss +'['+period + startDate +'/'+startDateUTC+'/'+startDateKST,
       images: ogImage
     }
   };
