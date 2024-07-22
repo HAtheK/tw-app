@@ -31,11 +31,6 @@ body, html {
     Z-INDEX:-2;
 }
 
-video{
-    object-fit: contain;
-    overflow-clip-margin: content-box;
-    overflow: clip;
-}
 
 .banner {
     position: relative;
