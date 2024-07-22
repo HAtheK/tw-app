@@ -1,3 +1,5 @@
+import {styles} from './globals.css';
+
 import { Metadata } from 'next';
 
 //this line will avoid caching when deployed to vercel
@@ -72,11 +74,11 @@ const metadb = await generateMetadata();
 
 export default function Home() {
   return (
-    <div className={banner}>
+    <div className={styles.banner}>
         <img src={metadb.openGraph?.images as string} alt="자원지"/>             
     </div>
 
-    <div className={wrapper}>
+    <div className={styles.wrapper}>
         <header>
             <h1>.</h1>
             <p>{metadb.openGraph?.description as string}</p>
@@ -87,7 +89,7 @@ export default function Home() {
                 <p>Alliance resources are open in rotation once a day. OPEN at 22:00 server time.</p>
             </section>
             
-            <a href="topwar://" className={button}>PLAY</a>
+            <a href="topwar://" className={styles.button}>PLAY</a>
         </main>
         <footer>
             <p>&copy; 신³⁴⁰⁷</p>
