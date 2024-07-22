@@ -23,9 +23,9 @@ body, html {
 }
 
 .videoBG{
-    position: absolute;
-    right: 0;
-    bottom: 0;
+    position: relative;
+    margin: 0px;
+    padding: 0px;
     width: auto;
     height: 100%;
 }
