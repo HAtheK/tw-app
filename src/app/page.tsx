@@ -76,8 +76,6 @@ export default function Home() {
   return (
     <div className={styles.banner}>
         <img src={metadb.openGraph?.images as string} alt="자원지"/>             
-    </div>
-
     <div className={styles.wrapper}>
         <header>
             <h1>.</h1>
