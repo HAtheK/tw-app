@@ -75,5 +75,25 @@ export default function Home() {
     <div id="banner">
         <img src={metadb.openGraph?.images as string} alt="자원지"/>             
     </div>
+
+    <div class="wrapper">
+        <header>
+            <h1>.</h1>
+            <p>{metadb.openGraph?.description as string}</p>
+        </header>
+        <main>
+            <section>
+                <h2>Resource Gathering</h2>
+                <p>Alliance resources are open in rotation once a day. OPEN at 22:00 server time.</p>
+            </section>
+            
+            <a href="topwar://" class="button">PLAY</a>
+        </main>
+        <footer>
+            <p>&copy; 신³⁴⁰⁷</p>
+        </footer>
+    </div>
+
+    
   );
 }
