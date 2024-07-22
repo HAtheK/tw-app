@@ -1,4 +1,4 @@
-import {styles} from './globals.css';
+import styles from './globals.css';
 
 import { Metadata } from 'next';
 
