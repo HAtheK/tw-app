@@ -73,7 +73,7 @@ const metadb = await generateMetadata();
 export default function Home() {
   return (
     <>
-    <video className='videoBG' data-src="https://www.rivergame.net/ko/res/img/comm/home/topcover/bg.mp4" autoplay="true" muted loop playsinline poster="https://www.rivergame.net/ko/res/img/comm/home/topcover/bg.jpg" src="https://www.rivergame.net/ko/res/img/comm/home/topcover/bg.mp4" style="width: auto; height: 100%;">
+    <video className='videoBG' data-src="https://www.rivergame.net/ko/res/img/comm/home/topcover/bg.mp4" autoplay muted loop playsinline poster="https://www.rivergame.net/ko/res/img/comm/home/topcover/bg.jpg" src="https://www.rivergame.net/ko/res/img/comm/home/topcover/bg.mp4" style="width: auto; height: 100%;">
     </video>
     <div className='wrapper'>
         <header>
