@@ -23,12 +23,17 @@ body, html {
 }
 
 .videoBG{
-    position: fixed;
+    position: absolute;
     right: 0;
     bottom: 0;
-    
     width: auto;
     height: 100%;
+}
+
+video{
+    object-fit: contain;
+    overflow-clip-margin: content-box;
+    overflow: clip;
 }
 
 .banner {
