@@ -72,24 +72,24 @@ const metadb = await generateMetadata();
 
 export default function Home() {
   return (
-    <div className='banner'>
-        <img src={metadb.openGraph?.images as string} alt="자원지"/>             
-    <div className='wrapper'>
+    <><div className='banner'>
+      <img src={metadb.openGraph?.images as string} alt="자원지" />
+    </div><div className='wrapper'>
         <header>
-            <h1>.</h1>
-            <p>{metadb.openGraph?.description as string}</p>
+          <h1>.</h1>
+          <p>{metadb.openGraph?.description as string}</p>
         </header>
         <main>
-            <section>
-                <h2>Resource Gathering</h2>
-                <p>Alliance resources are open in rotation once a day. OPEN at 22:00 server time.</p>
-            </section>
-            
-            <a href="topwar://" className='button'>PLAY</a>
+          <section>
+            <h2>Resource Gathering</h2>
+            <p>Alliance resources are open in rotation once a day. OPEN at 22:00 server time.</p>
+          </section>
+
+          <a href="topwar://" className='button'>PLAY</a>
         </main>
         <footer>
-            <p>&copy; 신³⁴⁰⁷</p>
+          <p>&copy; 신³⁴⁰⁷</p>
         </footer>
-    </div>
+      </div></>
   );
 }
