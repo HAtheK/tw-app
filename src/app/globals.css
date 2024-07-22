@@ -18,10 +18,16 @@
 
 body, html {
     margin: 0;
-    padding: 0;
-    background: url('https://html5up.net/uploads/demos/photon/images/header.jpg') no-repeat center center fixed;
-    background-size: cover;
+    padding: 0;    
     color: #fff;
+}
+
+.videoBG{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
 }
 
 .banner {
