@@ -59,7 +59,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: 'Open Graph Dynamic Image',
     description: `This page dynamically changes the Open Graph image based on the date. Days difference: ${differenceInDays}`,
     openGraph: {
-      title: 'RSS 안내 - 신³⁴⁰⁷'+startDateUTC,
+      title: 'RSS 안내 - 신³⁴⁰⁷',
       description: ogRss ,
       images: ogImage
     }
