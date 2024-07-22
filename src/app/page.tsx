@@ -13,14 +13,14 @@ export async function generateMetadata(): Promise<Metadata> {
 
     
    // 특정 날짜를 설정 (예: 2024-07-01)
-  const startDate = new Date('2024-07-16 00:00:00');
+  const startDate = new Date('2024-07-16 01:00:00');
     
   // 오늘 날짜를 가져오기
   const today = new Date();
 
 
   // UTC 시간 계산
-  //const startDateUTC = startDate.getTime() + (startDate.getTimezoneOffset() * 60 * 1000);
+  const startDateUTC = startDate.getTime() + (startDate.getTimezoneOffset() * 60 * 1000);
   const todayUTC = today.getTime() + (today.getTimezoneOffset() * 60 * 1000);
 
   // UTC to KST (UTC + 9시간)
@@ -31,7 +31,7 @@ export async function generateMetadata(): Promise<Metadata> {
   //document.writeln("한국시간n : " + todayKST+"<BR>");
 
   // 두 날짜의 밀리초 차이 계산
-  const differenceInMilliseconds = +todayKST - +startDate;
+  const differenceInMilliseconds = +todayKST - +startDateUTC;
   //document.writeln("시간차 : " + differenceInMilliseconds+"<BR>");
   // 하루의 밀리초
   const oneDayInMilliseconds = 24 * 60 * 60 * 1000;
@@ -59,7 +59,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: 'Open Graph Dynamic Image',
     description: `This page dynamically changes the Open Graph image based on the date. Days difference: ${differenceInDays}`,
     openGraph: {
-      title: 'RSS 안내 - 신³⁴⁰⁷'+today,
+      title: 'RSS 안내 - 신³⁴⁰⁷'+startDateUTC,
       description: ogRss ,
       images: ogImage
     }
