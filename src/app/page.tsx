@@ -85,7 +85,7 @@ export default function Home() {
             <p>Alliance resources are open in rotation once a day. OPEN at 22:00 server time.</p>
           </section>
 
-          <a href="topwar://" className='button'>PLAY</a>
+          <a href="fb654935278355098://" className='button'>PLAY</a>
         </main>
         <footer>
           <p>&copy; 신³⁴⁰⁷</p>
