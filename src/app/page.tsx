@@ -73,9 +73,8 @@ const metadb = await generateMetadata();
 export default function Home() {
   return (
     <div className='videoBG'>
-    <video autoPlay muted loop playsInline data-src="bg.mp4" poster="bg.jpg" src="bg.mp4">
-    </video>
-    <div className='wrapper'>
+      <video autoPlay muted loop playsInline data-src="bg.mp4" poster="bg.jpg" src="bg.mp4" />
+      <div className='wrapper'>
         <header>
           <h1>.</h1>
           <img src={metadb.openGraph?.images as string} alt="자원지" />
@@ -86,8 +85,7 @@ export default function Home() {
             <h2>Resource Gathering</h2>
             <p>Alliance resources are open in rotation once a day. OPEN at 22:00 server time.</p>
           </section>
-
-          <a href="fb654935278355098://" className='button'>PLAY</a>
+          <a href="fb654935278355098://" className='button'>PLAY Topwar</a>
         </main>
         <footer>
           <p>&copy; 신³⁴⁰⁷</p>
