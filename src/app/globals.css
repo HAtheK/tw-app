@@ -20,7 +20,7 @@ body, html {
     margin: 0;
     padding: 0;    
     height: 100%;
-    overflow: hidden;
+    overflow: auto;
     color: #fff;
 }
 
@@ -87,6 +87,7 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    position: reative;
 }
 
 main section {
@@ -106,11 +107,11 @@ main p {
 }
 
 footer {
-    margin-top: 50px;
-    padding: 10px 0;
     width: 100%;
     text-align: center;
     background-color: #111;
+    position: fixed;
+    bottom: 1px;
 }
 
 footer p {
