@@ -19,30 +19,27 @@
 body, html {
     margin: 0;
     padding: 0;    
+    height: 100%;
+    overflow: hidden;
     color: #fff;
 }
 
 .videoBG{
     position: relative;
-    margin: 0px;
-    padding: 0px;
-    width: auto;
-    height: 100%;
-    Z-INDEX:-2;
-}
-
-
-.banner {
-    position: relative;
-    width: 800px;
-    height: 400px;
-}
-.banner img {
     width: 100%;
     height: 100%;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}      
+    overflow: hidden;
+}
+
+video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    object-fit: cover;
+}
 
 .wrapper {
     width: 100%;
@@ -55,6 +52,18 @@ body, html {
     padding: 0 20px;
     background: rgba(0, 0, 0, 0.6); 
 }
+
+.banner {
+    position: relative;
+    width: 800px;
+    height: 400px;
+}
+.banner img {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}    
 
 header {
     margin-bottom: 50px;
