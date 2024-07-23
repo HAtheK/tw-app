@@ -119,18 +119,29 @@ a {
 }
 
 .button {
-    display: inline-block;
-    width: 350px;
-    height: 100px;
-    padding: 10px 20px;
-    margin: 20px 0;
-    background-color: #00aced;
+    width: 130px;
+    height: 40px;
     color: #fff;
-    text-align: center;
-    text-decoration: none;
-    font-size: 2em;
     border-radius: 5px;
-    transition: background-color 0.3s;
+    padding: 10px 25px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+     box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+     7px 7px 20px 0px rgba(0,0,0,.1),
+     4px 4px 5px 0px rgba(0,0,0,.1);
+    outline: none;
+      background: rgb(0,172,238);
+    background: linear-gradient(0deg, rgba(0,172,238,1) 0%, rgba(2,126,251,1) 100%);
+    width: 130px;
+    height: 40px;
+    line-height: 42px;
+    padding: 0;
+    border: none;
 }
 
 .button:hover {
