@@ -72,7 +72,6 @@ const metadb = await generateMetadata();
 
 export default function Home() {
   return (
-    <>
     <div className='videoBG'>
     <video autoPlay muted loop playsInline data-src="bg.mp4" poster="bg.jpg" src="bg.mp4">
     </video>
