@@ -90,6 +90,7 @@ export default function Home() {
         <footer>
           <p>&copy; 신³⁴⁰⁷</p>
         </footer>
-      </div></div>
+      </div>
+    </div>
   );
 }
