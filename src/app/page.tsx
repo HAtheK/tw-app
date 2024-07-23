@@ -73,7 +73,8 @@ const metadb = await generateMetadata();
 export default function Home() {
   return (
     <>
-    <video className='videoBG' autoPlay muted loop playsInline data-src="https://www.rivergame.net/ko/res/img/comm/home/topcover/bg.mp4" poster="https://www.rivergame.net/ko/res/img/comm/home/topcover/bg.jpg" src="https://www.rivergame.net/ko/res/img/comm/home/topcover/bg.mp4">
+    <div className='videoBG'>
+    <video autoPlay muted loop playsInline data-src="bg.mp4" poster="bg.jpg" src="bg.mp4">
     </video>
     <div className='wrapper'>
         <header>
@@ -92,6 +93,6 @@ export default function Home() {
         <footer>
           <p>&copy; 신³⁴⁰⁷</p>
         </footer>
-      </div></>
+      </div></div>
   );
 }
