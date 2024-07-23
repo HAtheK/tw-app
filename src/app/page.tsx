@@ -76,7 +76,6 @@ export default function Home() {
       <video autoPlay muted loop playsInline data-src="bg.mp4" poster="bg.jpg" src="bg.mp4" />
       <div className='wrapper'>
         <header>
-          <h1>.</h1>
           <img src={metadb.openGraph?.images as string} alt="자원지" />
           <p>{metadb.openGraph?.description as string}</p>
         </header>
