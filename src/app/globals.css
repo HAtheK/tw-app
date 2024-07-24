@@ -55,8 +55,9 @@ video {
 }
 
 img {
-    width: 800px;
-    height: 400px;
+    position: relative;
+    width: 100%;
+    padding-top: 100%;
     border-radius: 50px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }    
@@ -148,6 +149,7 @@ a {
 .button:hover {
     background-color: #0084b4;
 }
+
 
 @layer utilities {
   .text-balance {
