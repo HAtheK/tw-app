@@ -82,7 +82,7 @@ export default function Home() {
         <main>
           <section>
             <h2>Resource Gathering</h2>
-            <p>Alliance resources are open in rotation once a day. OPEN at 22:00 server time.</p>
+            <p>Alliance Resources are opened alternately by resetting  &#128738; and &#127805;. OPEN at 22:00 server time.</p>
           </section>
           <a href="fb654935278355098://" className='button'>PLAY Topwar</a>
         </main>
