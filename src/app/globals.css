@@ -60,7 +60,7 @@ img {
     width: 100%;
     border-radius: 50px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    opacity: 0.9;
+    opacity: 0.8;
 }    
 
 header {
@@ -99,7 +99,7 @@ main h2 {
 }
 
 main p {
-    font-size: 1em;
+    font-size: 0.8em;
     color: #ccc;
     line-height: 1.5em;
 }
