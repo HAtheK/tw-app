@@ -23,7 +23,7 @@ body, html {
 }
 
 .videoBG{
-    position: relative;
+    position:absolute;
     margin: 0px;
     padding: 0px;
     width: auto;
