@@ -69,7 +69,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 const metadb = await generateMetadata();
 
-
+//<a href="fb654935278355098://" className='button'>PLAY Topwar</a>
 export default function Home() {
   return (
     <div className='videoBG'>
@@ -84,7 +84,7 @@ export default function Home() {
             <h2>Resource Gathering</h2>
             <p>Alliance Resources are opened alternately &#128738; and &#127805;.<br></br>OPEN at 22:00(UTC+8) server time.</p>
           </section>
-          <a href="fb654935278355098://" className='button'>PLAY Topwar</a>
+          
         </main>
         <footer>
           <p>&copy; 신³⁴⁰⁷</p>
