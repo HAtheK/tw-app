@@ -7,23 +7,10 @@ import { Metadata } from 'next';
 export const revalidate = 0;
 
 export async function generateMetadata(): Promise<Metadata> {
-  const images = [
-    "image0.jpg",  // 나머지가 0일 때 사용할 이미지
-    "image1.jpg"   // 나머지가 1일 때 사용할 이미지
-    ];
+  const ogImage = "og-image.png";  // 썸네일용 이미지
 
-    
-   // 특정 날짜를 설정 (예: 2024-07-01)
-  const startDate = new Date('2024-07-16 01:00:00');
-    
   // 오늘 날짜를 가져오기
   const today = new Date();
-
-
-  // UTC 시간 계산
-  const startDateUTC = startDate.getTime() + (startDate.getTimezoneOffset() * 60 * 1000);
-  const todayUTC = today.getTime() + (today.getTimezoneOffset() * 60 * 1000);
-
 
   return {
     title: '롯데멤버스 카드 출시',
@@ -31,7 +18,8 @@ export async function generateMetadata(): Promise<Metadata> {
     openGraph: {
       title: '롯데멤버스 카드 출시',
       description: '롯데 안에서 쓰면 쓸수록 혜택이 커지는. 최대 5% 특별적립' ,
-      images: 'og-images.png'
+      images: ogImage,
+      url: 'https://m.lpoint.com'
     }
   };
 }
