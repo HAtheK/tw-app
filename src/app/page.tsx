@@ -18,8 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
     openGraph: {
       title: '롯데멤버스 카드 출시',
       description: '롯데 안에서 쓰면 쓸수록 혜택이 커지는. 최대 5% 특별적립' ,
-      images: ogImage,
-      url: 'https://m.lpoint.com'
+      images: ogImage
     }
   };
 }
