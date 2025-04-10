@@ -1,4 +1,6 @@
 // pages/index.tsx
+'use Client';
+
 import { useEffect } from 'react';
 import Head from 'next/head';
 
