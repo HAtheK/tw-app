@@ -1,6 +1,5 @@
 
 import { Metadata } from 'next';
-import { useEffect } from 'react';
 
 //this line will avoid caching when deployed to vercel
 //value options
@@ -27,90 +26,25 @@ export async function generateMetadata(): Promise<Metadata> {
 
 const metadb = await generateMetadata();
 
-export default function RedirectPage() {
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      window.location.href = 'https://b-site.com';
-    }, 5000);
-    return () => clearTimeout(timer);
-  }, []);
-
+//<a href="fb654935278355098://" className='button'>PLAY Topwar</a>
+export default function Home() {
   return (
-    <div style={styles.container}>
-      <div style={styles.redirectBox}>
-        <img
-          src="https://via.placeholder.com/120x120?text=A+Site"
-          alt="A 사이트"
-          style={styles.image}
-        />
-        <div className="arrow">➡️</div>
-        <img
-          src="https://via.placeholder.com/120x120?text=B+Site"
-          alt="B 사이트"
-          style={styles.image}
-        />
+    <div className='videoBG'>
+      <video autoPlay muted loop playsInline data-src="bg.mp4" poster="bg.jpg" src="bg.mp4" />
+      <div className='wrapper'>
+        <header>
+          </header>
+        <main>
+          <section>
+            <h2>Resource Gathering</h2>
+            <p>Alliance Resources are opened alternately &#128738; and &#127805;.<br></br>OPEN at 22:00(UTC+8) server time.</p>
+          </section>
+          
+        </main>
+        <footer>
+          <p>&copy; 신³⁴⁰⁷</p>
+        </footer>
       </div>
-      <div style={styles.message}>
-        5초 후 <strong>B 사이트</strong>로 이동합니다.
-        <br />
-        자동으로 이동하지 않으면{' '}
-        <a href="https://b-site.com" style={styles.link}>
-          여기를 클릭
-        </a>{' '}
-        해주세요.
-      </div>
-
-      <style jsx>{`
-        .arrow {
-          font-size: 60px;
-          animation: moveArrow 1s infinite alternate ease-in-out;
-        }
-
-        @keyframes moveArrow {
-          from {
-            transform: translateX(0);
-          }
-          to {
-            transform: translateX(15px);
-          }
-        }
-      `}</style>
     </div>
   );
 }
-
-const styles = {
-  container: {
-    backgroundColor: '#000',
-    color: '#fff',
-    fontFamily: 'sans-serif',
-    display: 'flex',
-    flexDirection: 'column' as const,
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '100vh',
-    margin: 0,
-  },
-  redirectBox: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '40px',
-  },
-  image: {
-    width: '120px',
-    height: '120px',
-    objectFit: 'contain' as const,
-    borderRadius: '16px',
-    backgroundColor: '#111',
-    padding: '10px',
-  },
-  message: {
-    marginTop: '40px',
-    fontSize: '18px',
-    textAlign: 'center' as const,
-  },
-  link: {
-    color: '#0af',
-    textDecoration: 'none',
-  },
-};
