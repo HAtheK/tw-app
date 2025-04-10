@@ -17,7 +17,7 @@ export default function Home() {
         <meta property="og:url" content="https://m.lpoint.com" />
       </Head>
       <main>
-        <h1>리디렉션 중입니다...</h1>
+        <h1>페이지 이동중입니다...</h1>
       </main>
     </>
   );
