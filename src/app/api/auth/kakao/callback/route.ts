@@ -20,7 +20,7 @@ export async function GET(req: NextRequest) {
   const tokenData = await tokenRes.json();
   const accessToken = tokenData.access_token;
 
-  const res = NextResponse.redirect('https://your-app.vercel.app');
+  const res = NextResponse.redirect('https://lpoint.vercel.app');
   res.cookies.set('kakao_access_token', accessToken, {
     httpOnly: true,
     secure: true,
