@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(req: NextRequest) {
   const code = req.nextUrl.searchParams.get('code');
-  const redirectUri = 'https://your-app.vercel.app/api/auth/kakao/callback';
+  const redirectUri = 'https://lpoint.vercel.app/api/auth/kakao/callback';
 
   const tokenRes = await fetch('https://kauth.kakao.com/oauth/token', {
     method: 'POST',
