@@ -28,6 +28,7 @@ export async function GET(req: NextRequest) {
     path: '/',
     maxAge: 60 * 60,
   });
+  console.log('🔐 Access Token:', accessToken);
 
   return res;
 }
