@@ -1,22 +1,30 @@
-import './globals.css';
-import { ReactNode } from 'react';
+// app/layout.tsx
+import './globals.css'
+import { ReactNode } from 'react'
+import Script from 'next/script'
+import KakaoInit from '@/components/KakaoInit'
 
 export const metadata = {
-  title: 'Open Graph Dynamic Image',
-  description: 'This page dynamically changes the Open Graph image based on the date.',
+  title: '롯데멤버스 카드',
+  description: '공유하기 챌린지',
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: ReactNode;
-}) {
+
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="ko">
       <head>
-        <link rel="icon" href="/favicon.ico" />        
+        {/* Kakao SDK 로딩 */}
+        <Script
+          src="https://developers.kakao.com/sdk/js/kakao.js"
+          strategy="beforeInteractive"
+        />
       </head>
-      <body>{children}</body>
+      <body>
+        {/* 초기화 수행 */}
+        <KakaoInit />
+        {children}
+      </body>
     </html>
   );
 }

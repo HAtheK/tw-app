@@ -1,55 +1,84 @@
 'use client';
+import { useState, useEffect } from 'react';
+import Image from 'next/image';
 
-import { useEffect, useState } from 'react';
-
-type KakaoUser = {
-  id: number;
-  kakao_account: {
-    profile: {
-      nickname: string;
-    };
-    email?: string;
-  };
-};
-
-export default function HomePage() {
-  const [user, setUser] = useState<KakaoUser | null>(null);
-  const [loading, setLoading] = useState(true);
+export default function Home() {
+  const [code, setCode] = useState('');
 
   useEffect(() => {
-    fetch('/api/me', {
-      credentials: 'include', // ✅ 쿠키 포함 설정 추가
-    })
-      .then(res => res.json())
-      .then(data => {
-        if (data.user) setUser(data.user);
-      })
-      .finally(() => setLoading(false));
+    // 카카오 SDK 로딩
+    if (!window.Kakao) {
+      const script = document.createElement('script');
+      script.src = 'https://developers.kakao.com/sdk/js/kakao.min.js';
+      script.onload = () => {
+        window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_JS_KEY);
+      };
+      document.head.appendChild(script);
+    } else if (!window.Kakao.isInitialized()) {
+      window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_JS_KEY);
+    }
   }, []);
 
-  if (loading) return <div className="p-8">로딩 중...</div>;
+  const handleShare = async () => {
+    if (!code) {
+      alert('개인 코드를 입력해주세요!');
+      return;
+    }
+
+    if (!window.Kakao || !window.Kakao.isInitialized()) {
+      alert('카카오 SDK 로딩 중입니다.');
+      return;
+    }
+
+    window.Kakao.Link.sendCustom({
+      templateId: 119614, // 실제 템플릿 ID
+    });
+
+    setTimeout(async () => {
+      const confirmShare = confirm('카카오톡에서 메시지를 공유하셨나요?');
+      if (confirmShare) {
+        await fetch('/api/share', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ code }),
+        });
+        alert('공유 완료! 감사합니다.');
+      }
+    }, 1000);
+  };
 
   return (
-    <main className="p-8">
-      <h1 className="text-2xl font-bold mb-6">카카오싱크 로그인 예제</h1>
+    <main className="min-h-screen flex flex-col items-center justify-center bg-yellow-100 p-4">
+      <h1 className="text-2xl font-bold mb-4">🎮 공유 미션</h1>
 
-      {!user ? (
-        <a href="/login">
-          <button className="bg-yellow-400 px-4 py-2 rounded">카카오로 로그인</button>
-        </a>
-      ) : (
-        <div>
-          <p>안녕하세요, <strong>{user.kakao_account.profile.nickname}</strong>님 👋</p>
-          <p className="text-gray-600 text-sm">이메일: {user.kakao_account.email ?? '미제공'}</p>
+      <input
+        value={code}
+        onChange={(e) => setCode(e.target.value)}
+        placeholder="개인 코드 입력"
+        className="border p-2 text-lg mb-4 bg-white font-mono"
+      />
 
-          <button
-            className="mt-4 bg-gray-300 px-3 py-1 rounded"
-            onClick={() => (window.location.href = '/api/logout')}
-          >
-            로그아웃
-          </button>
-        </div>
-      )}
+      <Image
+        src="/kakao_preview.png"
+        width={300}
+        height={180}
+        alt="카카오 미리보기"
+        className="rounded mb-4"
+      />
+
+      <button
+        onClick={handleShare}
+        className="bg-pink-600 text-white px-6 py-2 rounded font-['Press_Start_2P'] mb-2"
+      >
+        공유하기
+      </button>
+
+      <a
+        href="/ranking"
+        className="bg-green-600 text-white px-6 py-2 rounded font-['Press_Start_2P']"
+      >
+        랭킹 보기
+      </a>
     </main>
   );
 }
