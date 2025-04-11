@@ -20,15 +20,20 @@ export async function GET(req: NextRequest) {
   const tokenData = await tokenRes.json();
   const accessToken = tokenData.access_token;
 
-  const res = NextResponse.redirect('https://lpoint.vercel.app');
-  res.cookies.set('kakao_access_token', accessToken, {
+  const response = new NextResponse(null, {
+    status: 302,
+    headers: {
+      Location: 'https://lpoint.vercel.app',
+    },
+  });
+
+  response.cookies.set('kakao_access_token', accessToken, {
     httpOnly: true,
     secure: true,
     sameSite: 'lax',
     path: '/',
     maxAge: 60 * 60,
   });
-  console.log('🔐 Access Token:', accessToken);
 
-  return res;
+  return response;
 }
