@@ -20,19 +20,15 @@ export async function GET(req: NextRequest) {
   const tokenData = await tokenRes.json();
   const accessToken = tokenData.access_token;
 
-  const response = new NextResponse(null, {
-    status: 302,
-    headers: {
-      Location: 'https://lpoint.vercel.app',
-    },
-  });
+  const response = NextResponse.redirect('https://lpoint.vercel.app');
 
+  // ✅ 쿠키 먼저 세팅하고 반환
   response.cookies.set('kakao_access_token', accessToken, {
     httpOnly: true,
     secure: true,
     sameSite: 'lax',
     path: '/',
-    maxAge: 60 * 60,
+    maxAge: 60 * 60, // 1시간
   });
 
   return response;
