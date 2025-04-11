@@ -17,7 +17,9 @@ export default function HomePage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('/api/me')
+    fetch('/api/me', {
+      credentials: 'include', // ✅ 쿠키 포함 설정 추가
+    })
       .then(res => res.json())
       .then(data => {
         if (data.user) setUser(data.user);
