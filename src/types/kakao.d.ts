@@ -8,4 +8,11 @@ export interface KakaoUser {
       };
     };
   }
-  
+  export {};
+
+  declare global {
+    interface Window {
+      Kakao: any;
+    }
+  }
+    
