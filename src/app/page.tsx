@@ -1,69 +1,77 @@
-'use client';
+'use client'
 
-import Image from 'next/image';
-import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image'
+import { useEffect, useRef, useState } from 'react'
 
-const images = ['/kakao_preview1.png', '/kakao_preview2.png', '/kakao_preview3.png'];
+const carouselImages = [
+  '/kakao_preview1.png',
+  '/kakao_preview2.png',
+  '/kakao_preview3.png'
+]
 
-export default function Home() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const slideRef = useRef<HTMLDivElement>(null);
-  const INTERVAL = 3000;
+const KakaoSharePage = () => {
+  const [index, setIndex] = useState(0)
+  const carouselRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % images.length);
-    }, INTERVAL);
+      setIndex((prev) => (prev + 1) % carouselImages.length)
+    }, 3000)
 
-    return () => clearInterval(interval);
-  }, []);
+    return () => clearInterval(interval)
+  }, [])
+
+  useEffect(() => {
+    if (carouselRef.current) {
+      carouselRef.current.style.transition = 'transform 1s ease-in-out'
+      carouselRef.current.style.transform = `translateX(-${index * 100}%)`
+    }
+  }, [index])
+
+  const handleShare = () => {
+    if (window.Kakao) {
+      if (!window.Kakao.isInitialized()) {
+        window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_JAVASCRIPT_KEY)
+      }
+
+      window.Kakao.Share.sendCustom({
+        templateId: 119614
+      })
+    }
+  }
 
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen bg-white">
-      {/* 캐러셀 컨테이너 */}
-      <div className="overflow-hidden w-[360px] h-[200px] relative">
+    <div className="w-screen h-screen overflow-hidden flex flex-col items-center justify-between bg-black">
+      <div className="w-full h-[calc(100vh-160px)] overflow-hidden relative">
         <div
-          ref={slideRef}
-          className="flex transition-transform duration-700 ease-in-out"
-          style={{ transform: `translateX(-${currentIndex * 100}%)`, width: `${images.length * 100}%` }}
+          ref={carouselRef}
+          className="flex w-[300%] h-full"
+          style={{ transform: `translateX(-${index * 100}%)` }}
         >
-          {images.map((src, index) => (
-            <div key={index} className="flex-shrink-0 w-[360px] h-[200px] relative">
-              <Image src={src} alt={`preview-${index}`} fill className="object-cover" />
-            </div>
+          {carouselImages.map((src, i) => (
+            <Image
+              key={i}
+              src={src}
+              alt={`carousel-${i}`}
+              width={500}
+              height={800}
+              className="w-screen h-full object-cover flex-shrink-0"
+            />
           ))}
         </div>
       </div>
 
-      {/* 공유 버튼 */}
-      <div className="mt-6">
-        <button onClick={handleShare}>
-          <Image
-            src="share-image.png"
-            alt="공유하기"
-            width={132}
-            height={132}
-            priority
-          />
-        </button>
-      </div>
-    </main>
-  );
+      <button onClick={handleShare} className="w-[132px] h-[132px] mb-4">
+        <Image
+          src="/share-image.png"
+          alt="공유하기"
+          width={132}
+          height={132}
+          className="w-full h-full object-contain"
+        />
+      </button>
+    </div>
+  )
 }
 
-// 카카오톡 공유
-declare global {
-  interface Window {
-    Kakao: any;
-  }
-}
-
-const handleShare = () => {
-  if (window.Kakao && window.Kakao.isInitialized()) {
-    window.Kakao.Share.sendCustom({
-      templateId: 119614,
-    });
-  } else {
-    console.error('카카오 SDK가 초기화되지 않았습니다.');
-  }
-};
+export default KakaoSharePage
