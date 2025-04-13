@@ -1,76 +1,50 @@
-'use client';
+'use client'
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
+import Image from 'next/image';
 
-const carouselImages = [
-  '/kakao_preview1.png',
-  '/kakao_preview2.png',
-  '/kakao_preview3.png',
-];
+export default function KakaoSharePage() {
+  const carouselImages = [
+    '/kakao_preview1.png',
+    '/kakao_preview2.png',
+    '/kakao_preview3.png',
+  ];
 
-const KakaoSharePage = () => {
-  const carouselRef = useRef<HTMLDivElement>(null);
-  const [index, setIndex] = useState(0);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setIndex(prev => (prev + 1) % carouselImages.length);
-    }, 3000);
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % carouselImages.length);
+    }, 2000); // 2초마다 이미지 전환
 
     return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    const node = carouselRef.current;
-    if (node) {
-      node.style.transition = 'transform 0.8s ease-in-out';
-      node.style.transform = `translateX(-${index * 100}%)`;
-    }
-  }, [index]);
-
-  useEffect(() => {
-    if (!window.Kakao?.isInitialized()) {
-      window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_JS_KEY);
-    }
-  }, []);
-
-  const handleShare = () => {
-    if (!window.Kakao) return;
-
-    window.Kakao.Share.sendCustom({
-      templateId: 119614,
-    });
-  };
+  }, [carouselImages.length]);
 
   return (
-    <div className="w-screen h-screen overflow-hidden flex flex-col items-center justify-center bg-black text-white">
-      <div className="relative w-full h-[70%] overflow-hidden">
-        <div
-          ref={carouselRef}
-          className="flex w-full h-full"
-          style={{ width: `${carouselImages.length * 100}%` }}
-        >
-          {carouselImages.map((src, idx) => (
-            <img
-              key={idx}
-              src={src}
-              alt={`carousel-${idx}`}
-              className="w-full h-full object-cover flex-shrink-0"
-            />
-          ))}
-        </div>
-      </div>
-
-      <button onClick={handleShare} className="mt-8">
-        <img
-          src="/share-image.png"
-          alt="공유하기"
-          width={132}
-          height={132}
+    <div className="container">
+      <div className="carousel-container">
+        <Image
+          src={carouselImages[currentImageIndex]}
+          alt="Carousel Image"
+          layout="fill"
+          objectFit="cover"
         />
-      </button>
+      </div>
+      <div className="share-button-container">
+        <button
+          onClick={() => {
+            // 여기에 카카오톡 공유 기능 구현
+            alert('공유하기 버튼 클릭됨');
+          }}
+        >
+          <Image
+            src="/share-image.png"
+            alt="공유하기 버튼"
+            width={40}
+            height={40}
+          />
+        </button>
+      </div>
     </div>
   );
-};
-
-export default KakaoSharePage;
+}
