@@ -1,93 +1,77 @@
 'use client';
 
+import { useState } from 'react';
+import { supabase } from '@/lib/supabase/client';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import { createClient } from '@/lib/supabase/client';
 
 const SetNicknamePage = () => {
   const [nickname, setNickname] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
-  const supabase = createClient();
-
-  useEffect(() => {
-    // 로그인 여부 확인 및 닉네임 있는 경우 리다이렉트
-    const checkUser = async () => {
-      const { data, error } = await supabase.auth.getUser();
-      const user = data?.user;
-      if (!user) {
-        router.push('/login');
-        return;
-      }
-
-      const { data: profile } = await supabase
-        .from('profiles')
-        .select('nickname')
-        .eq('id', user.id)
-        .single();
-
-      if (profile?.nickname) {
-        router.push('/sharegame');
-      }
-    };
-
-    checkUser();
-  }, [router, supabase]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!nickname.trim()) return alert('닉네임을 입력해 주세요.');
 
-    setLoading(true);
-
-    const { data: { user } } = await supabase.auth.getUser();
-
-    if (!user) {
-      alert('로그인이 필요합니다.');
-      router.push('/login');
+    if (!nickname) {
+      setError('닉네임을 입력해 주세요.');
       return;
     }
 
-    const { error } = await supabase.from('profiles').upsert({
-      id: user.id,
-      nickname: nickname.trim(),
-    });
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
-    setLoading(false);
-
-    if (error) {
-      alert('닉네임 저장에 실패했습니다.');
-      console.error(error);
-    } else {
-      router.push('/sharegame');
+    if (!user) {
+      router.replace('/login');
+      return;
     }
+
+    const { error: updateError } = await supabase
+      .from('profiles')
+      .upsert(
+        {
+          id: user.id,
+          nickname,
+        },
+        { onConflict: ['id'] }
+      );
+
+    if (updateError) {
+      setError('닉네임을 설정하는 중 오류가 발생했습니다.');
+      console.error(updateError);
+      return;
+    }
+
+    // 닉네임 설정 후 sharegame 페이지로 이동
+    router.replace('/sharegame');
   };
 
   return (
-    <main style={{ padding: 24 }}>
-      <h1>닉네임 설정</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="닉네임을 입력하세요"
-          value={nickname}
-          onChange={(e) => setNickname(e.target.value)}
-          disabled={loading}
-          style={{ padding: 8, fontSize: 16, width: '100%', marginBottom: 12 }}
-        />
+    <div className="p-4">
+      <h1 className="text-2xl font-bold mb-4">닉네임을 설정해 주세요</h1>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label htmlFor="nickname" className="block text-lg">
+            닉네임
+          </label>
+          <input
+            id="nickname"
+            type="text"
+            value={nickname}
+            onChange={(e) => setNickname(e.target.value)}
+            className="mt-1 p-2 w-full border border-gray-300 rounded"
+            placeholder="닉네임을 입력하세요"
+          />
+        </div>
+        {error && <p className="text-red-500">{error}</p>}
         <button
           type="submit"
-          disabled={loading}
-          style={{
-            padding: '10px 20px',
-            fontSize: 16,
-            cursor: loading ? 'not-allowed' : 'pointer',
-          }}
+          className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
         >
-          {loading ? '저장 중...' : '저장하고 시작하기'}
+          설정
         </button>
       </form>
-    </main>
+    </div>
   );
 };
 
