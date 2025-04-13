@@ -7,9 +7,11 @@ const nextConfig = {
     domains: []
   },
   webpack(config) {
-    config.resolve.alias['@'] = path.join(__dirname, 'src');
+    // 'import.meta.url'을 사용하여 경로를 처리
+    const dirPath = new URL('.', import.meta.url).pathname;
+    config.resolve.alias['@'] = path.join(dirPath, 'src');
     return config;
   },
-}
+};
 
-export default nextConfig
+export default nextConfig;
