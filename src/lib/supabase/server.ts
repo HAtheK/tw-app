@@ -1,7 +1,10 @@
-import { createServerClient } from '@supabase/ssr';
-import { cookies } from 'next/headers'; // App Router에서 사용
+// src/lib/supabase/server.ts
 
-export const createSupabaseServerClient = () => {
+import { createServerClient } from '@supabase/ssr';
+import { cookies } from 'next/headers';
+
+// createClient 함수 정의
+export const createClient = () => {
   return createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
