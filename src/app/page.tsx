@@ -63,7 +63,7 @@ const KakaoSharePage = () => {
 
       <button onClick={handleShare} className="mt-8">
         <img
-          src="/share-Image.png"
+          src="/share-image.png"
           alt="공유하기"
           width={132}
           height={132}
