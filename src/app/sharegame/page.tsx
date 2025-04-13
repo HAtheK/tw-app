@@ -97,7 +97,7 @@ const ShareGamePage = () => {
                         receiver_uuid: uuid,
                         count: 1,
                       },
-                      { onConflict: ['user_id', 'receiver_uuid'] }
+                      { onConflict: 'user_id, receiver_uuid' }
                     );
                 })
               );
