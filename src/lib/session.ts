@@ -1,13 +1,11 @@
-// src/lib/session.ts
-'use server';
+import { createServerClient } from '@supabase/ssr'
+import { cookies } from 'next/headers'
 
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
-import { cookies } from 'next/headers';
+export async function getSession() {
+  const supabase = createServerClient({
+    cookies
+  })
 
-export async function getUserSession() {
-  const supabase = createServerComponentClient({ cookies });
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
-  return session;
+  const { data: { session } } = await supabase.auth.getSession()
+  return session
 }
