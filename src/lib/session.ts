@@ -1,11 +1,11 @@
-import { createServerClient } from '@supabase/ssr'
-import { cookies } from 'next/headers'
+// src/lib/session.ts (서버 전용)
+import { cookies } from 'next/headers';
+import { createServerClient } from '@supabase/ssr';
 
 export async function getSession() {
   const supabase = createServerClient({
     cookies
-  })
-
-  const { data: { session } } = await supabase.auth.getSession()
-  return session
+  });
+  const { data } = await supabase.auth.getUser();
+  return data;
 }
