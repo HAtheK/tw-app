@@ -28,7 +28,7 @@ const ShareGamePage = () => {
       }
 
       const { data, error } = await supabase
-        .from('profiles')
+        .from('users')
         .select('nickname')
         .eq('id', user.id)
         .single();
