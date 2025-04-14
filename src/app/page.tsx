@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useEffect } from 'react';
+import { useRouter } from 'next/navigation'
 
 declare global {
   interface Window {
@@ -10,6 +11,8 @@ declare global {
 }
 
 const KakaoSharePage = () => {
+  const router = useRouter(); 
+  
   useEffect(() => {
     if (window.Kakao && !window.Kakao.isInitialized()) {
       window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_JS_KEY);
@@ -24,6 +27,7 @@ const KakaoSharePage = () => {
     }
   };
 
+  
   return (
     <main className="min-h-screen grid grid-rows-[auto_1fr_auto] bg-white text-center text-black px-4 py-6">
       {/* 헤더 */}
@@ -49,7 +53,7 @@ const KakaoSharePage = () => {
         </button>
         <button
           className="bg-yellow-500 text-white px-4 py-2 rounded-md text-lg font-semibold shadow"
-          onClick={() => alert('준비 중입니다.')}
+          onClick={() => router.push('/sharegame')}
         >
           Share Game
         </button>
@@ -57,7 +61,7 @@ const KakaoSharePage = () => {
 
       {/* 푸터 */}
       <footer className="text-sm text-gray-500 mt-6">
-        © 2025 LOTTE MEMBERS-PLCC Cell. All rights reserved.
+        © 2025 -PLCC Cell. All rights reserved.
       </footer>
     </main>
   );
