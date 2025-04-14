@@ -45,7 +45,7 @@ const SetNicknamePage = () => {
         onClick={handleSave}
         className="mt-4 bg-blue-500 text-white px-4 py-2 rounded"
       >
-        저장하고 시작하기
+        등록하고 시작하기
       </button>
     </div>
   );
