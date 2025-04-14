@@ -1,50 +1,36 @@
 'use client';
 
-import { useEffect } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function KakaoCallbackHandler() {
-  const router = useRouter();
   const searchParams = useSearchParams();
+  const router = useRouter();
+  const [processing, setProcessing] = useState(true);
 
   useEffect(() => {
     const code = searchParams.get('code');
 
-    if (!code) {
-      alert('카카오 로그인 실패: 인가 코드 없음');
-      router.push('/login');
-      return;
+    if (code) {
+      // 여기에 카카오 토큰 요청 및 처리 로직 작성
+      console.log('Kakao login code:', code);
+
+      // 예시: 로그인 완료 후 redirect
+      // 실제 구현에서는 Supabase 연동이나 토큰 저장 등의 로직이 들어갈 수 있음
+      router.replace('/sharegame');
+    } else {
+      // code가 없을 경우 에러 처리 or 홈으로
+      console.warn('No code found in callback URL');
+      router.replace('/');
     }
 
-    const handleLogin = async () => {
-      try {
-        const res = await fetch('/api/auth/kakao-callback', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ code }),
-        });
-
-        const result = await res.json();
-
-        if (result.needNickname) {
-          router.push('/set-nickname');
-        } else {
-          router.push('/sharegame');
-        }
-      } catch (err) {
-        console.error('카카오 콜백 처리 중 오류:', err);
-        router.push('/login');
-      }
-    };
-
-    handleLogin();
-  }, [searchParams]);
+    setProcessing(false);
+  }, [searchParams, router]);
 
   return (
-    <div className="flex justify-center items-center min-h-screen">
-      <p className="text-lg">로그인 중입니다...</p>
+    <div>
+      {processing ? '카카오 로그인 처리 중입니다...' : '처리 완료'}
     </div>
   );
 }
