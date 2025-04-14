@@ -34,7 +34,7 @@ const SetNicknamePage = () => {
           id: user.id,
           nickname,
         },
-        { onConflict: ['id'] }
+        { onConflict: 'id' }
       );
 
     if (updateError) {
