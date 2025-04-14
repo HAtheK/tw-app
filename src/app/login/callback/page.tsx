@@ -18,7 +18,6 @@ const KakaoCallbackPage = () => {
       }
 
       try {
-        // 백엔드 API에서 인가코드를 이용해 access_token 교환 후 로그인 처리
         const res = await fetch('/api/auth/kakao-callback', {
           method: 'POST',
           headers: {
