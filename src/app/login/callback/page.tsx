@@ -1,21 +1,15 @@
-'use client';
+import dynamic from 'next/dynamic';
+import { Suspense } from 'react';
 
-import { useEffect } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+// KakaoCallbackHandler를 동적으로 불러오며 클라이언트 컴포넌트로 분리
+const KakaoCallbackHandler = dynamic(() => import('./KakaoCallbackHandler'), {
+  ssr: false,
+});
 
-export default function LoginCallbackPage() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-
-  useEffect(() => {
-    const code = searchParams.get('code');
-    if (code) {
-      // 예: Supabase나 Kakao 인증 처리
-      router.replace('/set-nickname');
-    } else {
-      router.replace('/login');
-    }
-  }, [searchParams, router]);
-
-  return <p>로그인 처리 중입니다...</p>;
+export default function KakaoCallbackPage() {
+  return (
+    <Suspense fallback={<div>카카오 로그인 처리 중입니다...</div>}>
+      <KakaoCallbackHandler />
+    </Suspense>
+  );
 }
