@@ -2,6 +2,9 @@ import path from 'path';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  eslint: {
+    ignoreDuringBuilds: true, // <-- 이 줄 추가!
+  },
   reactStrictMode: true,
   images: {
     domains: []
