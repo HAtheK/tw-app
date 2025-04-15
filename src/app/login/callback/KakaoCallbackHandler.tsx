@@ -22,7 +22,7 @@ export default function KakaoCallbackHandler() {
 
       try {
         console.log('📡 /api/kakao/token 요청 중...');
-        const response = await fetch('/api/kakao/token', {
+        const response = await fetch('/api/auth/kakao/token', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ code }),
