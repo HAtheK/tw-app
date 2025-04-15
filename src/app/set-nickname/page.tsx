@@ -1,7 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { supabase } from '@/lib/supabase/client';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 const SetNicknamePage = () => {
@@ -10,22 +9,20 @@ const SetNicknamePage = () => {
   const router = useRouter();
 
   const handleSave = async () => {
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
+    setError('');
 
-    if (!user) {
-      router.replace('/login');
-      return;
-    }
+    const res = await fetch('/api/auth/set-nickname', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ nickname }),
+    });
 
-    const { error } = await supabase
-      .from('users')
-      .update({ nickname })
-      .eq('id', user.id);
+    const data = await res.json();
 
-    if (error) {
-      setError('닉네임 저장 실패');
+    if (!res.ok) {
+      setError(data.error || '닉네임 저장 실패');
     } else {
       router.replace('/sharegame');
     }
@@ -39,6 +36,7 @@ const SetNicknamePage = () => {
         value={nickname}
         onChange={(e) => setNickname(e.target.value)}
         className="border px-2 py-1 w-full"
+        placeholder="한글 1~8자"
       />
       {error && <p className="text-red-500 mt-2">{error}</p>}
       <button
