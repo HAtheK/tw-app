@@ -2,7 +2,6 @@
 
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { supabase } from '@/lib/supabase/client';
 
 export default function KakaoCallbackHandler() {
   const searchParams = useSearchParams();
@@ -21,21 +20,23 @@ export default function KakaoCallbackHandler() {
       }
 
       try {
+        // 1. Kakao Access Token 요청
         console.log('📡 /api/kakao/token 요청 중...');
-        const response = await fetch('/api/auth/kakao', {
+        const tokenResponse = await fetch('/api/kakao/token', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ code }),
         });
 
-        const tokenRes = await response.json();
-        console.log('✅ 토큰 응답:', tokenRes);
+        const tokenData = await tokenResponse.json();
+        console.log('✅ 토큰 응답:', tokenData);
 
-        const access_token = tokenRes.access_token;
+        const access_token = tokenData.access_token;
         if (!access_token) {
           throw new Error('❌ access_token 없음');
         }
 
+        // 2. Kakao 사용자 정보 요청
         console.log('📡 Kakao 사용자 정보 요청 중...');
         const profileRes = await fetch('https://kapi.kakao.com/v2/user/me', {
           headers: {
@@ -49,40 +50,32 @@ export default function KakaoCallbackHandler() {
         const { id, kakao_account, properties } = profile;
         const kakaoId = id?.toString();
         const email = kakao_account?.email || null;
-        const phone = kakao_account?.phone_number || null;
-        const nickname = properties?.nickname || null;
+        const nickname = properties?.nickname || '사용자';
 
-        console.log('📦 Supabase upsert 요청:', {
-          kakao_id: kakaoId,
-          email,
-          phone,
-          kakao_nickname: nickname,
-        });
-
-        const { data, error } = await supabase
-          .from('users')
-          .upsert(
-            {
-              kakao_id: kakaoId,
-              email,
-              phone,
-              kakao_nickname: nickname,
-            },
-            { onConflict: 'kakao_id' }
-          )
-          .select()
-          .single();
-
-        if (error) {
-          console.error('❌ Supabase 에러:', error);
-          throw new Error('Supabase insert 실패');
+        if (!kakaoId || !nickname) {
+          throw new Error('사용자 정보 부족');
         }
 
-        const userId = data?.id;
-        console.log('✅ Supabase user 등록 완료:', userId);
+        // 3. 서버 API로 전달 (쿠키 설정 + Supabase 등록)
+        const apiResponse = await fetch('/api/auth/kakao', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            kakaoId,
+            nickname,
+            email,
+            accessToken: access_token,
+          }),
+        });
 
-        if (!userId) throw new Error('Supabase user id 없음');
+        const apiResult = await apiResponse.json();
+        console.log('✅ API 응답:', apiResult);
 
+        if (!apiResponse.ok) {
+          throw new Error(apiResult.error || '서버 저장 실패');
+        }
+
+        // 4. 별명 설정 페이지로 이동
         router.replace('/set-nickname');
       } catch (error) {
         console.error('🔥 카카오 로그인 처리 실패:', error);
