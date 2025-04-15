@@ -30,6 +30,14 @@ const SetNicknamePage = () => {
   };
 
   return (
+    <main className="min-h-screen grid grid-rows-[auto_1fr_auto] bg-white text-center text-black px-4 py-6">
+      {/* 헤더 */}
+      <header className="text-xl font-bold mb-4">🎮 카카오톡 공유 이벤트</header>
+
+      {/* 콘텐츠 */}
+      <section className="flex flex-col items-center justify-center space-y-6">
+    
+
     <div className="p-4">
       <h1 className="text-xl font-bold mb-4">닉네임을 입력해주세요</h1>
       <input
@@ -47,6 +55,15 @@ const SetNicknamePage = () => {
         등록하고 시작하기
       </button>
     </div>
+
+    </section>
+
+    {/* 푸터 */}
+    <footer className="text-sm text-gray-500 mt-6">
+      © 2025 -PLCC Cell. All rights reserved.
+    </footer>
+  </main>
+
   );
 };
 
