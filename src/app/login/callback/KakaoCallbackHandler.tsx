@@ -20,8 +20,8 @@ export default function KakaoCallbackHandler() {
       }
 
       try {
-        // 1. Kakao Access Token 요청
-        console.log('📡 /api/kakao/token 요청 중...');
+        // 1. 카카오 Access Token 요청
+        console.log('📡 /api/auth/kakao/token 요청 중...');
         const tokenResponse = await fetch('/api/auth/kakao/token', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -33,10 +33,11 @@ export default function KakaoCallbackHandler() {
 
         const access_token = tokenData.access_token;
         if (!access_token) {
-          throw new Error('❌ access_token 없음');
+          console.error('❌ access_token 없음. 전체 응답:', tokenData);
+          throw new Error('access_token이 존재하지 않습니다.');
         }
 
-        // 2. Kakao 사용자 정보 요청
+        // 2. 사용자 프로필 요청
         console.log('📡 Kakao 사용자 정보 요청 중...');
         const profileRes = await fetch('https://kapi.kakao.com/v2/user/me', {
           headers: {
@@ -56,7 +57,8 @@ export default function KakaoCallbackHandler() {
           throw new Error('사용자 정보 부족');
         }
 
-        // 3. 서버 API로 전달 (쿠키 설정 + Supabase 등록)
+        // 3. Supabase 저장 및 쿠키 설정 요청
+        console.log('📡 /api/auth/kakao 로 사용자 정보 전송 중...');
         const apiResponse = await fetch('/api/auth/kakao', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -69,10 +71,11 @@ export default function KakaoCallbackHandler() {
         });
 
         const apiResult = await apiResponse.json();
-        console.log('✅ API 응답:', apiResult);
+        console.log('✅ 사용자 저장 응답:', apiResult);
 
         if (!apiResponse.ok) {
-          throw new Error(apiResult.error || '서버 저장 실패');
+          console.error('❌ 사용자 저장 실패 응답:', apiResult);
+          throw new Error(apiResult.error || '사용자 정보 저장 실패');
         }
 
         // 4. 별명 설정 페이지로 이동

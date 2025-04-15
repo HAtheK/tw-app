@@ -1,49 +1,49 @@
 // app/api/auth/kakao/route.ts
+import { cookies } from 'next/headers';
+import { NextResponse } from 'next/server';
+import { createClient } from '@supabase/supabase-js';
 
-import { NextRequest, NextResponse } from 'next/server';
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY! // 보안상 서버에서만 사용
+);
 
-export async function POST(req: NextRequest) {
-  console.log('[카카오 Auth] 요청 수신됨');
-
+export async function POST(req: Request) {
   try {
-    const { code } = await req.json();
+    const { kakaoId, nickname, email, accessToken } = await req.json();
 
-    if (!code) {
-      console.warn('[카카오 Auth] 인가 코드 없음');
-      return NextResponse.json({ error: 'Authorization code is required' }, { status: 400 });
+    if (!kakaoId || !nickname) {
+      return NextResponse.json({ error: 'Missing data' }, { status: 400 });
     }
 
-    const redirectUri = process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URI!;
-    const clientId = process.env.NEXT_PUBLIC_KAKAO_REST_API_KEY!;
+    // 1. Supabase에 유저 저장 or upsert
+    const { error } = await supabase
+      .from('users') // 테이블 이름이 다르면 수정
+      .upsert({
+        kakao_id: kakaoId,
+        nickname,
+        email,
+        last_login: new Date().toISOString(),
+      }, { onConflict: 'kakao_id' });
 
-    console.log('[카카오 Auth] 인가 코드:', code);
-    console.log('[카카오 Auth] Redirect URI:', redirectUri);
-    console.log('[카카오 Auth] Client ID:', clientId);
+    if (error) {
+      console.error('Supabase upsert error:', error);
+      return NextResponse.json({ error: 'Supabase error' }, { status: 500 });
+    }
 
-    const tokenRes = await fetch('https://kauth.kakao.com/oauth/token', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
-      },
-      body: new URLSearchParams({
-        grant_type: 'authorization_code',
-        client_id: clientId,
-        redirect_uri: redirectUri,
-        code,
-      }).toString(),
+    // 2. HttpOnly 쿠키로 accessToken 저장 (7일)
+    cookies().set({
+      name: 'kakao_token',
+      value: accessToken,
+      httpOnly: true,
+      secure: true,
+      path: '/',
+      maxAge: 60 * 60 * 24 * 7,
     });
 
-    const tokenData = await tokenRes.json();
-    console.log('[카카오 Auth] 토큰 응답 수신:', tokenData);
-
-    if (tokenData.error) {
-      console.error('[카카오 Auth] 토큰 오류:', tokenData.error_description);
-      return NextResponse.json({ error: tokenData.error_description }, { status: 400 });
-    }
-
-    return NextResponse.json(tokenData);
-  } catch (error) {
-    console.error('[카카오 Auth] 서버 에러:', error);
+    return NextResponse.json({ success: true });
+  } catch (err) {
+    console.error('API error:', err);
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
