@@ -27,7 +27,7 @@ export async function POST(req: Request) {
       }, { onConflict: 'kakao_id' });
 
     if (error) {
-      console.error('Supabase upsert error:', error);
+      console.error('Supabase upsert error:', error.message);
       return NextResponse.json({ error: 'Supabase error' }, { status: 500 });
     }
 
