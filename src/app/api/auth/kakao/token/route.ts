@@ -1,17 +1,27 @@
 // app/api/auth/kakao/token/route.ts
-
 import { NextResponse } from 'next/server';
 
 export async function POST(req: Request) {
   try {
+    // 환경변수 확인: 카카오 REST API Key
+    const clientId = process.env.NEXT_PUBLIC_KAKAO_REST_API_KEY;
+
+    // client_id가 없을 경우 오류 출력
+    if (!clientId) {
+      console.error("❌ 카카오 클라이언트 ID가 없습니다.");
+      return NextResponse.json({ error: 'Missing client_id' }, { status: 400 });
+    }
+
+    console.log('📡 카카오 Client ID:', clientId);  // client_id가 잘 전달되는지 확인하는 로그
+
     const { code } = await req.json();
 
     if (!code) {
       return NextResponse.json({ error: 'Authorization code is required' }, { status: 400 });
     }
 
+    // 이후 토큰 요청 및 처리 로직
     const redirectUri = process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URI!;
-    const clientId = process.env.NEXT_PUBLIC_KAKAO_REST_API_KEY!;
 
     const tokenRes = await fetch('https://kauth.kakao.com/oauth/token', {
       method: 'POST',
@@ -35,7 +45,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json(tokenData);
   } catch (error) {
-    console.error('[카카오 Auth] AccessToken 요청 실패:', error);
+    console.error('[카카오 Auth] 오류:', error);
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
