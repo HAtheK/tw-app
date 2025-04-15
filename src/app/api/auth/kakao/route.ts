@@ -10,24 +10,27 @@ const supabase = createClient(
 
 export async function POST(req: Request) {
   try {
-    const { kakaoId, nickname, email, accessToken } = await req.json();
+    const { kakaoId, kakaoNickname, email, phone, accessToken } = await req.json();
 
-    if (!kakaoId || !nickname) {
+    if (!kakaoId || !kakaoNickname) {
       return NextResponse.json({ error: 'Missing data' }, { status: 400 });
     }
 
     // 1. Supabase에 유저 저장 or upsert
     const { error } = await supabase
-      .from('users') // 테이블 이름이 다르면 수정
+      .from('users')
       .upsert({
         kakao_id: kakaoId,
-        nickname,
+        kakao_nickname: kakaoNickname,
         email,
-        last_login: new Date().toISOString(),
-      }, { onConflict: 'kakao_id' });
+        phone,
+        last_login: new Date().toISOString(), // users 테이블에 last_login 컬럼이 있다면 사용
+      }, {
+        onConflict: 'kakao_id',
+      });
 
     if (error) {
-      console.error('Supabase upsert error:', error.message);
+      console.error('❌ Supabase upsert error:', error.message);
       return NextResponse.json({ error: 'Supabase error' }, { status: 500 });
     }
 
@@ -38,12 +41,12 @@ export async function POST(req: Request) {
       httpOnly: true,
       secure: true,
       path: '/',
-      maxAge: 60 * 60 * 24 * 7,
+      maxAge: 60 * 60 * 24 * 7, // 7일
     });
 
     return NextResponse.json({ success: true });
   } catch (err) {
-    console.error('API error:', err);
+    console.error('🔥 API error:', err);
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }

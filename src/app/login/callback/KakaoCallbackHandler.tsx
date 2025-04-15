@@ -48,12 +48,13 @@ export default function KakaoCallbackHandler() {
         const profile = await profileRes.json();
         console.log('✅ 사용자 프로필:', profile);
 
-        const { id, kakao_account, properties } = profile;
+        const { id, kakao_account } = profile;
         const kakaoId = id?.toString();
+        const kakaoNickname = kakao_account?.profile?.nickname || '사용자';
         const email = kakao_account?.email || null;
-        const nickname = properties?.nickname || '사용자';
+        const phone = kakao_account?.phone_number || null;
 
-        if (!kakaoId || !nickname) {
+        if (!kakaoId || !kakaoNickname) {
           throw new Error('사용자 정보 부족');
         }
 
@@ -64,8 +65,9 @@ export default function KakaoCallbackHandler() {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             kakaoId,
-            nickname,
+            kakaoNickname,
             email,
+            phone,
             accessToken: access_token,
           }),
         });
