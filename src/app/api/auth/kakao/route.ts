@@ -45,6 +45,16 @@ export async function POST(req: Request) {
       path: '/',
       maxAge: 60 * 60 * 24 * 7,
     });
+    // ✅ kakao_id도 쿠키에 함께 저장
+    cookies().set({
+      name: 'kakao_id',
+      value: kakaoId,
+      httpOnly: true,
+      secure: true,
+      path: '/',
+      maxAge: 60 * 60 * 24 * 7,
+    });
+
 
     return NextResponse.json({ success: true });
   } catch (err: any) {

@@ -16,6 +16,7 @@ const SetNicknamePage = () => {
       headers: {
         'Content-Type': 'application/json',
       },
+      credentials: 'include', // ✅ 쿠키 포함
       body: JSON.stringify({ nickname }),
     });
 
