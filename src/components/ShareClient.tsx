@@ -64,41 +64,64 @@ const ShareClient = ({ userId, nickname }: Props) => {
 
   const proceedShare = async () => {
     try {
-      // 카카오 SDK가 로드되어 있는지 확인
-      if (!window.Kakao) {
-        console.error('❌ 카카오 SDK가 로드되지 않았습니다.');
-        alert('카카오 SDK가 로드되지 않았습니다.');
+      // 1. 카카오 로그인 상태 확인
+      const accessToken = window.Kakao.Auth.getAccessToken();
+      if (!accessToken) {
+        console.error('❌ 카카오 로그인되지 않았습니다.');
+        alert('카카오 로그인이 필요합니다.');
         return;
       }
   
-      console.log('📤 메시지 전송 시작');
+      console.log('📤 로그인 확인 완료');
   
-      // 카카오 메시지 전송
-      const response = await window.Kakao.Share.sendCustom({
-        templateId: 119614, // 사용하려는 템플릿 ID
+      // 2. 카카오 친구 정보 가져오기
+      const response = await window.Kakao.API.request({
+        url: '/v1/api/talk/friends',
       });
   
-      console.log('📨 메시지 전송 성공:', response);
+      const friends = response.elements || [];
+      console.log('친구 목록:', friends);
   
-      // 성공적으로 메시지가 전송되었을 때 서버에 기록
-      const serverResponse = await fetch('/api/auth/sharegame', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          userId,
-          successfulUuids: ["success"],  // 성공적으로 메시지를 전송한 친구들 (피커를 사용하지 않으므로 빈 배열)
-          failedUuids: [],      // 실패한 친구들 (없으면 빈 배열)
-        }),
+      // 3. 친구 피커 띄우기
+      window.Kakao.Picker.selectFriends({
+        title: '친구 선택',
+        maxPickableCount: 10,
+        minPickableCount: 1,
+        success: async (pickerResponse: KakaoFriendResponse) => {
+          const uuids = pickerResponse.selectedFriends.map((f) => f.uuid);
+          console.log('✅ 선택된 친구 UUID:', uuids);
+  
+          // 4. 템플릿 ID 119614 메시지 발송
+          try {
+            const messageResponse = await window.Kakao.Share.sendCustom({
+              templateId: 119614, // 템플릿 ID 119614 사용
+              templateArgs: {
+                // 템플릿 인자 (필요시 추가)
+              },
+            });
+  
+            console.log('📨 메시지 전송 성공:', messageResponse);
+  
+            // 5. 발송 결과 콘솔에 기록
+            const successfulUuids = messageResponse.successful_receiver_uuids || [];
+            const failedUuids = messageResponse.failed_receiver_uuids || [];
+  
+            console.log('성공한 친구 UUID:', successfulUuids);
+            console.log('실패한 친구 UUID:', failedUuids);
+  
+          } catch (error) {
+            console.error('❌ 메시지 전송 실패:', error);
+            alert('메시지 전송 실패');
+          }
+        },
+        fail: (error: any) => {
+          console.error('❌ 친구 선택 실패:', error);
+          alert('친구 선택 실패');
+        },
       });
-  
-      const result = await serverResponse.json();
-      console.log('✅ 서버 기록 결과:', result);
-  
-      // 랭킹 재불러오기
-      fetchRanking();
     } catch (error) {
-      console.error('❌ 메시지 전송 중 에러 발생:', error);
-      alert('메시지 전송에 실패했습니다.');
+      console.error('❌ 에러 발생:', error);
+      alert('오류가 발생했습니다.');
     }
   };
   
