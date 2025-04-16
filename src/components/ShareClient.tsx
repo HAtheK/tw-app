@@ -2,8 +2,11 @@
 
 import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase/client';
-import { useRouter } from 'next/navigation';
-import Cookies from 'js-cookie';
+
+type Props = {
+  userId: string;
+  nickname: string;
+};
 
 type KakaoFriend = {
   uuid: string;
@@ -12,53 +15,11 @@ type KakaoFriend = {
   profile_thumbnail_image?: string;
 };
 
-const ShareClient = () => {
-  const [userName, setUserName] = useState('');
-  const [userId, setUserId] = useState('');
+const ShareClient = ({ userId, nickname }: Props) => {
   const [ranking, setRanking] = useState<any[]>([]);
-  const router = useRouter();
 
   useEffect(() => {
-    const init = async () => {
-      console.log('🚀 쿠키 확인 및 사용자 검증 시작');
-
-      const kakaoId = Cookies.get('kakao_id');
-      const kakaoToken = Cookies.get('kakao_token');
-
-      if (!kakaoId || !kakaoToken) {
-        console.warn('❌ kakao_id 또는 kakao_token 없음 → /login 리다이렉션');
-        router.replace('/login');
-        return;
-      }
-
-      console.log('✅ kakao_id 쿠키 확인됨:', kakaoId);
-
-      const { data: userProfile, error } = await supabase
-        .from('users')
-        .select('id, nickname')
-        .eq('kakao_id', kakaoId)
-        .single();
-
-      if (error || !userProfile) {
-        console.warn('❌ users 테이블에 kakao_id로 등록된 사용자 없음 → /login 리다이렉션');
-        router.replace('/login');
-        return;
-      }
-
-      if (!userProfile.nickname) {
-        console.warn('⚠️ 사용자 닉네임 없음 → /set-nickname 리다이렉션');
-        router.replace('/set-nickname');
-        return;
-      }
-
-      console.log(`✅ 닉네임 확인 완료: ${userProfile.nickname}`);
-      setUserName(userProfile.nickname);
-      setUserId(userProfile.id);
-
-      fetchRanking();
-    };
-
-    init();
+    fetchRanking();
   }, []);
 
   const fetchRanking = async () => {
@@ -106,11 +67,6 @@ const ShareClient = () => {
             success: async (res: any) => {
               console.log('📨 메시지 전송 성공:', res);
 
-              if (!userId) {
-                console.warn('❌ 공유 시 사용자 ID 없음');
-                return;
-              }
-
               const response = await fetch('/api/auth/sharegame', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -143,7 +99,7 @@ const ShareClient = () => {
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">{userName}님, 친구에게 공유해보세요!</h1>
+      <h1 className="text-2xl font-bold mb-4">{nickname}님, 친구에게 공유해보세요!</h1>
       <button
         onClick={handleShare}
         className="bg-yellow-400 hover:bg-yellow-500 text-white font-semibold py-2 px-4 rounded"
