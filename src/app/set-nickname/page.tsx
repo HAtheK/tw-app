@@ -2,7 +2,7 @@
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
-import SetNicknameClient from '@/src/components/SetNicknameClient';
+import SetNicknameClient from '../../components/SetNicknameClient';
 
 export default async function SetNicknamePage() {
   const cookieStore = cookies();
