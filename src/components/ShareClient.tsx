@@ -8,11 +8,8 @@ type Props = {
   nickname: string;
 };
 
-type KakaoFriend = {
-  uuid: string;
-  id?: number;
-  profile_nickname?: string;
-  profile_thumbnail_image?: string;
+type KakaoFriendResponse = {
+  selectedFriends: { uuid: string }[];
 };
 
 const ShareClient = ({ userId, nickname }: Props) => {
@@ -23,8 +20,6 @@ const ShareClient = ({ userId, nickname }: Props) => {
   }, []);
 
   const fetchRanking = async () => {
-    console.log('📊 TOP10 랭킹 불러오기 시작');
-
     const { data: topRanks, error } = await supabase
       .from('share_records')
       .select('user_id, count')
@@ -36,37 +31,38 @@ const ShareClient = ({ userId, nickname }: Props) => {
       return;
     }
 
-    console.log('✅ 랭킹 불러오기 성공:', topRanks);
     setRanking(topRanks || []);
   };
 
   const handleShare = async () => {
-    if (!window.Kakao || !window.Kakao.Link) {
+    if (!window.Kakao || !window.Kakao.Picker) {
       alert('카카오 SDK 로딩 실패');
       return;
     }
 
-    console.log('📤 친구 선택 및 공유 시작');
+    console.log('📤 친구 선택 시작');
 
     try {
       window.Kakao.Picker.selectFriends({
-        showMyProfile: false,
+        title: '친구 선택',
         maxPickableCount: 10,
         minPickableCount: 1,
-        onSelected: async (selectedUsers: KakaoFriend[]) => {
-          const uuids = selectedUsers.map((user) => user.uuid);
-          console.log('✅ 선택된 친구들:', uuids);
+        success: async (response: KakaoFriendResponse) => {
+          const uuids = response.selectedFriends.map((f) => f.uuid);
+          console.log('✅ 선택된 친구 UUID:', uuids);
 
-          await window.Kakao.API.request({
+          // 메시지 템플릿 전송
+          window.Kakao.API.request({
             url: '/v1/api/talk/friends/message/send',
             data: {
               receiver_uuids: uuids,
-              template_id: 119614,
+              template_id: 116914, // ← 수정된 템플릿 ID 사용
               template_args: {},
             },
             success: async (res: any) => {
               console.log('📨 메시지 전송 성공:', res);
 
+              // 서버에 기록
               const response = await fetch('/api/auth/sharegame', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -79,21 +75,20 @@ const ShareClient = ({ userId, nickname }: Props) => {
 
               const result = await response.json();
               console.log('✅ 서버 기록 결과:', result);
-
               fetchRanking();
             },
             fail: (err: any) => {
               console.error('❌ 메시지 전송 실패:', err);
-              alert('메시지 전송에 실패했습니다.');
+              alert('메시지 전송 실패');
             },
           });
         },
-        onCancel: () => {
-          console.log('🚫 친구 선택 취소됨');
+        fail: (err: any) => {
+          console.error('❌ 친구 선택 실패:', err);
         },
       });
     } catch (err) {
-      console.error('❌ 공유 중 에러 발생:', err);
+      console.error('❌ 공유 프로세스 에러:', err);
     }
   };
 
