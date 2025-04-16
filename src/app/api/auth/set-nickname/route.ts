@@ -56,5 +56,6 @@ export async function POST(req: Request) {
   }
 
   console.log('✅ 닉네임 등록 성공:', nickname);
+  console.log('📊 업데이트된 데이터:', updated);
   return NextResponse.json({ success: true });
 }
