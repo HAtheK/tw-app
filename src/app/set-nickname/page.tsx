@@ -1,15 +1,58 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Cookies from 'js-cookie';
+import { supabase } from '@/lib/supabase/client';
 
 const SetNicknamePage = () => {
   const [nickname, setNickname] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(true); // 로딩 플래그
   const router = useRouter();
+
+  useEffect(() => {
+    const verifyUserAndNickname = async () => {
+      const kakaoId = Cookies.get('kakao_id');
+      const kakaoToken = Cookies.get('kakao_token');
+
+      if (!kakaoId || !kakaoToken) {
+        console.warn('❌ 쿠키 없음 → /login');
+        router.replace('/login');
+        return;
+      }
+
+      const { data: user, error: userError } = await supabase
+        .from('users')
+        .select('nickname')
+        .eq('kakao_id', kakaoId)
+        .single();
+
+      if (userError || !user) {
+        console.warn('❌ 사용자 없음 → /login');
+        router.replace('/login');
+        return;
+      }
+
+      if (user.nickname) {
+        console.log('✅ 닉네임 있음 → /sharegame');
+        router.replace('/sharegame');
+        return;
+      }
+
+      // 닉네임 없음 → 입력 폼 렌더링
+      setLoading(false);
+    };
+
+    verifyUserAndNickname();
+  }, []);
 
   const handleSave = async () => {
     setError('');
+    if (!nickname.trim()) {
+      setError('닉네임을 입력해주세요');
+      return;
+    }
 
     console.log('📤 닉네임 제출:', nickname);
 
@@ -19,7 +62,7 @@ const SetNicknamePage = () => {
         'Content-Type': 'application/json',
         'Cache-Control': 'no-cache',
       },
-      credentials: 'include', // ✅ 쿠키 포함
+      credentials: 'include',
       body: JSON.stringify({ nickname }),
     });
 
@@ -31,10 +74,12 @@ const SetNicknamePage = () => {
     if (!res.ok) {
       setError(data.error || '닉네임 저장 실패');
     } else {
-      console.log('✅ 닉네임 저장 성공, 공유게임 페이지로 이동');
+      console.log('✅ 닉네임 저장 성공 → /sharegame');
       router.replace('/sharegame');
     }
   };
+
+  if (loading) return null; // 로딩 중에는 아무것도 렌더링하지 않음
 
   return (
     <main className="min-h-screen grid grid-rows-[auto_1fr_auto] bg-white text-center text-black px-4 py-6">

@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase/client';
 import { useRouter } from 'next/navigation';
+import Cookies from 'js-cookie';
 
 type KakaoFriend = {
   uuid: string;
@@ -13,54 +14,51 @@ type KakaoFriend = {
 
 const ShareClient = () => {
   const [userName, setUserName] = useState('');
+  const [userId, setUserId] = useState('');
   const [ranking, setRanking] = useState<any[]>([]);
   const router = useRouter();
 
   useEffect(() => {
-    const fetchUserAndNickname = async () => {
-      console.log('🟡 Supabase 인증 유저 확인 시작');
+    const init = async () => {
+      console.log('🚀 쿠키 확인 및 사용자 검증 시작');
 
-      const {
-        data: { user },
-        error: authError,
-      } = await supabase.auth.getUser();
+      const kakaoId = Cookies.get('kakao_id');
+      const kakaoToken = Cookies.get('kakao_token');
 
-      if (authError || !user) {
-        console.warn('❌ 로그인된 사용자 없음 → /login 리디렉션');
+      if (!kakaoId || !kakaoToken) {
+        console.warn('❌ kakao_id 또는 kakao_token 없음 → /login 리다이렉션');
         router.replace('/login');
         return;
       }
 
-      console.log(`🟢 로그인된 사용자 ID: ${user.id}`);
+      console.log('✅ kakao_id 쿠키 확인됨:', kakaoId);
 
-      const {
-        data: userProfile,
-        error: profileError,
-      } = await supabase
+      const { data: userProfile, error } = await supabase
         .from('users')
-        .select('nickname')
-        .eq('id', user.id)
+        .select('id, nickname')
+        .eq('kakao_id', kakaoId)
         .single();
 
-      if (profileError || !userProfile) {
-        console.warn('❌ 사용자 정보 없음 → /set-nickname 리디렉션');
-        router.replace('/set-nickname');
+      if (error || !userProfile) {
+        console.warn('❌ users 테이블에 kakao_id로 등록된 사용자 없음 → /login 리다이렉션');
+        router.replace('/login');
         return;
       }
 
       if (!userProfile.nickname) {
-        console.warn('⚠️ 닉네임 미설정 → /set-nickname 리디렉션');
+        console.warn('⚠️ 사용자 닉네임 없음 → /set-nickname 리다이렉션');
         router.replace('/set-nickname');
         return;
       }
 
       console.log(`✅ 닉네임 확인 완료: ${userProfile.nickname}`);
       setUserName(userProfile.nickname);
+      setUserId(userProfile.id);
 
       fetchRanking();
     };
 
-    fetchUserAndNickname();
+    init();
   }, []);
 
   const fetchRanking = async () => {
@@ -88,6 +86,7 @@ const ShareClient = () => {
     }
 
     console.log('📤 친구 선택 및 공유 시작');
+
     try {
       window.Kakao.Picker.selectFriends({
         showMyProfile: false,
@@ -97,7 +96,6 @@ const ShareClient = () => {
           const uuids = selectedUsers.map((user) => user.uuid);
           console.log('✅ 선택된 친구들:', uuids);
 
-          // 메시지 전송
           await window.Kakao.API.request({
             url: '/v1/api/talk/friends/message/send',
             data: {
@@ -108,16 +106,11 @@ const ShareClient = () => {
             success: async (res: any) => {
               console.log('📨 메시지 전송 성공:', res);
 
-              const {
-                data: { user },
-              } = await supabase.auth.getUser();
-              const userId = user?.id;
               if (!userId) {
-                console.warn('❌ 전송 후 사용자 ID 없음');
+                console.warn('❌ 공유 시 사용자 ID 없음');
                 return;
               }
 
-              // 서버에 성공/실패 기록 저장
               const response = await fetch('/api/auth/sharegame', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -131,7 +124,6 @@ const ShareClient = () => {
               const result = await response.json();
               console.log('✅ 서버 기록 결과:', result);
 
-              // 랭킹 갱신
               fetchRanking();
             },
             fail: (err: any) => {
