@@ -49,7 +49,7 @@ export async function POST(req: Request) {
   const { data: updated, error: updateError } = await supabase
     .from('users')
     .update({ nickname })
-    .eq('kakao_id', kakaoId)
+    .eq('kakao_id', String(kakaoId))
     .select(); // ✅ 업데이트된 결과 확인용
 
     console.log('📌 update 결과:', updated);
