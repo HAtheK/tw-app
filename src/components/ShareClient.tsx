@@ -62,52 +62,46 @@ const ShareClient = ({ userId, nickname }: Props) => {
     }
   };
 
-  const proceedShare = () => {
-    window.Kakao.Picker.selectFriends({
-      title: '친구 선택',
-      maxPickableCount: 10,
-      minPickableCount: 1,
-      success: async (response: KakaoFriendResponse) => {
-        const uuids = response.selectedFriends.map((f) => f.uuid);
-        console.log('✅ 선택된 친구 UUID:', uuids);
-
-        // 메시지 템플릿 전송
-        window.Kakao.API.request({
-          url: '/v1/api/talk/friends/message/send',
-          data: {
-            receiver_uuids: uuids,
-            template_id: 116914, // 사용 중인 템플릿 ID
-            template_args: {},
-          },
-          success: async (res: any) => {
-            console.log('📨 메시지 전송 성공:', res);
-
-            // 서버 기록
-            const response = await fetch('/api/auth/sharegame', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                userId,
-                successfulUuids: res.successful_receiver_uuids,
-                failedUuids: res.failed_receiver_uuids,
-              }),
-            });
-
-            const result = await response.json();
-            console.log('✅ 서버 기록 결과:', result);
-            fetchRanking();
-          },
-          fail: (err: any) => {
-            console.error('❌ 메시지 전송 실패:', err);
-            alert('메시지 전송에 실패했습니다.');
-          },
-        });
-      },
-      fail: (err: any) => {
-        console.error('❌ 친구 선택 실패:', err);
-      },
-    });
+  const proceedShare = async () => {
+    try {
+      // 카카오 SDK가 로드되어 있는지 확인
+      if (!window.Kakao) {
+        console.error('❌ 카카오 SDK가 로드되지 않았습니다.');
+        alert('카카오 SDK가 로드되지 않았습니다.');
+        return;
+      }
+  
+      console.log('📤 메시지 전송 시작');
+  
+      // 카카오 메시지 전송
+      const response = await window.Kakao.Share.sendCustom({
+        templateId: 119614, // 사용하려는 템플릿 ID
+      });
+  
+      console.log('📨 메시지 전송 성공:', response);
+  
+      // 성공적으로 메시지가 전송되었을 때 서버에 기록
+      const serverResponse = await fetch('/api/auth/sharegame', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          userId,
+          successfulUuids: ["success"],  // 성공적으로 메시지를 전송한 친구들 (피커를 사용하지 않으므로 빈 배열)
+          failedUuids: [],      // 실패한 친구들 (없으면 빈 배열)
+        }),
+      });
+  
+      const result = await serverResponse.json();
+      console.log('✅ 서버 기록 결과:', result);
+  
+      // 랭킹 재불러오기
+      fetchRanking();
+    } catch (error) {
+      console.error('❌ 메시지 전송 중 에러 발생:', error);
+      alert('메시지 전송에 실패했습니다.');
+    }
   };
+  
 
   return (
     <div className="p-4">
