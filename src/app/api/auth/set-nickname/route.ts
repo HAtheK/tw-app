@@ -2,6 +2,9 @@ import { createClient } from '@/lib/supabase/server';
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+
+
 export async function POST(req: Request) {
   console.log('🔥🔥🔥 닉네임 API 라우트가 실행되었습니다');
 
