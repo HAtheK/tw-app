@@ -17,40 +17,55 @@ const ShareClient = () => {
   const router = useRouter();
 
   useEffect(() => {
-    const fetchUser = async () => {
-      console.log('🚀 사용자 정보 불러오기 시작');
+    const fetchUserAndNickname = async () => {
+      console.log('🟡 Supabase 인증 유저 확인 시작');
+
       const {
         data: { user },
+        error: authError,
       } = await supabase.auth.getUser();
 
-      if (!user) {
-        console.warn('❌ 로그인 사용자 없음. /login으로 이동');
+      if (authError || !user) {
+        console.warn('❌ 로그인된 사용자 없음 → /login 리디렉션');
         router.replace('/login');
         return;
       }
 
-      const { data, error } = await supabase
+      console.log(`🟢 로그인된 사용자 ID: ${user.id}`);
+
+      const {
+        data: userProfile,
+        error: profileError,
+      } = await supabase
         .from('users')
         .select('nickname')
         .eq('id', user.id)
         .single();
 
-      if (error || !data?.nickname) {
-        console.warn('❗ 닉네임 미설정. /set-nickname으로 이동');
+      if (profileError || !userProfile) {
+        console.warn('❌ 사용자 정보 없음 → /set-nickname 리디렉션');
         router.replace('/set-nickname');
         return;
       }
 
-      console.log(`✅ 사용자 닉네임: ${data.nickname}`);
-      setUserName(data.nickname);
+      if (!userProfile.nickname) {
+        console.warn('⚠️ 닉네임 미설정 → /set-nickname 리디렉션');
+        router.replace('/set-nickname');
+        return;
+      }
+
+      console.log(`✅ 닉네임 확인 완료: ${userProfile.nickname}`);
+      setUserName(userProfile.nickname);
+
       fetchRanking();
     };
 
-    fetchUser();
+    fetchUserAndNickname();
   }, []);
 
   const fetchRanking = async () => {
-    console.log('📊 TOP10 랭킹 불러오기');
+    console.log('📊 TOP10 랭킹 불러오기 시작');
+
     const { data: topRanks, error } = await supabase
       .from('share_records')
       .select('user_id, count')
@@ -97,8 +112,12 @@ const ShareClient = () => {
                 data: { user },
               } = await supabase.auth.getUser();
               const userId = user?.id;
-              if (!userId) return;
+              if (!userId) {
+                console.warn('❌ 전송 후 사용자 ID 없음');
+                return;
+              }
 
+              // 서버에 성공/실패 기록 저장
               const response = await fetch('/api/auth/sharegame', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -110,8 +129,9 @@ const ShareClient = () => {
               });
 
               const result = await response.json();
-              console.log('✅ API 응답:', result);
+              console.log('✅ 서버 기록 결과:', result);
 
+              // 랭킹 갱신
               fetchRanking();
             },
             fail: (err: any) => {
