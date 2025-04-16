@@ -13,7 +13,7 @@ const SetNicknamePage = () => {
 
     console.log('📤 닉네임 제출:', nickname);
 
-    const res = await fetch('/api/auth/set-nickname', {
+    const res = await fetch('/api/set-nickname', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
