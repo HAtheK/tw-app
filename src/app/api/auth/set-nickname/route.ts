@@ -49,14 +49,17 @@ export async function POST(req: Request) {
   const { data: updated, error: updateError } = await supabase
     .from('users')
     .update({ nickname })
-    .eq('kakao_id', String(kakaoId))
+    .eq('kakao_id', kakaoId)
     .select(); // ✅ 업데이트된 결과 확인용
 
     console.log('📌 update 결과:', updated);
 
 
-  if (updateError) {
-    console.error('❌ 닉네임 업데이트 실패:', updateError.message);
+  if (updateError|| !updated || updated.length === 0 ) {
+    console.error('❌ 닉네임 업데이트 실패 또는 대상 없음');
+    if(updateError){
+      console.error('업데이트 실패:', updateError.message);
+    }
     return NextResponse.json({ error: '닉네임 등록 실패' }, { status: 500 });
   }
 
