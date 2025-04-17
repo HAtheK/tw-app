@@ -8,16 +8,24 @@ type Props = {
   nickname: string;
 };
 
-type KakaoFriendResponse = {
-  selectedFriends: { uuid: string }[];
-};
-
 const ShareClient = ({ userId, nickname }: Props) => {
   const [ranking, setRanking] = useState<any[]>([]);
 
   useEffect(() => {
     fetchRanking();
+    initKakaoSDK();
   }, []);
+
+  const initKakaoSDK = () => {
+    if (!window.Kakao || window.Kakao.isInitialized()) return;
+
+    window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_JAVASCRIPT_KEY);
+
+    const storedToken = localStorage.getItem('kakao_token');
+    if (storedToken) {
+      window.Kakao.Auth.setAccessToken(storedToken);
+    }
+  };
 
   const fetchRanking = async () => {
     const { data, error } = await supabase
@@ -34,19 +42,16 @@ const ShareClient = ({ userId, nickname }: Props) => {
   };
 
   const handleShare = () => {
-    if (!window.Kakao?.Auth || !window.Kakao?.API || !window.Kakao?.Picker) {
-      alert('카카오 SDK 로딩 실패');
-      return;
-    }
-
     const token = window.Kakao.Auth.getAccessToken();
-    console.log('현재 AccessToken', token);
+
     if (!token) {
+      console.warn('🔑 토큰 없음 → 로그인 시도');
       window.Kakao.Auth.login({
-        scope: 'friends,talk_message',
+        scope: 'profile,friends,talk_message',
         success: (authObj: any) => {
           console.log('✅ 로그인 성공:', authObj);
           window.Kakao.Auth.setAccessToken(authObj.access_token);
+          localStorage.setItem('kakao_token', authObj.access_token);
           handleShareFlow();
         },
         fail: (err: any) => {
@@ -55,7 +60,6 @@ const ShareClient = ({ userId, nickname }: Props) => {
         },
       });
     } else {
-      window.Kakao.Auth.setAccessToken(token); // 안정성을 위해 명시적 재설정
       handleShareFlow();
     }
   };
@@ -68,6 +72,7 @@ const ShareClient = ({ userId, nickname }: Props) => {
         return;
       }
 
+      // 친구 목록 가져오기 (토큰 필요)
       const response = await window.Kakao.API.request({
         url: '/v1/api/talk/friends',
       });
@@ -79,7 +84,7 @@ const ShareClient = ({ userId, nickname }: Props) => {
         title: '친구 선택',
         maxPickableCount: 10,
         minPickableCount: 1,
-        success: async (pickerRes: KakaoFriendResponse) => {
+        success: async (pickerRes: { selectedFriends: { uuid: string }[] }) => {
           const uuids = pickerRes.selectedFriends.map(f => f.uuid);
           console.log('✅ 선택된 UUID:', uuids);
 
@@ -91,7 +96,10 @@ const ShareClient = ({ userId, nickname }: Props) => {
             });
 
             console.log('📨 메시지 전송 성공:', sendResult);
-            await recordShareResults(sendResult.successful_receiver_uuids, sendResult.failed_receiver_uuids);
+            await recordShareResults(
+              sendResult.successful_receiver_uuids,
+              sendResult.failed_receiver_uuids
+            );
             await fetchRanking();
           } catch (error) {
             console.error('❌ 메시지 전송 실패:', error);
@@ -104,8 +112,8 @@ const ShareClient = ({ userId, nickname }: Props) => {
         },
       });
     } catch (error) {
-      console.error('❌ 에러 발생:', error);
-      alert('공유 과정 중 오류가 발생했습니다.');
+      console.error('❌ 친구 목록 요청 에러:', error);
+      alert('공유 도중 문제가 발생했습니다.');
     }
   };
 
