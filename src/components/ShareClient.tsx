@@ -49,6 +49,7 @@ const ShareClient = ({ userId, nickname }: Props) => {
         scope: 'friends,talk_message',
         success: function () {
           console.log('✅ 로그인 성공 → 공유 진행');
+          window.Kakao.setAccessToken(token);
           proceedShare();
         },
         fail: function (err: any) {
