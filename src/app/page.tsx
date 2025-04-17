@@ -33,7 +33,7 @@ const KakaoSharePage = () => {
       {/* 헤더 */}
       <header className="h-[55px] flex items-center justify-between bg-[#1a1a1c] px-4">
         <Image
-          src="/lotte-logo.png" // 로고 파일은 public 폴더에 /lotte-logo.png 형식으로 추가해 주세요
+          src="/logo-lottemembers-gray.png" // 로고 파일은 public 폴더에 /lotte-logo.png 형식으로 추가해 주세요
           alt="롯데 로고"
           width={50}
           height={50}
