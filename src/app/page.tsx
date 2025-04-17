@@ -77,9 +77,9 @@ const KakaoSharePage = () => {
           <Image
             src="/share-image.png"
             alt="카카오톡 공유하기"
-            width={30}
-            height={30}
-            className="w-[30px] h-[30px]"
+            width={60}
+            height={60}
+            className="w-[60px] h-[60px]"
           />
         </button>
         <button
