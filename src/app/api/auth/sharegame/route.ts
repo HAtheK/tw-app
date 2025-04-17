@@ -1,3 +1,5 @@
+// /api/auth/sharegame/route.ts
+
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
 
@@ -9,8 +11,10 @@ export async function POST(req: NextRequest) {
   // 1️⃣ Kakao sendCustom 공유 콜백 처리
   if (body.callback_type === 'SHARE' && body.server_callback_args?.userId) {
     const userId = body.server_callback_args.userId as string;
+    const kakaoId = body.server_callback_args.kakaoId as string | undefined;
+    const sharedAt = body.server_callback_args.sharedAt || new Date().toISOString();
 
-    console.log('📥 sendCustom 콜백 수신:', body);
+    console.log('📥 sendCustom 콜백 수신:', { userId, kakaoId, sharedAt });
 
     try {
       const { data: user, error } = await supabase
@@ -26,9 +30,11 @@ export async function POST(req: NextRequest) {
 
       await supabase.from('share_records').insert({
         user_id: userId,
-        shared_at: new Date(), // 필요 시 body.server_callback_args.sharedAt 사용 가능
+        kakao_id: kakaoId,
+        shared_at: new Date(sharedAt),
       });
 
+      console.log('✅ 콜백 공유 기록 저장 완료');
       return NextResponse.json({ success: true });
     } catch (e: any) {
       console.error('❌ 콜백 공유 기록 실패:', e.message);
@@ -70,6 +76,7 @@ export async function POST(req: NextRequest) {
             );
         })
       );
+      console.log('✅ UUID 공유 기록 저장 완료');
     }
 
     if (failedUuids?.length) {
@@ -80,6 +87,7 @@ export async function POST(req: NextRequest) {
           failed_at: new Date(),
         }))
       );
+      console.log('⚠️ 공유 실패 기록 저장 완료');
     }
 
     return NextResponse.json({ success: true, kakao_id: userProfile.kakao_id });
@@ -91,9 +99,11 @@ export async function POST(req: NextRequest) {
 
 // ✅ GET 방식 처리 (카카오 공유 웹훅)
 export async function GET(req: NextRequest) {
+  const supabase = createClient();
   const { searchParams } = new URL(req.url);
 
   const userId = searchParams.get('userId');
+  const kakaoId = searchParams.get('kakaoId');
   const sharedAt = searchParams.get('sharedAt');
   const templateId = searchParams.get('TEMPLATE_ID');
   const chatId = searchParams.get('HASH_CHAT_ID');
@@ -101,12 +111,40 @@ export async function GET(req: NextRequest) {
 
   console.log('📩 카카오 공유 GET 콜백 수신:', {
     userId,
+    kakaoId,
     sharedAt,
     templateId,
     chatId,
     chatType,
   });
 
-  // 현재는 로깅만 수행. 향후 저장이 필요하면 Supabase에 기록 가능
+  // Supabase에 저장
+  if (userId) {
+    try {
+      const { data, error } = await supabase
+        .from('share_records')
+        .insert({
+          user_id: userId,
+          kakao_id: kakaoId,
+          shared_at: sharedAt ? new Date(sharedAt) : new Date(),
+          template_id: templateId,
+          chat_id: chatId,
+          chat_type: chatType,
+        });
+
+      if (error) {
+        console.error('❌ GET 공유 기록 저장 실패:', error.message);
+        return NextResponse.json({ error: '공유 기록 저장 실패' }, { status: 500 });
+      }
+
+      console.log('✅ GET 공유 기록 저장 완료');
+      return NextResponse.json({ success: true });
+    } catch (e: any) {
+      console.error('❌ 예외 발생:', e.message);
+      return NextResponse.json({ error: '예외 발생' }, { status: 500 });
+    }
+  }
+
+  console.warn('⚠️ userId 없음, 저장하지 않음');
   return NextResponse.json({ success: true });
 }

@@ -3,7 +3,13 @@
 import Script from 'next/script';
 import { useEffect } from 'react';
 
-export default function ShareClient({ userId, nickname }: { userId: string; nickname: string }) {
+interface ShareClientProps {
+  userId: string;
+  nickname: string;
+  kakaoId: string; // ✅ 새로 추가
+}
+
+export default function ShareClient({ userId, nickname, kakaoId }: ShareClientProps) {
   useEffect(() => {
     if (!window.Kakao.isInitialized()) {
       window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_JS_KEY);
@@ -20,6 +26,7 @@ export default function ShareClient({ userId, nickname }: { userId: string; nick
       templateId: 119614,
       serverCallbackArgs: JSON.stringify({
         userId,
+        kakaoId, // ✅ 콜백에 kakaoId 포함
         sharedAt: new Date().toISOString(),
       }),
     });
