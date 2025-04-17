@@ -14,13 +14,13 @@ interface RankEntry {
   nickname: string;
   share_count: number;
   rank: number;
-  first_shared_at: string;
+  last_shared_at: string;
 }
 
 interface MyRank {
   rank: number;
   share_count: number;
-  first_shared_at: string;
+  last_shared_at: string;
 }
 
 export default function ShareClient({ userId, nickname, kakaoId }: ShareClientProps) {
@@ -53,8 +53,8 @@ export default function ShareClient({ userId, nickname, kakaoId }: ShareClientPr
 
   const fetchMyRank = async () => {
     const res = await fetch(`/api/auth/sharegame/myrank?userId=${userId}`);
-    const { rank, share_count, first_shared_at } = await res.json();
-    setMyRank({ rank, share_count, first_shared_at });
+    const { rank, share_count, last_shared_at } = await res.json();
+    setMyRank({ rank, share_count, last_shared_at });
   };
 
   const handleShare = () => {
@@ -128,7 +128,7 @@ export default function ShareClient({ userId, nickname, kakaoId }: ShareClientPr
               <br />
               총 <strong>{myRank.share_count}</strong>회 공유하셨고,
               <br />
-              첫 공유는 <strong>{new Date(myRank.first_shared_at).toLocaleString()}</strong>에 이루어졌어요!
+              첫 공유는 <strong>{new Date(myRank.last_shared_at).toLocaleString()}</strong>에 이루어졌어요!
             </div>
           )}
         </div>
