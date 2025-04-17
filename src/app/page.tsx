@@ -38,18 +38,18 @@ const KakaoSharePage = () => {
       {/* 콘텐츠 */}
       <section className="flex flex-col items-center space-y-6 w-full max-w-2xl mx-auto">
         {/* 설명문구 */}
-        <div className="text-left w-full space-y-2 text-black text-base md:text-lg leading-relaxed">
-          <h2 className="text-xl font-bold">[카카오톡 공유하기]</h2>
-          <p>
+        <div className="text-left w-full space-y-2 text-black text-base leading-relaxed">
+          <h2 className="text-xl font-bold text-black">[카카오톡 공유하기]</h2>
+          <p className="text-black">
             <span className="text-blue-600 font-semibold">"롯데멤버스 카드"</span>를 주변 지인들에게 편하게 알릴 수 있는 기능입니다.
           </p>
-          <p className="font-semibold">이용방법</p>
-          <ol className="list-decimal pl-4 space-y-1 text-sm md:text-base">
+          <p className="font-semibold text-black">이용방법</p>
+          <ol className="list-decimal pl-4 space-y-1 text-sm text-black">
             <li>하단의 카카오톡 아이콘을 눌러주세요</li>
             <li>카카오톡이 실행되고 공유할 대상을 선택해주세요</li>
             <li>선택한 대상에게 화면에 보이는 메시지가 발송됩니다.</li>
           </ol>
-          <p>많은 공유 부탁드립니다 😊</p>
+          <p className="text-black">많은 공유 부탁드립니다 😊</p>
         </div>
 
         {/* 미리보기 영역 */}
