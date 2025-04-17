@@ -1,6 +1,6 @@
 'use client';
 
-import 'globals.css';
+import './globals.css';
 import Image from 'next/image';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation'
