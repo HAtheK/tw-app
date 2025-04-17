@@ -7,7 +7,7 @@ export async function POST(req: Request) {
     const redirectUri = process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URI;
 
     if (!clientId || !redirectUri) {
-      console.error("❌ 환경변수 누락", { clientId, redirectUri });
+      console.error("❌ 환경변수 누락", { clientId, redirectUri,clientSecret  });
       return NextResponse.json({ error: 'Missing required env variables' }, { status: 400 });
     }
 

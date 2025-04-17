@@ -41,7 +41,7 @@ export default function KakaoCallbackHandler() {
         console.log('📡 Kakao 사용자 정보 요청 중...');
         const profileRes = await fetch('https://kapi.kakao.com/v2/user/me', {
           headers: {
-            Authorization: `Bearer ${access_token}`,
+            Authorization: `Bearer ${access_token}`, // ✅ 백틱 주의!
           },
         });
 
