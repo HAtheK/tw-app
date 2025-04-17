@@ -31,15 +31,15 @@ const KakaoSharePage = () => {
   return (
     <main className="min-h-screen grid grid-rows-[auto_1fr_auto] bg-white text-black px-4">
       {/* 헤더 */}
-      <header className="h-[55px] flex items-center justify-between bg-[#1a1a1c] px-4">
-        <h1 className="text-white text-lg font-bold">롯데멤버스카드 공유</h1>
-        <div className="w-[50px]" /> {/* 좌우 균형 맞추기용 여백 */}
+      <header className="h-[40px] flex items-center justify-between bg-[#1a1a1c] px-4">
+        <h1 className="text-white text-base font-bold">롯데멤버스카드 공유</h1>
+        <div className="w-[50px]" />
       </header>
 
       {/* 콘텐츠 */}
-      <section className="flex flex-col items-center space-y-6 w-full max-w-2xl mx-auto py-6">
+      <section className="flex flex-col items-center space-y-6 w-full max-w-2xl mx-auto py-3">
         {/* 설명문구 */}
-        <div className="w-full space-y-4 text-sm leading-relaxed text-gray-800">
+        <div className="w-full space-y-3 text-[14px] leading-snug text-gray-800">
           <p>
             <span className="font-semibold text-blue-600">롯데멤버스 카드</span>를 주변 지인에게 편하게 알릴 수 있어요.
           </p>
@@ -117,7 +117,7 @@ const KakaoSharePage = () => {
 
         {/* 게임 이동 버튼 */}
         <button
-          className="bg-yellow-500 hover:bg-yellow-400 text-white px-4 py-2 rounded-md text-lg font-semibold shadow transition"
+          className="bg-[#009BFA] hover:bg-[#0089dd] text-white w-[240px] px-4 py-2 rounded-md text-lg font-semibold shadow transition"
           onClick={() => router.push('/sharegame')}
         >
           Share Game
