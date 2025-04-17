@@ -6,7 +6,7 @@ export async function GET() {
 
   const { data, error } = await supabase
     .from('user_share_rankings')
-    .select('rank, nickname, share_count, first_shared_at')
+    .select('rank, nickname, share_count, last_shared_at')
     .order('rank')
     .limit(10);
 

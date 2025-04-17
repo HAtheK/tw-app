@@ -32,13 +32,6 @@ const KakaoSharePage = () => {
     <main className="min-h-screen grid grid-rows-[auto_1fr_auto] bg-white text-black px-4">
       {/* 헤더 */}
       <header className="h-[55px] flex items-center justify-between bg-[#1a1a1c] px-4">
-        <Image
-          src="/logo-lottemembers-gray.png" // 로고 파일은 public 폴더에 /lotte-logo.png 형식으로 추가해 주세요
-          alt="롯데 로고"
-          width={50}
-          height={50}
-          className="h-[50px] w-auto"
-        />
         <h1 className="text-white text-lg font-bold">롯데멤버스카드 공유</h1>
         <div className="w-[50px]" /> {/* 좌우 균형 맞추기용 여백 */}
       </header>
