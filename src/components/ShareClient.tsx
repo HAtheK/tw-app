@@ -58,7 +58,7 @@ export default function ShareClient({ userId, nickname }: { userId: string; nick
 
   const loginWithKakao = () => {
     window.Kakao.Auth.login({
-      scope: 'profile_nickname,friends,talk_message',
+      scope: 'profile,account_email,phone_number,friends,talk_message',
       success: (auth: any) => {
         console.log('✅ 로그인 성공', auth);
         window.Kakao.Auth.setAccessToken(auth.access_token);
