@@ -19,7 +19,7 @@ const LoginPage = () => {
   const handleKakaoLogin = () => {
     window.Kakao.Auth.authorize({
       redirectUri: `${process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URI}`,
-      scope: 'profile,account_email,phone_number',
+      scope: 'profile,account_email,phone_number,friends,talk_message',
     });
   };
 
