@@ -38,6 +38,16 @@ export default function ShareClient({ userId, nickname, kakaoId }: ShareClientPr
   const fetchTop10 = async () => {
     const res = await fetch('/api/auth/sharegame/top10');
     const { top10 } = await res.json();
+
+    // 순위가 10명 미만일 경우 부족한 순위를 채워준다
+    while (top10.length < 10) {
+      top10.push({
+        rank: top10.length + 1,
+        nickname: `-`,
+        share_count: 0,
+        first_shared_at: '없음',
+      });
+    }
     setTop10(top10);
   };
 
@@ -100,16 +110,10 @@ export default function ShareClient({ userId, nickname, kakaoId }: ShareClientPr
               return (
                 <div
                   key={user.rank}
-                  className={`grid grid-cols-3 text-center py-3 px-4 text-sm ${
-                    isCurrentUser
-                      ? 'bg-yellow-100 font-semibold'
-                      : i % 2 === 0
-                      ? 'bg-gray-50'
-                      : 'bg-white'
-                  }`}
+                  className={`grid grid-cols-3 text-center py-3 px-4 text-sm ${isCurrentUser ? 'bg-yellow-100 font-semibold' : i % 2 === 0 ? 'bg-gray-50' : 'bg-white'}`}
                 >
                   <div className="text-yellow-600">{emoji}</div>
-                  <div className="truncate">{user.nickname}</div>
+                  <div className="truncate">{user.nickname || '없음'}</div>
                   <div>{user.share_count}회</div>
                 </div>
               );
