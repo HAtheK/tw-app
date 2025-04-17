@@ -40,6 +40,7 @@ const ShareClient = ({ userId, nickname }: Props) => {
     }
 
     const token = window.Kakao.Auth.getAccessToken();
+    console.log('현재 AccessToken', token);
     if (!token) {
       window.Kakao.Auth.login({
         scope: 'friends,talk_message',
