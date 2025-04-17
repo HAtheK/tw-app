@@ -1,183 +1,173 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { supabase } from '@/lib/supabase/client';
+import Image from 'next/image';
+import Script from 'next/script';
 
-type Props = {
-  userId: string;
-  nickname: string;
-};
+declare global {
+  interface Window {
+    Kakao: any;
+  }
+}
 
-const ShareClient = ({ userId, nickname }: Props) => {
+export default function ShareClient({ userId, nickname }: { userId: string; nickname: string }) {
   const [ranking, setRanking] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
+  const KAKAO_TEMPLATE_ID = 119614; // 메시지 템플릿 ID
+
+  // 초기화 및 Kakao SDK 설정
   useEffect(() => {
-    initKakaoSDK();
-    fetchRanking();
-  }, []);
-
-  const initKakaoSDK = () => {
-    if (!window.Kakao) return;
-
     if (!window.Kakao.isInitialized()) {
-      window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_JAVASCRIPT_KEY);
+      window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_JS_KEY);
     }
 
     const storedToken = localStorage.getItem('kakao_token');
     if (storedToken) {
       window.Kakao.Auth.setAccessToken(storedToken);
-    }
-  };
-
-  const fetchRanking = async () => {
-    const { data, error } = await supabase
-      .from('share_records')
-      .select('user_id, count')
-      .order('count', { ascending: false })
-      .limit(10);
-
-    if (error) {
-      console.error('❌ 랭킹 불러오기 실패:', error.message);
+      validateToken(storedToken);
     } else {
-      setRanking(data || []);
-    }
-  };
-
-  const handleShare = () => {
-    const token = window.Kakao.Auth.getAccessToken();
-
-    if (!token) {
-      console.warn('🔑 토큰 없음 → 로그인 시도');
-      window.Kakao.Auth.login({
-        scope: 'profile,friends,talk_message',
-        success: (authObj: any) => {
-          console.log('✅ 로그인 성공:', authObj);
-          window.Kakao.Auth.setAccessToken(authObj.access_token);
-          localStorage.setItem('kakao_token', authObj.access_token);
-          handleShareFlow();
-        },
-        fail: (err: any) => {
-          console.error('❌ 로그인 실패:', err);
-          alert('카카오 로그인에 실패했습니다.');
-        },
-      });
-    } else {
-      // ✅ 반드시 accessToken 설정 필요
-      window.Kakao.Auth.setAccessToken(token);
-      handleShareFlow();
-    }
-  };
-
-  const handleShareFlow = async () => {
-    try {
-      const accessToken = window.Kakao.Auth.getAccessToken();
-      if (!accessToken) {
-        alert('카카오 로그인이 필요합니다.');
-        return;
-      }
-
-      // ✅ access token 유효성 검사 (선택적 디버깅용)
-      window.Kakao.API.request({
-        url: '/v1/user/access_token_info',
-        success: (res: any) => console.log('🔍 토큰 유효:', res),
-        fail: (err: any) => console.warn('❌ 유효하지 않은 토큰:', err),
-      });
-
-      // ✅ 친구 선택 (Picker 사용)
-      window.Kakao.Picker.selectFriends({
-        title: '친구 선택',
-        maxPickableCount: 10,
-        minPickableCount: 1,
-        success: async (pickerRes: { selectedFriends: { uuid: string }[] }) => {
-          const uuids = pickerRes.selectedFriends.map(f => f.uuid);
-          console.log('✅ 선택된 친구 UUID:', uuids);
-
-          try {
-            const sendResult = await window.Kakao.Share.sendCustom({
-              templateId: 119614,
-              receiverUuids: uuids,
-              templateArgs: {},
-            });
-
-            console.log('📨 메시지 전송 성공:', sendResult);
-            await recordShareResults(
-              sendResult.successful_receiver_uuids || [],
-              sendResult.failed_receiver_uuids || []
-            );
-            await fetchRanking(); // 전송 후 랭킹 갱신
-          } catch (error) {
-            console.error('❌ 메시지 전송 실패:', error);
-            alert('메시지 전송에 실패했습니다.');
-          }
-        },
-        fail: (err: any) => {
-          console.error('❌ 친구 선택 실패:', err);
-          alert('친구 선택 중 문제가 발생했습니다.');
-        },
-      });
-    } catch (error) {
-      console.error('❌ 공유 흐름 중 오류 발생:', error);
-      alert('공유 도중 문제가 발생했습니다.');
-    }
-  };
-
-  const recordShareResults = async (successUuids: string[], failUuids: string[]) => {
-    const inserts = [];
-
-    if (successUuids.length > 0) {
-      inserts.push(
-        supabase.from('share_records').insert(
-          successUuids.map(uuid => ({
-            user_id: userId,
-            kakao_uuid: uuid,
-            success: true,
-          }))
-        )
-      );
+      loginWithKakao();
     }
 
-    if (failUuids.length > 0) {
-      inserts.push(
-        supabase.from('failed_share_records').insert(
-          failUuids.map(uuid => ({
-            user_id: userId,
-            kakao_uuid: uuid,
-            success: false,
-          }))
-        )
-      );
-    }
+    fetchRanking();
+  }, []);
 
-    const results = await Promise.all(inserts);
-    results.forEach((res, i) => {
-      if (res.error) {
-        console.error(`❌ 기록 실패 [${i === 0 ? '성공' : '실패'}]:`, res.error.message);
-      }
+  // 토큰 유효성 검증
+  const validateToken = (token: string) => {
+    window.Kakao.API.request({
+      url: '/v1/user/access_token_info',
+      success: () => {
+        console.log('✅ 유효한 토큰');
+      },
+      fail: () => {
+        console.warn('⚠️ 토큰 무효. 재로그인 진행');
+        window.Kakao.Auth.logout(() => {
+          localStorage.removeItem('kakao_token');
+          loginWithKakao();
+        });
+      },
     });
   };
 
-  return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">
-        {nickname}님, 친구에게 공유해보세요!
-      </h1>
-      <button
-        onClick={handleShare}
-        className="bg-yellow-400 hover:bg-yellow-500 text-white font-semibold py-2 px-4 rounded"
-      >
-        친구에게 공유하기
-      </button>
+  // 카카오 로그인
+  const loginWithKakao = () => {
+    window.Kakao.Auth.login({
+      scope: 'profile_nickname,friends,talk_message',
+      success: (auth: any) => {
+        console.log('✅ 로그인 성공', auth);
+        window.Kakao.Auth.setAccessToken(auth.access_token);
+        localStorage.setItem('kakao_token', auth.access_token);
+      },
+      fail: (err: any) => {
+        console.error('❌ 로그인 실패', err);
+        alert('카카오 로그인 실패');
+      },
+    });
+  };
 
-      <h2 className="text-xl font-semibold mt-8 mb-2">공유 TOP 10</h2>
-      <ul className="list-decimal list-inside">
-        {ranking.map((rank, idx) => (
-          <li key={idx}>
-            사용자 ID: {rank.user_id} - 공유 수: {rank.count}
-          </li>
-        ))}
-      </ul>
+  // 친구 공유 요청
+  const handleShare = () => {
+    if (!window.Kakao.Picker) {
+      alert('카카오 친구 피커를 불러오지 못했습니다.');
+      return;
+    }
+
+    window.Kakao.Picker.selectFriends({
+      title: '친구에게 메시지를 보낼까요?',
+      maxPickableCount: 10,
+      minPickableCount: 1,
+      showMyProfile: true,
+      enableSearch: true,
+      enableBackButton: true,
+      multiple: true,
+      success: (pickerResponse: any) => {
+        const friendUUIDs = pickerResponse.users.map((u: any) => u.uuid);
+
+        window.Kakao.API.request({
+          url: '/v1/api/talk/friends/message/send',
+          data: {
+            receiver_uuids: friendUUIDs,
+            template_id: KAKAO_TEMPLATE_ID,
+          },
+          success: async () => {
+            console.log('✅ 메시지 전송 성공');
+
+            // 서버에 기록 저장
+            await fetch('/api/auth/sharegame', {
+              method: 'POST',
+              body: JSON.stringify({
+                userId,
+                kakaoUUIDs: friendUUIDs,
+                success: true,
+              }),
+              headers: { 'Content-Type': 'application/json' },
+            });
+
+            fetchRanking();
+          },
+          fail: async (err: any) => {
+            console.warn('❌ 메시지 전송 실패', err);
+
+            // 실패 기록도 저장
+            await fetch('/api/auth/sharegame', {
+              method: 'POST',
+              body: JSON.stringify({
+                userId,
+                kakaoUUIDs: friendUUIDs,
+                success: false,
+              }),
+              headers: { 'Content-Type': 'application/json' },
+            });
+          },
+        });
+      },
+      fail: (err: any) => {
+        console.error('❌ 친구 선택 실패', err);
+      },
+    });
+  };
+
+  // 랭킹 가져오기
+  const fetchRanking = async () => {
+    setLoading(true);
+    const res = await fetch('/api/auth/sharegame?type=ranking');
+    const data = await res.json();
+    setRanking(data);
+    setLoading(false);
+  };
+
+  return (
+    <div className="share-client">
+      <Script src="https://developers.kakao.com/sdk/js/kakao.js" strategy="beforeInteractive" />
+
+      <div className="text-center mt-6">
+        <p className="text-xl font-semibold">👋 {nickname}님, 친구에게 메시지를 공유해보세요!</p>
+        <button
+          className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 px-4 rounded mt-4"
+          onClick={handleShare}
+        >
+          친구에게 공유하기
+        </button>
+      </div>
+
+      <div className="mt-8">
+        <h2 className="text-lg font-bold mb-2">🏆 TOP 10 공유 랭킹</h2>
+        {loading ? (
+          <p>불러오는 중...</p>
+        ) : (
+          <ul className="bg-white rounded p-4 shadow">
+            {ranking.map((user, i) => (
+              <li key={user.nickname} className="flex justify-between border-b py-1">
+                <span>
+                  {i + 1}. {user.nickname}
+                </span>
+                <span>{user.count}회</span>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
-};
-
-export default ShareClient;
+}
