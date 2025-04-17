@@ -39,7 +39,6 @@ const KakaoSharePage = () => {
       <section className="flex flex-col items-center space-y-6 w-full max-w-2xl mx-auto">
         {/* 설명문구 */}
         <div className="text-left w-full space-y-2 text-black text-base leading-relaxed">
-          <h2 className="text-xl font-bold text-black">[카카오톡 공유하기]</h2>
           <p className="text-black">
             <span className="text-blue-600 font-semibold">"롯데멤버스 카드"</span>를 주변 지인들에게 편하게 알릴 수 있는 기능입니다.
           </p>
