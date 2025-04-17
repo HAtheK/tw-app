@@ -2,7 +2,7 @@
 
 import Script from 'next/script';
 import { useEffect, useState } from 'react';
-import { HiOutlineRefresh } from 'react-icons/hi'; // 새로고침 아이콘
+import { HiOutlineRefresh } from 'react-icons/hi';
 
 interface ShareClientProps {
   userId: string;
@@ -13,22 +13,38 @@ interface ShareClientProps {
 interface RankEntry {
   nickname: string;
   share_count: number;
+  rank: number;
+  first_shared_at: string;
+}
+
+interface MyRank {
+  rank: number;
+  share_count: number;
+  first_shared_at: string;
 }
 
 export default function ShareClient({ userId, nickname, kakaoId }: ShareClientProps) {
   const [top10, setTop10] = useState<RankEntry[]>([]);
+  const [myRank, setMyRank] = useState<MyRank | null>(null);
 
   useEffect(() => {
     if (!window.Kakao.isInitialized()) {
       window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_JS_KEY);
     }
     fetchTop10();
+    fetchMyRank();
   }, []);
 
   const fetchTop10 = async () => {
     const res = await fetch('/api/auth/sharegame/top10');
     const { top10 } = await res.json();
     setTop10(top10);
+  };
+
+  const fetchMyRank = async () => {
+    const res = await fetch(`/api/auth/sharegame/myrank?userId=${userId}`);
+    const { rank, share_count, first_shared_at } = await res.json();
+    setMyRank({ rank, share_count, first_shared_at });
   };
 
   const handleShare = () => {
@@ -56,7 +72,7 @@ export default function ShareClient({ userId, nickname, kakaoId }: ShareClientPr
 
       {/* 콘텐츠 */}
       <section className="flex flex-col items-center space-y-6 w-full max-w-2xl mx-auto">
-
+        {/* 공유 영역 */}
         <div className="share-client text-center mt-6">
           <Script src="https://developers.kakao.com/sdk/js/kakao.js" strategy="beforeInteractive" />
           <p className="text-xl font-semibold">👋 {nickname}님, 친구에게 메시지를 공유해보세요!</p>
@@ -76,24 +92,42 @@ export default function ShareClient({ userId, nickname, kakaoId }: ShareClientPr
               <HiOutlineRefresh className="text-gray-600 hover:text-black w-5 h-5" />
             </button>
           </div>
-          <div className="border border-gray-300 rounded overflow-hidden">
-            {[...Array(10)].map((_, i) => {
-              const user = top10[i];
-              const medal = ['🥇', '🥈', '🥉'][i] || '';
+
+          <div className="rounded-lg shadow-md overflow-hidden bg-white divide-y divide-gray-200">
+            {top10.map((user, i) => {
+              const isCurrentUser = user.nickname === nickname;
+              const emoji = ['🥇', '🥈', '🥉'][i] || `${user.rank}`;
               return (
                 <div
-                  key={i}
-                  className="grid grid-cols-3 text-center border-t first:border-t-0 py-2 px-2 text-sm"
+                  key={user.rank}
+                  className={`grid grid-cols-3 text-center py-3 px-4 text-sm ${
+                    isCurrentUser
+                      ? 'bg-yellow-100 font-semibold'
+                      : i % 2 === 0
+                      ? 'bg-gray-50'
+                      : 'bg-white'
+                  }`}
                 >
-                  <div>{medal} {i + 1}</div>
-                  <div className="truncate">{user?.nickname || '-'}</div>
-                  <div>{user?.share_count ?? 0}회</div>
+                  <div className="text-yellow-600">{emoji}</div>
+                  <div className="truncate">{user.nickname}</div>
+                  <div>{user.share_count}회</div>
                 </div>
               );
             })}
           </div>
-        </div>
 
+          {/* 내 순위 하단 고정 표시 */}
+          {myRank && (
+            <div className="mt-4 p-3 rounded-lg bg-gray-100 text-sm text-center shadow-inner">
+              🙋‍♀️ <span className="font-medium">{nickname}</span>님의 현재 순위는{' '}
+              <strong>{myRank.rank <= 10 ? `${myRank.rank}위 (TOP10)` : `${myRank.rank}위`}</strong> 입니다.
+              <br />
+              총 <strong>{myRank.share_count}</strong>회 공유하셨고,
+              <br />
+              첫 공유는 <strong>{new Date(myRank.first_shared_at).toLocaleString()}</strong>에 이루어졌어요!
+            </div>
+          )}
+        </div>
       </section>
 
       {/* 푸터 */}
