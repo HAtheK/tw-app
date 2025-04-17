@@ -60,7 +60,8 @@ const ShareClient = ({ userId, nickname }: Props) => {
         },
       });
     } else {
-      handleShareFlow();
+        window.Kakao.Auth.setAccessToken(token); // ✅ 이 라인 추가
+        handleShareFlow();
     }
   };
 
