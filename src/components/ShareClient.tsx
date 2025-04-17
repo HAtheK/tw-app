@@ -33,6 +33,15 @@ export default function ShareClient({ userId, nickname, kakaoId }: ShareClientPr
   };
 
   return (
+    <main className="min-h-screen grid grid-rows-[auto_1fr_auto] bg-white text-black px-4 py-6">
+    {/* 헤더 */}
+    <header className="text-2xl md:text-3xl font-bold mb-4 text-center">
+      📢롯데멤버스 카드 공유 챌린지🎮
+    </header>
+
+    {/* 콘텐츠 */}
+    <section className="flex flex-col items-center space-y-6 w-full max-w-2xl mx-auto">
+
     <div className="share-client text-center mt-6">
       <Script src="https://developers.kakao.com/sdk/js/kakao.js" strategy="beforeInteractive" />
       <p className="text-xl font-semibold">👋 {nickname}님, 친구에게 메시지를 공유해보세요!</p>
@@ -43,5 +52,13 @@ export default function ShareClient({ userId, nickname, kakaoId }: ShareClientPr
         친구에게 공유하기
       </button>
     </div>
+    </section>
+
+      {/* 푸터 */}
+      <footer className="text-sm text-gray-500 mt-6 text-center">
+        © 2025 LOTTE MEMBERS PLCC Cell
+      </footer>
+    </main>
+
   );
 }
