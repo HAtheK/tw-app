@@ -10,13 +10,19 @@ declare global {
   }
 }
 
+interface Friend {
+  uuid: string;
+  profile_nickname: string;
+  profile_thumbnail_image: string;
+}
+
 export default function ShareClient({ userId, nickname }: { userId: string; nickname: string }) {
   const [ranking, setRanking] = useState<any[]>([]);
+  const [friends, setFriends] = useState<Friend[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const KAKAO_TEMPLATE_ID = 119614; // 메시지 템플릿 ID
+  const KAKAO_TEMPLATE_ID = 119614;
 
-  // 초기화 및 Kakao SDK 설정
   useEffect(() => {
     if (!window.Kakao.isInitialized()) {
       window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_JS_KEY);
@@ -30,18 +36,18 @@ export default function ShareClient({ userId, nickname }: { userId: string; nick
       loginWithKakao();
     }
 
-    fetchRanking();
+    //fetchRanking();
   }, []);
 
-  // 토큰 유효성 검증
   const validateToken = (token: string) => {
     window.Kakao.API.request({
       url: '/v1/user/access_token_info',
       success: () => {
         console.log('✅ 유효한 토큰');
+        fetchFriends(); // 토큰이 유효하면 친구 목록도 바로 요청
       },
       fail: () => {
-        console.warn('⚠️ 토큰 무효. 재로그인 진행');
+        console.warn('⚠️ 토큰 무효. 재로그인');
         window.Kakao.Auth.logout(() => {
           localStorage.removeItem('kakao_token');
           loginWithKakao();
@@ -50,7 +56,6 @@ export default function ShareClient({ userId, nickname }: { userId: string; nick
     });
   };
 
-  // 카카오 로그인
   const loginWithKakao = () => {
     window.Kakao.Auth.login({
       scope: 'profile_nickname,friends,talk_message',
@@ -58,6 +63,7 @@ export default function ShareClient({ userId, nickname }: { userId: string; nick
         console.log('✅ 로그인 성공', auth);
         window.Kakao.Auth.setAccessToken(auth.access_token);
         localStorage.setItem('kakao_token', auth.access_token);
+        fetchFriends();
       },
       fail: (err: any) => {
         console.error('❌ 로그인 실패', err);
@@ -66,7 +72,24 @@ export default function ShareClient({ userId, nickname }: { userId: string; nick
     });
   };
 
-  // 친구 공유 요청
+  const fetchFriends = () => {
+    window.Kakao.API.request({
+      url: '/v1/api/talk/friends',
+      success: function (response: any) {
+        console.log('👥 친구 목록', response);
+        setFriends(response.elements);
+      },
+      fail: function (error: any) {
+        console.error('❌ 친구 목록 요청 실패', error);
+        if (error.code === -401) {
+          alert('토큰이 만료되었습니다. 다시 로그인 해주세요.');
+        } else {
+          alert('친구 목록을 가져오는데 실패했습니다.');
+        }
+      },
+    });
+  };
+
   const handleShare = () => {
     if (!window.Kakao.Picker) {
       alert('카카오 친구 피커를 불러오지 못했습니다.');
@@ -93,7 +116,6 @@ export default function ShareClient({ userId, nickname }: { userId: string; nick
           success: async () => {
             console.log('✅ 메시지 전송 성공');
 
-            // 서버에 기록 저장
             await fetch('/api/auth/sharegame', {
               method: 'POST',
               body: JSON.stringify({
@@ -109,7 +131,6 @@ export default function ShareClient({ userId, nickname }: { userId: string; nick
           fail: async (err: any) => {
             console.warn('❌ 메시지 전송 실패', err);
 
-            // 실패 기록도 저장
             await fetch('/api/auth/sharegame', {
               method: 'POST',
               body: JSON.stringify({
@@ -128,7 +149,6 @@ export default function ShareClient({ userId, nickname }: { userId: string; nick
     });
   };
 
-  // 랭킹 가져오기
   const fetchRanking = async () => {
     setLoading(true);
     const res = await fetch('/api/auth/sharegame?type=ranking');
@@ -167,6 +187,24 @@ export default function ShareClient({ userId, nickname }: { userId: string; nick
             ))}
           </ul>
         )}
+      </div>
+
+      <div className="mt-8">
+        <h2 className="text-lg font-bold mb-2">👥 친구 목록</h2>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {friends.map((friend) => (
+            <div key={friend.uuid} className="flex flex-col items-center text-center">
+              <Image
+                src={friend.profile_thumbnail_image || '/default-profile.png'}
+                alt={friend.profile_nickname}
+                width={48}
+                height={48}
+                className="rounded-full"
+              />
+              <span className="mt-2 text-sm">{friend.profile_nickname}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
