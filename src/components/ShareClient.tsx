@@ -12,14 +12,16 @@ const ShareClient = ({ userId, nickname }: Props) => {
   const [ranking, setRanking] = useState<any[]>([]);
 
   useEffect(() => {
-    fetchRanking();
     initKakaoSDK();
+    fetchRanking();
   }, []);
 
   const initKakaoSDK = () => {
-    if (!window.Kakao || window.Kakao.isInitialized()) return;
+    if (!window.Kakao) return;
 
-    window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_JAVASCRIPT_KEY);
+    if (!window.Kakao.isInitialized()) {
+      window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_JAVASCRIPT_KEY);
+    }
 
     const storedToken = localStorage.getItem('kakao_token');
     if (storedToken) {
@@ -60,8 +62,9 @@ const ShareClient = ({ userId, nickname }: Props) => {
         },
       });
     } else {
-        window.Kakao.Auth.setAccessToken(token); // ✅ 이 라인 추가
-        handleShareFlow();
+      // ✅ 반드시 accessToken 설정 필요
+      window.Kakao.Auth.setAccessToken(token);
+      handleShareFlow();
     }
   };
 
@@ -73,21 +76,21 @@ const ShareClient = ({ userId, nickname }: Props) => {
         return;
       }
 
-      // 친구 목록 가져오기 (토큰 필요)
-      const response = await window.Kakao.API.request({
-        url: '/v1/api/talk/friends',
+      // ✅ access token 유효성 검사 (선택적 디버깅용)
+      window.Kakao.API.request({
+        url: '/v1/user/access_token_info',
+        success: (res: any) => console.log('🔍 토큰 유효:', res),
+        fail: (err: any) => console.warn('❌ 유효하지 않은 토큰:', err),
       });
 
-      const friends = response?.elements || [];
-      console.log('📋 친구 목록:', friends);
-
+      // ✅ 친구 선택 (Picker 사용)
       window.Kakao.Picker.selectFriends({
         title: '친구 선택',
         maxPickableCount: 10,
         minPickableCount: 1,
         success: async (pickerRes: { selectedFriends: { uuid: string }[] }) => {
           const uuids = pickerRes.selectedFriends.map(f => f.uuid);
-          console.log('✅ 선택된 UUID:', uuids);
+          console.log('✅ 선택된 친구 UUID:', uuids);
 
           try {
             const sendResult = await window.Kakao.Share.sendCustom({
@@ -98,31 +101,31 @@ const ShareClient = ({ userId, nickname }: Props) => {
 
             console.log('📨 메시지 전송 성공:', sendResult);
             await recordShareResults(
-              sendResult.successful_receiver_uuids,
-              sendResult.failed_receiver_uuids
+              sendResult.successful_receiver_uuids || [],
+              sendResult.failed_receiver_uuids || []
             );
-            await fetchRanking();
+            await fetchRanking(); // 전송 후 랭킹 갱신
           } catch (error) {
             console.error('❌ 메시지 전송 실패:', error);
-            alert('메시지 전송 실패');
+            alert('메시지 전송에 실패했습니다.');
           }
         },
         fail: (err: any) => {
           console.error('❌ 친구 선택 실패:', err);
-          alert('친구 선택 실패');
+          alert('친구 선택 중 문제가 발생했습니다.');
         },
       });
     } catch (error) {
-      console.error('❌ 친구 목록 요청 에러:', error);
+      console.error('❌ 공유 흐름 중 오류 발생:', error);
       alert('공유 도중 문제가 발생했습니다.');
     }
   };
 
   const recordShareResults = async (successUuids: string[], failUuids: string[]) => {
-    const updates = [];
+    const inserts = [];
 
     if (successUuids.length > 0) {
-      updates.push(
+      inserts.push(
         supabase.from('share_records').insert(
           successUuids.map(uuid => ({
             user_id: userId,
@@ -134,7 +137,7 @@ const ShareClient = ({ userId, nickname }: Props) => {
     }
 
     if (failUuids.length > 0) {
-      updates.push(
+      inserts.push(
         supabase.from('failed_share_records').insert(
           failUuids.map(uuid => ({
             user_id: userId,
@@ -145,17 +148,19 @@ const ShareClient = ({ userId, nickname }: Props) => {
       );
     }
 
-    const results = await Promise.all(updates);
+    const results = await Promise.all(inserts);
     results.forEach((res, i) => {
       if (res.error) {
-        console.error(`❌ 기록 실패 [${i === 0 ? '성공 기록' : '실패 기록'}]:`, res.error.message);
+        console.error(`❌ 기록 실패 [${i === 0 ? '성공' : '실패'}]:`, res.error.message);
       }
     });
   };
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">{nickname}님, 친구에게 공유해보세요!</h1>
+      <h1 className="text-2xl font-bold mb-4">
+        {nickname}님, 친구에게 공유해보세요!
+      </h1>
       <button
         onClick={handleShare}
         className="bg-yellow-400 hover:bg-yellow-500 text-white font-semibold py-2 px-4 rounded"
