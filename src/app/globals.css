@@ -158,3 +158,214 @@ a {
     text-wrap: balance;
   }
 }
+
+
+
+.Feed_root__718OK {
+border: 1px solid #e5e5e5;
+border-radius: 13px;
+box-sizing: border-box;
+overflow: hidden;
+width: 240px
+}
+
+.Feed_root__718OK .cont_template {
+padding-top: 5px
+}
+
+
+.Feed_root__718OK .img_thumb {
+display: inline-block;
+vertical-align: top
+}
+
+.Feed_root__718OK .desc_template {
+cursor: pointer;
+margin-top: 8px;
+padding: 0 10px
+}
+
+.Feed_root__718OK .link_txt {
+-webkit-line-clamp: 2;
+-webkit-box-orient: vertical;
+display: -webkit-box;
+max-height: 35px;
+overflow: hidden;
+text-overflow: ellipsis
+}
+
+.Feed_root__718OK .free_link_txt,.Feed_root__718OK .link_txt {
+color: #00000080;
+font-family: Apple SD Gothic Neo,NotoSans DemiLight,HelveticaNeue,Helvetica,Arial,AppleSDGothicNeo,Malgun Gothic,맑은 고딕,sans-serif;
+font-size: 12px;
+text-align: left;
+letter-spacing: -.3px;
+line-height: 17px;
+vertical-align: top;
+white-space: pre-wrap
+}
+
+.Feed_root__718OK .free_link_txt {
+display: inline-block
+}
+
+.Feed_root__718OK .name_profile {
+float: left;
+margin-left: 4px;
+width: calc(100% - 27px)
+}
+
+.Feed_root__718OK .name_profile.header {
+border-bottom: 1px solid #e5e5e5;
+margin-left: 0;
+text-align: left;
+width: 100%
+}
+
+.Feed_root__718OK .name_profile .link_txt {
+color: #000000d9;
+display: inline-block;
+font-family: Apple SD Gothic Neo,NotoSans DemiLight,HelveticaNeue,Helvetica,Arial,AppleSDGothicNeo,Malgun Gothic,맑은 고딕,sans-serif;
+font-size: 13px;
+line-height: 23px;
+max-width: 100%;
+overflow: hidden;
+text-overflow: ellipsis;
+vertical-align: top;
+white-space: nowrap
+}
+
+
+
+.Feed_root__718OK .free_title,.Feed_root__718OK .title {
+color: #111;
+font-family: NotoSans DemiLight,Malgun Gothic,맑은 고딕,Apple SD Gothic Neo,돋움,dotum,sans-serif;
+font-size: 13px;
+font-style: bold;
+line-height: 17px;
+margin-bottom: 4px;
+vertical-align: top;
+white-space: pre-wrap;
+text-align: left;
+word-break: break-all
+}
+
+
+.Feed_root__718OK .item_button.vertical {
+margin-top: 8px;
+padding: 0 10px
+}
+
+.Feed_root__718OK .item_button.horizontal button:not(:first-child) {
+margin-left: 5px
+}
+
+.Feed_root__718OK .item_button.vertical button:not(:first-child) {
+margin-top: 5px
+}
+
+.Feed_root__718OK .item_button .btn_msg {
+background-color: #f1f2f4;
+border-radius: 4px;
+color: #000;
+cursor: pointer;
+display: block;
+font-family: Apple SD Gothic Neo,NotoSans DemiLight,HelveticaNeue,Helvetica,Arial,AppleSDGothicNeo,Malgun Gothic,맑은 고딕,sans-serif;
+font-size: 12px;
+height: 36px;
+line-height: 36px;
+overflow: hidden;
+text-align: center;
+width: 100%
+}
+
+.Feed_root__718OK .item_profile {
+cursor: pointer;
+overflow: hidden;
+padding: 0 10px
+}
+
+.Feed_root__718OK .item_profile .box_profile {
+float: left;
+height: 23px;
+width: 23px
+}
+
+.Feed_root__718OK .item_profile .box_profile img {
+border-radius: 5px
+}
+
+.Feed_root__718OK .item_moreview .link_moreview {
+display: block;
+overflow: hidden;
+padding: 7px 9px 11px 10px
+}
+
+.Feed_root__718OK .link_moreview {
+cursor: pointer
+}
+
+.Feed_root__718OK .link_moreview img {
+border-radius: 5px;
+float: left;
+height: 13px;
+width: 13px
+}
+
+
+
+.Feed_root__718OK .item_moreview .txt_moreview {
+color: #0006;
+float: left;
+font-family: Apple SD Gothic Neo,NotoSans DemiLight,HelveticaNeue,Helvetica,Arial,AppleSDGothicNeo,Malgun Gothic,맑은 고딕,sans-serif;
+font-size: 12px;
+line-height: 15px;
+margin-left: 4px;
+max-height: 13px;
+max-width: 150px;
+overflow: hidden
+}
+
+.Feed_root__718OK .item_moreview .ico_developers {
+background-position: -150px -130px;
+float: right;
+height: 15px;
+width: 12px
+}
+
+.ThumbnailList_list_thumb__8381Z {
+    grid-gap: 2px;
+    display: grid;
+    gap: 2px;
+    height: 238px;
+    width: 238px
+    }
+    
+    .ThumbnailList_single_tmp__lcaO9 {
+    max-height: 317px;
+    min-height: 119px
+    }
+    
+    .ThumbnailList_multi_tmp__C6-La.ThumbnailList_horizontal_layout_wrap__DHBW1 {
+    grid-template-rows: 1fr 1fr
+    }
+    
+    .ThumbnailList_list_thumb__8381Z .ThumbnailList_thumb_wrap__l6csx {
+    background-color: #f7f8f8;
+    cursor: pointer;
+    display: block;
+    height: 100%;
+    position: relative;
+    width: 100%
+    }
+    
+    .ThumbnailList_center_crop__KcT2G {
+    background-size: cover
+    }
+    
+    .ThumbnailList_center_crop__KcT2G,.ThumbnailList_preserve_ratio__bFFiE {
+    background-position: 50%;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%
+    }
