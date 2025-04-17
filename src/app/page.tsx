@@ -71,13 +71,7 @@ const KakaoSharePage = () => {
                 width={100}
                 height={100} alt={''}/>
                 <span className="txt_moreview">LPOINT</span><span className="ico_developers"></span></div></div></div>
-        <Image
-          src="/kakao_preview1.png"
-          alt="미리보기"
-          width={300}
-          height={180}
-          className="rounded-md w-full max-w-[400px] h-auto object-contain"
-        />
+
         <button onClick={shareToKakao}>
           <Image
             src="/share-image.png"
