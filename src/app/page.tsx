@@ -92,7 +92,7 @@ const KakaoSharePage = () => {
 
       {/* 푸터 */}
       <footer className="text-sm text-gray-500 mt-6">
-        © 2025 -PLCC Cell. All rights reserved.
+        © 2025 LOTTE MEMBERS -PLCC Cell
       </footer>
     </main>
   );
