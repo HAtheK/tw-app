@@ -29,26 +29,34 @@ const KakaoSharePage = () => {
   };
 
   return (
-    <main className="min-h-screen grid grid-rows-[auto_1fr_auto] bg-white text-black px-4 py-6">
+    <main className="min-h-screen grid grid-rows-[auto_1fr_auto] bg-white text-black px-4">
       {/* 헤더 */}
-      <header className="text-2xl md:text-3xl font-bold mb-4 text-center">
-        롯데멤버스카드 - 공유하기
+      <header className="h-[55px] flex items-center justify-between bg-[#1a1a1c] px-4">
+        <Image
+          src="/lotte-logo.png" // 로고 파일은 public 폴더에 /lotte-logo.png 형식으로 추가해 주세요
+          alt="롯데 로고"
+          width={50}
+          height={50}
+          className="h-[50px] w-auto"
+        />
+        <h1 className="text-white text-lg font-bold">롯데멤버스카드 공유</h1>
+        <div className="w-[50px]" /> {/* 좌우 균형 맞추기용 여백 */}
       </header>
 
       {/* 콘텐츠 */}
-      <section className="flex flex-col items-center space-y-6 w-full max-w-2xl mx-auto">
+      <section className="flex flex-col items-center space-y-6 w-full max-w-2xl mx-auto py-6">
         {/* 설명문구 */}
-        <div className="text-left w-full space-y-2 text-black text-base leading-relaxed">
-          <p className="text-black">
-            <span className="text-blue-600 font-semibold">"롯데멤버스 카드"</span>를 주변 지인들에게 편하게 알릴 수 있는 기능입니다.
+        <div className="w-full space-y-4 text-sm leading-relaxed text-gray-800">
+          <p>
+            <span className="font-semibold text-blue-600">롯데멤버스 카드</span>를 주변 지인에게 편하게 알릴 수 있어요.
           </p>
-          <p className="font-semibold text-black">이용방법</p>
-          <ol className="list-decimal pl-4 space-y-1 text-sm text-black">
-            <li>하단의 카카오톡 아이콘을 눌러주세요</li>
-            <li>카카오톡이 실행되고 공유할 대상을 선택해주세요</li>
-            <li>선택한 대상에게 화면에 보이는 메시지가 발송됩니다.</li>
-          </ol>
-          <p className="text-black">많은 공유 부탁드립니다 😊</p>
+          <p className="font-semibold">이용 방법</p>
+          <ul className="list-disc pl-5 space-y-1">
+            <li>하단의 카카오톡 아이콘을 눌러주세요.</li>
+            <li>카카오톡이 실행되면 공유할 대상을 선택해주세요.</li>
+            <li>선택한 대상에게 아래 메시지가 전송됩니다.</li>
+          </ul>
+          <p>많은 공유 부탁드립니다 🙏</p>
         </div>
 
         {/* 미리보기 영역 */}
@@ -104,7 +112,7 @@ const KakaoSharePage = () => {
         </div>
 
         {/* 공유 버튼 */}
-        <button onClick={shareToKakao}>
+        <button onClick={shareToKakao} className="hover:opacity-80 transition">
           <Image
             src="/share-image.png"
             alt="카카오톡 공유하기"
@@ -116,7 +124,7 @@ const KakaoSharePage = () => {
 
         {/* 게임 이동 버튼 */}
         <button
-          className="bg-yellow-500 text-white px-4 py-2 rounded-md text-lg font-semibold shadow"
+          className="bg-yellow-500 hover:bg-yellow-400 text-white px-4 py-2 rounded-md text-lg font-semibold shadow transition"
           onClick={() => router.push('/sharegame')}
         >
           Share Game
@@ -124,7 +132,7 @@ const KakaoSharePage = () => {
       </section>
 
       {/* 푸터 */}
-      <footer className="text-sm text-gray-500 mt-6 text-center">
+      <footer className="text-sm text-gray-500 my-6 text-center">
         © 2025 LOTTE MEMBERS PLCC Cell
       </footer>
     </main>
