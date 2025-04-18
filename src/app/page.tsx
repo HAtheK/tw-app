@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { RiKakaoTalkFill } from "react-icons/ri";
+import { RiGamepadFill } from "react-icons/ri";
 
 declare global {
   interface Window {
@@ -112,16 +113,17 @@ const KakaoSharePage = () => {
           onClick={shareToKakao}
           className="flex items-center justify-center gap-2 bg-[#FEE500] hover:bg-[#f7d800] text-black w-[240px] px-4 py-3 rounded-md text-lg font-semibold shadow transition"
         >
-          <RiKakaoTalkFill size={24} />
+          <RiKakaoTalkFill size={20} />
           친구에게 공유하기
         </button>
 
         {/* 게임 이동 버튼 */}
         <button
-          className="bg-[#009BFA] hover:bg-[#0089dd] text-white w-[240px] px-4 py-2 rounded-md text-lg font-semibold shadow transition"
+          className="flex items-center justify-center gap-2 bg-[#009BFA] hover:bg-[#0089dd] text-black w-[240px] px-4 py-3 rounded-md text-lg font-semibold shadow transition"
           onClick={() => router.push('/sharegame')}
         >
-          🎮 공유하기 챌린지
+          <RiGamepadFill size={20} />
+          공유하기 챌린지
         </button>
       </section>
 
