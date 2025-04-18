@@ -12,7 +12,7 @@ export async function GET(req: Request) {
 
   const { data, error } = await supabase
     .from('user_share_rankings')
-    .select('rank, share_count, first_shared_at')
+    .select('rank, share_count, last_shared_at')
     .eq('user_id', userId)
     .single();
 
