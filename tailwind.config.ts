@@ -15,6 +15,7 @@ const config: Config = {
       },
       fontFamily: {
         dgm: ['DungGeunMo', 'sans-serif'],
+        ptd: ['Pretendard', 'sans-serif']
       },
     },
   },
