@@ -31,7 +31,7 @@ const KakaoSharePage = () => {
   };
 
   return (
-    <main className="min-h-screen grid grid-rows-[auto_1fr_auto] bg-white text-black px-4">
+    <main className="min-h-screen grid grid-rows-[auto_1fr_auto] bg-white text-black px-4 font-ptd">
       {/* 헤더 */}
       <header className="h-[40px] flex items-center justify-between bg-white text-black px-4 border-b">
         <h1 className="text-base font-bold">롯데멤버스카드 공유</h1>
