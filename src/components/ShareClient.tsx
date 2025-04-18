@@ -85,7 +85,7 @@ export default function ShareClient({ userId, nickname, kakaoId }: ShareClientPr
         {/* 공유 영역 */}
         <div className="share-client text-center mt-6">
           <Script src="https://developers.kakao.com/sdk/js/kakao.js" strategy="beforeInteractive" />
-          <p className="text-xl font-semibold">👋 {nickname}님, 친구에게 메시지를 공유해보세요!</p>
+          <p className="text-xl font-semibold">👋 {nickname}님,<br/>친구에게 메시지를 공유해보세요!</p>
           <button
             className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 px-4 rounded mt-4"
             onClick={handleShare}
@@ -124,11 +124,11 @@ export default function ShareClient({ userId, nickname, kakaoId }: ShareClientPr
           {myRank && (
             <div className="mt-4 p-3 rounded-lg bg-gray-100 text-sm text-center shadow-inner">
               🙋‍♀️ <span className="font-medium">{nickname}</span>님의 현재 순위는{' '}
-              <strong>{myRank.rank <= 10 ? `${myRank.rank}위 (TOP10)` : `${myRank.rank}위`}</strong> 입니다.
+              <strong>{myRank.rank}위</strong> 입니다.
               <br />
-              총 <strong>{myRank.share_count}</strong>회 공유하셨고,
+              총 공유:<strong>{myRank.share_count}</strong>회
               <br />
-              마지막 공유는 <strong>{new Date(myRank.last_shared_at).toLocaleString()}</strong>에 이루어졌어요!
+              마지막 공유: <strong>{new Date(myRank.last_shared_at).toLocaleString()}</strong>
             </div>
           )}
         </div>
