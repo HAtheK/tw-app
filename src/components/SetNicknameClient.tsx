@@ -42,7 +42,7 @@ const SetNicknameClient = ({ userId }: Props) => {
   };
 
   return (
-    <main className="min-h-screen grid grid-rows-[auto_1fr_auto] bg-white text-center text-black px-4 py-6">
+    <main className="min-h-screen grid grid-rows-[auto_1fr_auto] bg-white text-center text-black px-4 py-6 font-dgm">
       {/* 헤더 */}
       <header className="text-xl font-bold mb-4">🎮 카카오톡 공유 이벤트</header>
 
