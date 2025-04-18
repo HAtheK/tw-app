@@ -128,7 +128,7 @@ export default function ShareClient({ userId, nickname, kakaoId }: ShareClientPr
               <br />
               총 <strong>{myRank.share_count}</strong>회 공유하셨고,
               <br />
-              첫 공유는 <strong>{new Date(myRank.last_shared_at).toLocaleString()}</strong>에 이루어졌어요!
+              마지막 공유는 <strong>{new Date(myRank.last_shared_at).toLocaleString()}</strong>에 이루어졌어요!
             </div>
           )}
         </div>

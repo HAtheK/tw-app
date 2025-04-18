@@ -31,15 +31,15 @@ const KakaoSharePage = () => {
   return (
     <main className="min-h-screen grid grid-rows-[auto_1fr_auto] bg-white text-black px-4">
       {/* 헤더 */}
-      <header className="h-[40px] flex items-center justify-between bg-[#1a1a1c] px-4">
-        <h1 className="text-white text-base font-bold">롯데멤버스카드 공유</h1>
+      <header className="h-[40px] flex items-center justify-between bg-white text-black px-4 border-b">
+        <h1 className="text-base font-bold">롯데멤버스카드 공유</h1>
         <div className="w-[50px]" />
       </header>
 
       {/* 콘텐츠 */}
-      <section className="flex flex-col items-center space-y-6 w-full max-w-2xl mx-auto py-3">
+      <section className="flex flex-col items-center space-y-6 w-full max-w-2xl mx-auto pt-0">
         {/* 설명문구 */}
-        <div className="w-full space-y-3 text-[14px] leading-snug text-gray-800">
+        <div className="w-full space-y-3 text-[14px] leading-snug text-gray-800 mt-0">
           <p>
             <span className="font-semibold text-blue-600">롯데멤버스 카드</span>를 주변 지인에게 편하게 알릴 수 있어요.
           </p>
