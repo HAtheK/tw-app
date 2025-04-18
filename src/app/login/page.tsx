@@ -24,7 +24,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-between items-center px-4 py-6 bg-white text-center">
+    <div className="min-h-screen flex flex-col justify-between items-center px-4 py-6 bg-white text-center font-dgm">
       <main className="flex flex-col gap-6 items-center mt-24">
         <Image src="/logo.png" alt="로고" width={120} height={120} />
         <p className="text-xl leading-relaxed font-medium">
