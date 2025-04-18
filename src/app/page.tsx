@@ -4,6 +4,7 @@ import './globals.css';
 import Image from 'next/image';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { SiKakaotalk } from 'react-icons/si'; 
 
 declare global {
   interface Window {
@@ -49,7 +50,7 @@ const KakaoSharePage = () => {
           3️⃣ 선택한 대상에게 아래 메시지가 전송됩니다.<br/><br/>
 
           <span className="font-semibold text-red-500">※주의 사항</span><br/>
-          챌린지 참여의 경우, [챌린지 참여하기]로 이동하여 메시지를 공유해주세요.<br/>
+          챌린지 참여의 경우, [공유하기 챌린지]로 이동하여 메시지를 공유해주세요.<br/>
           현재 페이지의 공유하기는 집계 없이, 공유 기능만 제공합니다.<br/>
           </p>
         </div>
@@ -107,14 +108,12 @@ const KakaoSharePage = () => {
         </div>
 
         {/* 공유 버튼 */}
-        <button onClick={shareToKakao} className="hover:opacity-80 transition">
-          <Image
-            src="/share-image.png"
-            alt="카카오톡 공유하기"
-            width={60}
-            height={60}
-            className="w-[60px] h-[60px]"
-          />
+        <button
+          onClick={shareToKakao}
+          className="flex items-center justify-center gap-2 bg-[#FEE500] hover:bg-[#f7d800] text-black w-[240px] px-4 py-3 rounded-md text-lg font-semibold shadow transition"
+        >
+          <SiKakaotalk size={24} />
+          친구에게 공유하기
         </button>
 
         {/* 게임 이동 버튼 */}
@@ -122,7 +121,7 @@ const KakaoSharePage = () => {
           className="bg-[#009BFA] hover:bg-[#0089dd] text-white w-[240px] px-4 py-2 rounded-md text-lg font-semibold shadow transition"
           onClick={() => router.push('/sharegame')}
         >
-          Share Game
+          🎮 공유하기 챌린지
         </button>
       </section>
 
