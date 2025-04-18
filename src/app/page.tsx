@@ -37,14 +37,14 @@ const KakaoSharePage = () => {
       </header>
 
       {/* 콘텐츠 */}
-      <section className="flex flex-col items-center space-y-6 w-full max-w-2xl mx-auto pt-0">
+      <section className="flex flex-col items-center space-y-6 w-full px-4 max-w-2xl mx-auto pt-0">
         {/* 설명문구 */}
-        <div className="w-full space-y-3 text-[14px] leading-snug text-gray-800 mt-0">
+        <div className="w-full space-y-3 text-[0.85em] leading-snug text-gray-800 mt-0">
           <p>
             <span className="font-semibold text-blue-600">롯데멤버스 카드</span>를 주변 지인에게 편하게 알릴 수 있어요.
           </p>
           <p className="font-semibold">이용 방법</p>
-          <ul className="list-disc pl-5 space-y-1">
+          <ul className="list-disc pl-5">
             <li>하단의 카카오톡 아이콘을 눌러주세요.</li>
             <li>카카오톡이 실행되면 공유할 대상을 선택해주세요.</li>
             <li>선택한 대상에게 아래 메시지가 전송됩니다.</li>
@@ -92,7 +92,7 @@ const KakaoSharePage = () => {
           <div className="item_moreview">
             <div className="link_moreview">
               <Image
-                src="https://k.kakaocdn.net/14/dn/btq1lbnDb92/UOxmPui0QrTyoeCQikIcj1/o.jpg"
+                src="icon.jpg"
                 className="link_profile"
                 width={100}
                 height={100}
@@ -125,7 +125,7 @@ const KakaoSharePage = () => {
       </section>
 
       {/* 푸터 */}
-      <footer className="text-sm text-gray-500 my-6 text-center">
+      <footer className="text-sm text-gray-500 text-center">
         © 2025 LOTTE MEMBERS PLCC Cell
       </footer>
     </main>
