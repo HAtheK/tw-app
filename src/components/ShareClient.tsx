@@ -74,12 +74,12 @@ export default function ShareClient({ userId, nickname, kakaoId }: ShareClientPr
   };
 
   return (
-    <main className="min-h-screen grid grid-rows-[auto_1fr_auto] bg-white text-black px-4 py-6 font-dgm">
+    <main className="min-h-screen grid grid-rows-[auto_1fr_auto] bg-white text-black px-4">
       {/* 헤더 */}
-      <header className="text-2xl md:text-3xl font-bold mb-4 text-center">
-        📢롯데멤버스 카드 공유 챌린지🎮
-      </header>
-
+      <header className="h-[40px] flex items-center justify-between bg-white text-black px-4 border-b">
+        <h1 className="text-base font-bold">📢롯데멤버스 카드-공유하기 챌린지🎮</h1>
+        <div className="w-[50px]" />
+      </header> 
       {/* 콘텐츠 */}
       <section className="flex flex-col items-center space-y-6 w-full max-w-2xl mx-auto">
         {/* 공유 영역 */}
