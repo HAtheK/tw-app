@@ -3,6 +3,7 @@
 import Script from 'next/script';
 import { useEffect, useState } from 'react';
 import { HiOutlineRefresh } from 'react-icons/hi';
+import { RiKakaoTalkFill } from 'react-icons/ri';
 
 interface ShareClientProps {
   userId: string;
@@ -87,11 +88,12 @@ export default function ShareClient({ userId, nickname, kakaoId }: ShareClientPr
           <Script src="https://developers.kakao.com/sdk/js/kakao.js" strategy="beforeInteractive" />
           <p className="text-xl font-semibold">👋 {nickname}님,<br/>친구에게 메시지를 공유해보세요!</p>
           <button
-            className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 px-4 rounded mt-4"
-            onClick={handleShare}
-          >
+            className="flex items-center justify-center gap-2 bg-[#FEE500] hover:bg-[#f7d800] text-black w-[240px] px-4 py-3 rounded-md text-[0.5em] font-semibold shadow transition"
+            >
+              <RiKakaoTalkFill size={20} />
             친구에게 공유하기
           </button>
+         
         </div>
 
         {/* 📊 TOP10 순위 */}
