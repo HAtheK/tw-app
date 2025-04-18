@@ -4,7 +4,7 @@ import './globals.css';
 import Image from 'next/image';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { SiKakaotalk } from 'react-icons/si'; 
+import { RiKakaoTalkFill } from "react-icons/ri";
 
 declare global {
   interface Window {
@@ -112,7 +112,7 @@ const KakaoSharePage = () => {
           onClick={shareToKakao}
           className="flex items-center justify-center gap-2 bg-[#FEE500] hover:bg-[#f7d800] text-black w-[240px] px-4 py-3 rounded-md text-lg font-semibold shadow transition"
         >
-          <SiKakaotalk size={24} />
+          <RiKakaoTalkFill size={24} />
           친구에게 공유하기
         </button>
 
