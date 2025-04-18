@@ -119,10 +119,10 @@ const KakaoSharePage = () => {
 
         {/* 게임 이동 버튼 */}
         <button
-          className="flex items-center justify-center gap-2 bg-[#009BFA] hover:bg-[#0089dd] text-black w-[240px] px-4 py-3 rounded-md text-lg font-semibold shadow transition"
+          className="flex items-center justify-center gap-2 bg-[#009BFA] hover:bg-[#0089dd] text-white w-[240px] px-4 py-3 rounded-md text-lg font-semibold shadow transition"
           onClick={() => router.push('/sharegame')}
         >
-          <RiGamepadFill size={20} />
+          <RiGamepadFill size={20} color="white" />
           공유하기 챌린지
         </button>
       </section>
