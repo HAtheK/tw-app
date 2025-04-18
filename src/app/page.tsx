@@ -39,17 +39,19 @@ const KakaoSharePage = () => {
       {/* 콘텐츠 */}
       <section className="flex flex-col items-center space-y-6 w-full px-4 max-w-2xl mx-auto pt-0">
         {/* 설명문구 */}
-        <div className="w-full space-y-3 text-[0.85em] leading-snug text-gray-800 mt-0">
+        <div className="w-full space-y-3 text-[0.85em] leading-snug mt-0">
           <p>
-            <span className="font-semibold text-blue-600">롯데멤버스 카드</span>를 주변 지인에게 편하게 알릴 수 있어요.
+            <span className="font-semibold text-blue-600">롯데멤버스 카드</span>를 카카오톡 친구에게 공유해주세요.
           </p>
-          <p className="font-semibold">이용 방법</p>
-          <ul className="list-disc pl-5">
-            <li>하단의 카카오톡 아이콘을 눌러주세요.</li>
-            <li>카카오톡이 실행되면 공유할 대상을 선택해주세요.</li>
-            <li>선택한 대상에게 아래 메시지가 전송됩니다.</li>
-          </ul>
-          <p>많은 공유 부탁드립니다 🙏</p>
+          <p className="font-semibold text-[0.85em]">※ 이용 방법<br/>
+          1️⃣ 하단의 카카오톡 아이콘을 눌러주세요.<br/>
+          2️⃣ 카카오톡이 실행되면 공유할 대상을 선택해주세요.<br/>
+          3️⃣ 선택한 대상에게 아래 메시지가 전송됩니다.<br/><br/>
+
+          <span className="font-semibold text-red-500">※주의 사항</span><br/>
+          챌린지 참여의 경우, [챌린지 참여하기]로 이동하여 메시지 공유 기능을 사용해주세요.<br/>
+          현재 페이지는 공유하기는 횟수 카운팅없는 공유 기능만 제공합니다.<br/>
+          </p>
         </div>
 
         {/* 미리보기 영역 */}
