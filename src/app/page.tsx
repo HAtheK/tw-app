@@ -43,7 +43,7 @@ const KakaoSharePage = () => {
         </div>
         <button
           onClick={() => router.push('/sharegame')}
-          className="flex items-center justify-center gap-2 bg-[#3182f6] hover:bg-[#0089dd] text-white px-4 py-3 rounded-md text-sm font-semibold shadow transition"
+          className="flex items-center justify-center gap-2 bg-[#3182f6] hover:bg-[#0089dd] text-white px-4 py-2 rounded-full text-sm font-semibold shadow transition"
         >
           <RiGamepadFill size={20} /> 공유하기 챌린지
         </button>
