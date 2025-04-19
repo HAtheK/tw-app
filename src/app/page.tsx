@@ -4,8 +4,7 @@ import './globals.css';
 import Image from 'next/image';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { RiKakaoTalkFill } from "react-icons/ri";
-import { RiGamepadFill } from "react-icons/ri";
+import { RiKakaoTalkFill, RiGamepadFill } from 'react-icons/ri';
 
 declare global {
   interface Window {
@@ -31,79 +30,54 @@ const KakaoSharePage = () => {
   };
 
   return (
-    <main className="min-h-screen grid grid-rows-[auto_1fr_auto] bg-white text-black px-4 font-ptd">
+    <main className="min-h-screen bg-gradient-to-r from-cyan-500 to-blue-500 text-black font-ptd grid grid-rows-[64px_1fr_50px]">
       {/* 헤더 */}
-      <header className="h-[40px] flex items-center justify-between bg-white text-black px-4 border-b">
-        <h1 className="text-base font-bold">롯데멤버스카드 공유</h1>
-        <div className="w-[50px]" />
+      <header className="fixed top-0 left-0 w-full h-[64px] bg-black flex items-center justify-between px-5 z-10">
+        <Image src="/logo-white.png" alt="logo" width={141.41} height={26} />
+        <button className="bg-[#3182f6] text-white text-sm h-[36px] px-4 rounded">버튼</button>
       </header>
 
       {/* 콘텐츠 */}
-      <section className="flex flex-col items-center space-y-6 w-full px-4 max-w-2xl mx-auto pt-0">
-        {/* 설명문구 */}
-        <div className="w-full space-y-3 text-[0.85em] leading-snug mt-0">
+      <section className="mt-[64px] mb-[50px] flex flex-col items-center space-y-6 w-full px-4 max-w-2xl mx-auto overflow-y-auto pt-6">
+        <div className="w-full space-y-3 text-[0.85em] leading-snug">
           <p>
-            <span className="font-semibold text-blue-600">롯데멤버스 카드</span>를 카카오톡 친구에게 공유해주세요.
+            <span className="font-semibold text-white">롯데멤버스 카드</span>를 카카오톡 친구에게 공유해주세요.
           </p>
-          <p className="font-semibold text-[0.85em]">※ 이용 방법<br/>
-          1️⃣ 하단의 카카오톡 아이콘을 눌러주세요.<br/>
-          2️⃣ 카카오톡이 실행되면 공유할 대상을 선택해주세요.<br/>
-          3️⃣ 선택한 대상에게 아래 메시지가 전송됩니다.<br/><br/>
-
-          <span className="font-semibold text-red-500">※주의 사항</span><br/>
-          <b>챌린지 참여는</b><u>[공유하기 챌린지]로 이동하여 메시지를 공유</u>해주세요.<br/>
-          현재 페이지의 공유하기는 집계 없이, 공유 기능만 제공합니다.<br/>
+          <p className="font-semibold text-white">
+            ※ 이용 방법<br />
+            1️⃣ 하단의 카카오톡 아이콘을 눌러주세요.<br />
+            2️⃣ 카카오톡이 실행되면 공유할 대상을 선택해주세요.<br />
+            3️⃣ 선택한 대상에게 아래 메시지가 전송됩니다.<br /><br />
+            <span className="font-semibold text-yellow-300">※주의 사항</span><br />
+            <b>챌린지 참여는</b> <u>[공유하기 챌린지]로 이동하여 메시지를 공유</u>해주세요.<br />
+            현재 페이지의 공유하기는 집계 없이, 공유 기능만 제공합니다.
           </p>
         </div>
 
-        {/* 미리보기 영역 */}
-        <div className="Feed_root__718OK msg_template w-full">
-          <ul
-            className="ThumbnailList_list_thumb__8381Z ThumbnailList_single_tmp__lcaO9 ThumbnailList_horizontal_layout_wrap__DHBW1"
-            style={{ height: '140.789px' }}
-          >
+        {/* 미리보기 */}
+        <div className="Feed_root__718OK msg_template w-full bg-white rounded-xl p-4 shadow">
+          <ul className="ThumbnailList_list_thumb__8381Z flex justify-center mb-4">
             <li>
               <div className="ThumbnailList_thumb_wrap__l6csx">
-                <div className="ThumbnailList_thumb_wrap__l6csx">
-                  <div
-                    className="ThumbnailList_center_crop__KcT2G"
-                    style={{
-                      backgroundImage: `url("http://k.kakaocdn.net/dn/IsGzw/btsNitNcGyU/KeX9n1YVFXclyaJilzyQY0/kakaolink40_original.png")`,
-                    }}
-                  ></div>
-                </div>
+                <div className="ThumbnailList_center_crop__KcT2G bg-cover bg-center rounded-lg" style={{ backgroundImage: `url('http://k.kakaocdn.net/dn/IsGzw/btsNitNcGyU/KeX9n1YVFXclyaJilzyQY0/kakaolink40_original.png')`, width: '300px', height: '140px' }} />
               </div>
             </li>
           </ul>
-          <div className="cont_template">
+          <div className="cont_template text-left">
             <div className="item_profile">
-              <span className="name_profile header">
-                <span className="link_txt">롯데멤버스 카드 💳 이벤트 </span>
-              </span>
+              <span className="name_profile font-bold text-lg">롯데멤버스 카드 💳 이벤트</span>
             </div>
-            <div className="desc_template">
-              <pre className="title">롯데 안에서 쓰면 쓸수록 커지는 혜택<br />L.POINT 최대 13만P 지급 이벤트</pre>
-              <pre className="link_txt">
-                ✔️ 롯데 브랜드 최대 5% 특별 적립<br />
-                ✔️ 국내외 가맹점 0.5%~0.7% 기본적립
-              </pre>
+            <div className="desc_template mt-2 text-sm text-gray-800">
+              <pre>롯데 안에서 쓰면 쓸수록 커지는 혜택\nL.POINT 최대 13만P 지급 이벤트</pre>
+              <pre>✔️ 롯데 브랜드 최대 5% 특별 적립\n✔️ 국내외 가맹점 0.5%~0.7% 기본적립</pre>
             </div>
-          </div>
-          <div className="item_button vertical">
-            <button className="btn_msg">이벤트 자세히 보기 </button>
-            <button className="btn_msg">브랜드별 프로모션</button>
-          </div>
-          <div className="item_moreview">
-            <div className="link_moreview">
-              <Image
-                src="icon.jpg"
-                className="link_profile"
-                width={100}
-                height={100}
-                alt=""
-              />
-              <span className="txt_moreview">LPOINT</span>
-              <span className="ico_developers"></span>
+            <div className="item_button flex flex-col mt-3 gap-2">
+              <button className="btn_msg bg-blue-100 px-4 py-2 rounded text-sm">이벤트 자세히 보기</button>
+              <button className="btn_msg bg-blue-100 px-4 py-2 rounded text-sm">브랜드별 프로모션</button>
+            </div>
+            <div className="item_moreview mt-3 flex items-center gap-2">
+              <Image src="/icon.jpg" width={40} height={40} alt="LPOINT" className="rounded-full" />
+              <span className="text-sm font-semibold">LPOINT</span>
             </div>
           </div>
         </div>
@@ -111,24 +85,22 @@ const KakaoSharePage = () => {
         {/* 공유 버튼 */}
         <button
           onClick={shareToKakao}
-          className="flex items-center justify-center gap-2 bg-[#FEE500] hover:bg-[#f7d800] text-black w-[240px] px-4 py-3 rounded-md text-[0.5em] font-semibold shadow transition"
+          className="flex items-center justify-center gap-2 bg-[#FEE500] hover:bg-[#f7d800] text-black w-[240px] px-4 py-3 rounded-md text-sm font-semibold shadow transition"
         >
-          <RiKakaoTalkFill size={20} />
-          친구에게 공유하기
+          <RiKakaoTalkFill size={20} /> 친구에게 공유하기
         </button>
 
         {/* 게임 이동 버튼 */}
         <button
-          className="flex items-center justify-center gap-2 bg-[#009BFA] hover:bg-[#0089dd] text-white w-[240px] px-4 py-3 rounded-md text-[0.5em] font-semibold shadow transition"
           onClick={() => router.push('/sharegame')}
+          className="flex items-center justify-center gap-2 bg-[#009BFA] hover:bg-[#0089dd] text-white w-[240px] px-4 py-3 rounded-md text-sm font-semibold shadow transition"
         >
-          <RiGamepadFill size={20} color="white" />
-          공유하기 챌린지
+          <RiGamepadFill size={20} /> 공유하기 챌린지
         </button>
       </section>
 
       {/* 푸터 */}
-      <footer className="text-sm text-gray-500 text-center">
+      <footer className="fixed bottom-0 left-0 w-full h-[50px] bg-[#15181e] text-white text-sm flex items-center justify-center">
         © 2025 LOTTE MEMBERS PLCC Cell
       </footer>
     </main>
