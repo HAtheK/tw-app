@@ -75,7 +75,7 @@ export default function ShareClient({ userId, nickname, kakaoId }: ShareClientPr
   };
 
   return (
-    <main className="min-h-screen grid grid-rows-[auto_1fr_auto] bg-white text-black px-4">
+    <main className="min-h-screen grid grid-rows-[auto_1fr_auto] bg-white text-black px-4 text-dgm">
       {/* 헤더 */}
       <header className="h-[40px] flex items-center justify-between bg-white text-black px-4 border-b">
         <h1 className="text-base font-bold">📢롯데멤버스 카드-공유하기 챌린지🎮</h1>
