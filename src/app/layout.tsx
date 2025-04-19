@@ -7,6 +7,7 @@ import KakaoInit from '@/components/KakaoInit'
 export const metadata = {
   title: '롯데멤버스 카드',
   description: '공유하기 챌린지',
+  themeColor: '#3182f6',
 };
 
 
@@ -14,7 +15,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="ko">
       <head>
-      <meta name="theme-color" content="#3182f6">
         {/* Kakao SDK 로딩 */}
         <Script
           src="https://developers.kakao.com/sdk/js/kakao.js"
