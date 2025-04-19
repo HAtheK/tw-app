@@ -3,12 +3,16 @@ import './globals.css'
 import { ReactNode } from 'react'
 import Script from 'next/script'
 import KakaoInit from '@/components/KakaoInit'
+import type { Viewport } from 'next'
+
+export const viewport: Viewport = {
+  themeColor: '#3182f6',
+};
+
 
 export const metadata = {
   title: '롯데멤버스 카드',
   description: '공유하기 챌린지',
-  themeColor: '#3182f6',
-  viewport: 'width=device-width, initial-scale=1'
 };
 
 
