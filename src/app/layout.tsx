@@ -8,6 +8,7 @@ export const metadata = {
   title: '롯데멤버스 카드',
   description: '공유하기 챌린지',
   themeColor: '#3182f6',
+  viewport: 'width=device-width, initial-scale=1'
 };
 
 
