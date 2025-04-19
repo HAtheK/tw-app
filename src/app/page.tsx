@@ -30,15 +30,23 @@ const KakaoSharePage = () => {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-r from-cyan-500 to-blue-500 text-black font-ptd grid grid-rows-[64px_1fr_50px]">
+    <main className="min-h-screen bg-gradient-to-r from-cyan-500 to-blue-500 text-black font-ptd grid grid-rows-[auto_1fr_auto]">
       {/* 헤더 */}
-      <header className="fixed top-0 left-0 w-full h-[64px] bg-black flex items-center justify-between px-5 z-10">
-        <Image src="/logo-white.png" alt="logo" width={141.41} height={26} />
-        <button className="bg-[#3182f6] text-white text-sm h-[36px] px-4 rounded">버튼</button>
+      <header className="fixed top-0 left-0 w-full h-16 bg-black flex items-center justify-between px-5 z-10">
+        <div className="relative w-36 h-6 sm:w-40 sm:h-7">
+          <Image
+            src="/logo-white.png"
+            alt="logo"
+            fill
+            className="object-contain"
+          />
+        </div>
+        <button className="bg-[#3182f6] text-white text-sm h-9 px-4 rounded">버튼</button>
       </header>
 
       {/* 콘텐츠 */}
-      <section className="mt-[64px] mb-[50px] flex flex-col items-center space-y-6 w-full px-4 max-w-2xl mx-auto overflow-y-auto pt-6">
+      <section className="pt-20 pb-14 flex flex-col items-center space-y-6 w-full px-4 max-w-2xl mx-auto overflow-y-auto">
+        {/* 설명 텍스트 */}
         <div className="w-full space-y-3 text-[0.85em] leading-snug">
           <p>
             <span className="font-semibold text-white">롯데멤버스 카드</span>를 카카오톡 친구에게 공유해주세요.
@@ -54,29 +62,40 @@ const KakaoSharePage = () => {
           </p>
         </div>
 
-        {/* 미리보기 */}
-        <div className="Feed_root__718OK msg_template w-full bg-white rounded-xl p-4 shadow">
-          <ul className="ThumbnailList_list_thumb__8381Z flex justify-center mb-4">
+        {/* 메시지 템플릿 미리보기 */}
+        <div className="w-full bg-white rounded-xl p-4 shadow">
+          <ul className="flex justify-center mb-4">
             <li>
-              <div className="ThumbnailList_thumb_wrap__l6csx">
-                <div className="ThumbnailList_center_crop__KcT2G bg-cover bg-center rounded-lg" style={{ backgroundImage: `url('http://k.kakaocdn.net/dn/IsGzw/btsNitNcGyU/KeX9n1YVFXclyaJilzyQY0/kakaolink40_original.png')`, width: '300px', height: '140px' }} />
+              <div className="rounded-lg overflow-hidden" style={{ width: '300px', height: '140px' }}>
+                <div
+                  className="w-full h-full bg-cover bg-center"
+                  style={{
+                    backgroundImage: `url('http://k.kakaocdn.net/dn/IsGzw/btsNitNcGyU/KeX9n1YVFXclyaJilzyQY0/kakaolink40_original.png')`,
+                  }}
+                />
               </div>
             </li>
           </ul>
-          <div className="cont_template text-left">
-            <div className="item_profile">
-              <span className="name_profile font-bold text-lg">롯데멤버스 카드 💳 이벤트</span>
+          <div className="text-left">
+            <div className="font-bold text-lg">롯데멤버스 카드 💳 이벤트</div>
+            <div className="mt-2 text-sm text-gray-800 whitespace-pre-line">
+              롯데 안에서 쓰면 쓸수록 커지는 혜택{'\n'}
+              L.POINT 최대 13만P 지급 이벤트{'\n\n'}
+              ✔️ 롯데 브랜드 최대 5% 특별 적립{'\n'}
+              ✔️ 국내외 가맹점 0.5%~0.7% 기본적립
             </div>
-            <div className="desc_template mt-2 text-sm text-gray-800">
-              <pre>롯데 안에서 쓰면 쓸수록 커지는 혜택\nL.POINT 최대 13만P 지급 이벤트</pre>
-              <pre>✔️ 롯데 브랜드 최대 5% 특별 적립\n✔️ 국내외 가맹점 0.5%~0.7% 기본적립</pre>
+            <div className="flex flex-col mt-3 gap-2">
+              <button className="bg-blue-100 px-4 py-2 rounded text-sm">이벤트 자세히 보기</button>
+              <button className="bg-blue-100 px-4 py-2 rounded text-sm">브랜드별 프로모션</button>
             </div>
-            <div className="item_button flex flex-col mt-3 gap-2">
-              <button className="btn_msg bg-blue-100 px-4 py-2 rounded text-sm">이벤트 자세히 보기</button>
-              <button className="btn_msg bg-blue-100 px-4 py-2 rounded text-sm">브랜드별 프로모션</button>
-            </div>
-            <div className="item_moreview mt-3 flex items-center gap-2">
-              <Image src="/icon.jpg" width={40} height={40} alt="LPOINT" className="rounded-full" />
+            <div className="mt-3 flex items-center gap-2">
+              <Image
+                src="/icon.jpg"
+                width={40}
+                height={40}
+                alt="LPOINT"
+                className="rounded-full"
+              />
               <span className="text-sm font-semibold">LPOINT</span>
             </div>
           </div>
