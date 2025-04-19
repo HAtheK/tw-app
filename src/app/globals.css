@@ -129,7 +129,7 @@ main {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    background: linear-gradient(to right, #06b6d4, #3b82f6); /* Tailwind 기반 */
+    /* background:linear-gradient(90deg,#06b6d4,#3b82f6); */
     padding: 0 20px;
     padding-top: 64px; /* 헤더 공간 확보 */
     padding-bottom: 40px; /* 푸터 공간 확보 */
