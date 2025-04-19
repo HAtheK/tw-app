@@ -62,28 +62,39 @@ const KakaoSharePage = () => {
           </p>
         </div>
 
-        {/* 메시지 템플릿 미리보기 */}
-        <div className="w-full bg-white rounded-xl p-4 shadow">
-          <ul className="flex justify-center mb-4">
+        
+         {/* 미리보기 영역 */}
+         <div className="Feed_root__718OK msg_template w-full">
+          <ul
+            className="ThumbnailList_list_thumb__8381Z ThumbnailList_single_tmp__lcaO9 ThumbnailList_horizontal_layout_wrap__DHBW1"
+            style={{ height: '140.789px' }}
+          >
             <li>
-              <div className="rounded-lg overflow-hidden" style={{ width: '300px', height: '140px' }}>
-                <div
-                  className="w-full h-full bg-cover bg-center"
-                  style={{
-                    backgroundImage: `url('http://k.kakaocdn.net/dn/IsGzw/btsNitNcGyU/KeX9n1YVFXclyaJilzyQY0/kakaolink40_original.png')`,
-                  }}
-                />
+              <div className="ThumbnailList_thumb_wrap__l6csx">
+                <div className="ThumbnailList_thumb_wrap__l6csx">
+                  <div
+                    className="ThumbnailList_center_crop__KcT2G"
+                    style={{backgroundImage: 'url("/kakao_preview.png")',
+                    }}
+                  ></div>
+                </div>
               </div>
             </li>
           </ul>
-          <div className="text-left">
-            <div className="font-bold text-lg">롯데멤버스 카드 💳 이벤트</div>
-            <div className="mt-2 text-sm text-gray-800 whitespace-pre-line">
-              롯데 안에서 쓰면 쓸수록 커지는 혜택{'\n'}
-              L.POINT 최대 13만P 지급 이벤트{'\n\n'}
-              ✔️ 롯데 브랜드 최대 5% 특별 적립{'\n'}
-              ✔️ 국내외 가맹점 0.5%~0.7% 기본적립
+          <div className="cont_template">
+            <div className="item_profile">
+              <span className="name_profile header">
+                <span className="link_txt">롯데멤버스 카드 💳 이벤트 </span>
+              </span>
             </div>
+            <div className="desc_template">
+              <pre className="title">롯데 안에서 쓰면 쓸수록 커지는 혜택<br />L.POINT 최대 13만P 지급 이벤트</pre>
+              <pre className="link_txt">
+                ✔️ 롯데 브랜드 최대 5% 특별 적립<br />
+                ✔️ 국내외 가맹점 0.5%~0.7% 기본적립
+              </pre>
+            </div>
+          </div>
             <div className="flex flex-col mt-3 gap-2">
               <button className="bg-blue-100 px-4 py-2 rounded text-sm">이벤트 자세히 보기</button>
               <button className="bg-blue-100 px-4 py-2 rounded text-sm">브랜드별 프로모션</button>
@@ -99,7 +110,7 @@ const KakaoSharePage = () => {
               <span className="text-sm font-semibold">LPOINT</span>
             </div>
           </div>
-        </div>
+       
 
         {/* 공유 버튼 */}
         <button
