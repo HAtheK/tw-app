@@ -14,6 +14,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="ko">
       <head>
+      <meta name="theme-color" content="#3182f6">
         {/* Kakao SDK 로딩 */}
         <Script
           src="https://developers.kakao.com/sdk/js/kakao.js"
