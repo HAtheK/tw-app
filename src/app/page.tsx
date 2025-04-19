@@ -135,8 +135,8 @@ const KakaoSharePage = () => {
       </section>
 
       {/* 푸터 */}
-      <footer className="fixed bottom-0 left-0 w-full h-[40px] bg-[#15181e] text-white text-sm flex items-center justify-center">
-        이사이트는 PLCC셀에서 제작하였습니다
+      <footer className="fixed bottom-0 left-0 w-full h-[30px] text-white flex items-center justify-center">
+        PLCC셀에서 제작한 사이트 입니다. 문의사항은 언제든 연락주세요.
       </footer>
     </main>
   );
