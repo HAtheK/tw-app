@@ -41,7 +41,12 @@ const KakaoSharePage = () => {
             className="object-contain"
           />
         </div>
-        <button className="bg-[#3182f6] text-white text-sm h-9 px-4 rounded">버튼</button>
+        <button
+          onClick={() => router.push('/sharegame')}
+          className="flex items-center justify-center gap-2 bg-[#3182f6] hover:bg-[#0089dd] text-white px-4 py-3 rounded-md text-sm font-semibold shadow transition"
+        >
+          <RiGamepadFill size={20} /> 공유하기 챌린지
+        </button>
       </header>
 
       {/* 콘텐츠 */}
@@ -130,7 +135,7 @@ const KakaoSharePage = () => {
       </section>
 
       {/* 푸터 */}
-      <footer className="fixed bottom-0 left-0 w-full h-[50px] bg-[#15181e] text-white text-sm flex items-center justify-center">
+      <footer className="fixed bottom-0 left-0 w-full h-[40px] bg-[#15181e] text-white text-sm flex items-center justify-center">
         이사이트는 PLCC셀에서 제작하였습니다
       </footer>
     </main>
