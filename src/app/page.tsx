@@ -131,7 +131,7 @@ const KakaoSharePage = () => {
 
       {/* 푸터 */}
       <footer className="fixed bottom-0 left-0 w-full h-[50px] bg-[#15181e] text-white text-sm flex items-center justify-center">
-        © 2025 LOTTE MEMBERS PLCC Cell
+        이사이트는 PLCC셀에서 제작하였습니다
       </footer>
     </main>
   );
