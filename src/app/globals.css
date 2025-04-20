@@ -147,13 +147,6 @@ main section {
     box-sizing: border-box;
 }
 
-
-main section img.mainview {
-    width: 355.3px;
-    height: 301px;
-    object-fit: contain;
-}
-
 main h2 {
     font-size: 2em;
     margin-bottom: 10px;

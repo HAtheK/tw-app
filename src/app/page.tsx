@@ -78,12 +78,17 @@ const KakaoSharePage = () => {
             </p>
           </div>
         </div>
-        <div style={{ width: '100%', minHeight: '1px', height: '303px' }}>
-          <Image 
-            src="/main.png"
-            height={431}
-            alt="mainview"
+        <div className="w-full flex justify-center items-center px-4">
+          <div className="w-full max-w-md">
+            <Image
+              src="/main.png"
+              alt=''
+              width={360} // 고정 px이 아닌, 최대 사이즈 제어
+              height={310}
+              className="w-full h-auto object-contain"
+              priority
             />
+          </div>
         </div>
 
         {/* 설명 텍스트 */}
