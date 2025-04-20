@@ -79,21 +79,20 @@ const KakaoSharePage = () => {
            <RiKakaoTalkFill size={20} /> 친구에게 공유하기
           </button>
         </div>
-        <div className="text-table">
+        
+        <div className="text-table text-[0.85em]">
           <div>
             <p style={{ textAlign: 'center', lineHeight: 1, marginTop: '-12px' }}>
-              <span style={{ fontSize: '12px' }}>
-                <span className="text-yellow-300">
-                  <strong>※주의 사항 : </strong>
-                </span>
-                <span style={{ color: 'rgb(255, 255, 255)' }}>
-                  현재 화면의 공유하기는 집계없이, <u>공유하기 기능만 제공</u>합니다.<br />
-                  챌린지 참여는 [공유하기 챌린지]로 이동하여 메시지를 공유해주세요.
-                </span>
+              <span className="text-yellow-300">
+                <strong>※ 주의 사항: </strong>
+              </span>
+              <span className="text-white">
+                현재 화면의 <u>공유하기는 횟수에 집계되지 않습니다.</u><br/>
+                챌린지 참여는 [공유하기 챌린지]에서 메시지를 공유해주세요.
               </span>
             </p>
-            </div>
           </div>
+        </div>
 
         <div className="w-full flex justify-center items-center px-4">
           <div className="w-full max-w-md">
