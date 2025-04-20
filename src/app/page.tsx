@@ -78,12 +78,12 @@ const KakaoSharePage = () => {
             </p>
           </div>
         </div>
-        <div className="main">
+        <div  style={{ width: '100%', minHeight: '1px', height: '303px' }}>
           <Image 
             src="/main.png"
             height={431}
             alt={''} 
-            fill/>
+            />
         </div>
 
         {/* 설명 텍스트 */}
