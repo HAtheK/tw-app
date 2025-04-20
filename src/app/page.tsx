@@ -82,7 +82,7 @@ const KakaoSharePage = () => {
           <Image 
             src="/main.png"
             height={431}
-            alt={''} 
+            alt="mainview"
             />
         </div>
 
