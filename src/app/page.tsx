@@ -55,21 +55,14 @@ const KakaoSharePage = () => {
         <div style={{ width: '100%', minHeight: '1px', height: '60px' }}></div>
         <div className="text-table">
           <div>
-            <p style={{ textAlign: 'center', lineHeight: 1, height: '25px' }}>
+            <p style={{ textAlign: 'center', lineHeight: 1}}>
               <span style={{ fontSize: '16px' }}>
                 <span style={{ color: 'rgb(255, 255, 255)' }}>
-                  <strong>롯데멤버스 카드!</strong> 좋은 정보, 쉽게 전달하세요
+                  <strong>「롯데멤버스 카드」</strong>를 주변에 쉽게 전달하세요
                 </span>
               </span>
             </p>
-            <p style={{ textAlign: 'center', lineHeight: 1, marginTop: '10px' }}>
-              <span style={{ fontSize: '36px' }}>
-                <span style={{ color: 'rgb(255, 255, 255)' }}>
-                  <strong>Sharing made Simple</strong>
-                </span>
-              </span>
-            </p>
-            <p style={{ textAlign: 'center', lineHeight: 1 }}>
+            <p style={{ textAlign: 'center', lineHeight: 1, marginTop: '6px' }}>
               <span style={{ fontSize: '36px' }}>
                 <span style={{ color: 'rgb(255, 255, 255)' }}>
                   <strong>Just Tap and Send</strong>
@@ -79,8 +72,11 @@ const KakaoSharePage = () => {
           </div>
         </div>
         <div className="w-full flex justify-center items-center px-4">
-          <button className="flex items-center justify-center gap-2 bg-transparent hover:bg-gray-100 text-white px-4 py-2 rounded-full text-sm">
-            Button
+          <button
+           onClick={shareToKakao}
+           className="flex items-center justify-center gap-2 bg-transparent border boder-white hover:bg-gray-100 text-white px-4 py-2 rounded-full text-sm"
+           >
+           <RiKakaoTalkFill size={20} /> 친구에게 공유하기
           </button>
         </div>
         <div className="w-full flex justify-center items-center px-4">
