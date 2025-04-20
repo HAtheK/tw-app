@@ -51,6 +51,40 @@ const KakaoSharePage = () => {
 
       {/* 콘텐츠 */}
       <section className="pt-20 pb-14 flex flex-col items-center space-y-6 w-full px-4 max-w-2xl mx-auto overflow-y-auto">
+        {/* 콘텐츠 상위 영역 */}
+        <div style={{ width: '100%', minHeight: '1px', height: '60px' }}></div>
+        <div className="text-table">
+          <div>
+            <p style={{ textAlign: 'center', lineHeight: 1, height: '25px' }}>
+              <span style={{ fontSize: '16px' }}>
+                <span style={{ color: 'rgb(255, 255, 255)' }}>
+                  <strong>좋은 정보, 쉽게 전달하세요</strong>
+                </span>
+              </span>
+            </p>
+            <p style={{ textAlign: 'center', lineHeight: 1, marginTop: '10px' }}>
+              <span style={{ fontSize: '36px' }}>
+                <span style={{ color: 'rgb(255, 255, 255)' }}>
+                  <strong>Sharing made Simple</strong>
+                </span>
+              </span>
+            </p>
+            <p style={{ textAlign: 'center', lineHeight: 1 }}>
+              <span style={{ fontSize: '36px' }}>
+                <span style={{ color: 'rgb(255, 255, 255)' }}>
+                  <strong>Just Tap and Send</strong>
+                </span>
+              </span>
+            </p>
+          </div>
+        </div>
+        <div className="_img_box img_wrap " style={{height: '431px;'}}>
+          <Image 
+            src="/main.png"
+            height={431}
+            alt={''} />
+        </div>
+
         {/* 설명 텍스트 */}
         <div className="w-full space-y-3 text-[0.85em] leading-snug">
           <p>
