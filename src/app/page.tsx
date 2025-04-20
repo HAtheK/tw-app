@@ -112,70 +112,72 @@ const KakaoSharePage = () => {
         className="top-0 left-0 w-full bg-black flex items-center justify-between px-5" 
         style={{backgroundColor: 'black', borderRadius: '30px 30px 0px 0px'}}>
         {/* 설명 텍스트 */}
-        <div className="w-full space-y-3 text-[0.85em] leading-snug">
-          <p>
-            <span className="font-semibold text-white">롯데멤버스 카드</span>를 카카오톡 친구에게 공유해주세요.
-          </p>
-          <p className="font-semibold text-white">
-            ※ 이용 방법<br />
-            1️⃣ 하단의 카카오톡 아이콘을 눌러주세요.<br />
-            2️⃣ 카카오톡이 실행되면 공유할 대상을 선택해주세요.<br />
-            3️⃣ 선택한 대상에게 아래 메시지가 전송됩니다.<br /><br />
-            <span className="font-semibold text-yellow-300">※주의 사항</span><br />
-            <b>챌린지 참여는</b> <u>[공유하기 챌린지]로 이동하여 메시지를 공유</u>해주세요.<br />
-            현재 페이지의 공유하기는 집계 없이, 공유 기능만 제공합니다.
-          </p>
-        </div>
-
+        <p>
+          <div className="w-full space-y-3 text-[0.85em] leading-snug">
+            <p>
+              <span className="font-semibold text-white">롯데멤버스 카드</span>를 카카오톡 친구에게 공유해주세요.
+            </p>
+            <p className="font-semibold text-white">
+              ※ 이용 방법<br />
+              1️⃣ 하단의 카카오톡 아이콘을 눌러주세요.<br />
+              2️⃣ 카카오톡이 실행되면 공유할 대상을 선택해주세요.<br />
+              3️⃣ 선택한 대상에게 아래 메시지가 전송됩니다.<br /><br />
+              <span className="font-semibold text-yellow-300">※주의 사항</span><br />
+              <b>챌린지 참여는</b> <u>[공유하기 챌린지]로 이동하여 메시지를 공유</u>해주세요.<br />
+              현재 페이지의 공유하기는 집계 없이, 공유 기능만 제공합니다.
+            </p>
+          </div>
+        </p>
         
          {/* 미리보기 영역 */}
-         <div className="Feed_root__718OK msg_template w-full">
-          <ul
-            className="ThumbnailList_list_thumb__8381Z ThumbnailList_single_tmp__lcaO9 ThumbnailList_horizontal_layout_wrap__DHBW1"
-            style={{ height: '140.789px' }}
-          >
-            <li>
-              <div className="ThumbnailList_thumb_wrap__l6csx">
+         <p>
+          <div className="Feed_root__718OK msg_template w-full">
+            <ul
+              className="ThumbnailList_list_thumb__8381Z ThumbnailList_single_tmp__lcaO9 ThumbnailList_horizontal_layout_wrap__DHBW1"
+              style={{ height: '140.789px' }}
+            >
+              <li>
                 <div className="ThumbnailList_thumb_wrap__l6csx">
-                  <div
-                    className="ThumbnailList_center_crop__KcT2G"
-                    style={{backgroundImage: 'url("/kakao_preview.png")',
-                    }}
-                  ></div>
+                  <div className="ThumbnailList_thumb_wrap__l6csx">
+                    <div
+                      className="ThumbnailList_center_crop__KcT2G"
+                      style={{backgroundImage: 'url("/kakao_preview.png")',
+                      }}
+                    ></div>
+                  </div>
                 </div>
+              </li>
+            </ul>
+            <div className="cont_template">
+              <div className="item_profile">
+                <span className="name_profile header">
+                  <span className="link_txt">롯데멤버스 카드 💳 이벤트 </span>
+                </span>
               </div>
-            </li>
-          </ul>
-          <div className="cont_template">
-            <div className="item_profile">
-              <span className="name_profile header">
-                <span className="link_txt">롯데멤버스 카드 💳 이벤트 </span>
-              </span>
+              <div className="desc_template">
+                <pre className="title">롯데 안에서 쓰면 쓸수록 커지는 혜택<br />L.POINT 최대 13만P 지급 이벤트</pre>
+                <pre className="link_txt">
+                  ✔️ 롯데 브랜드 최대 5% 특별 적립<br />
+                  ✔️ 국내외 가맹점 0.5%~0.7% 기본적립
+                </pre>
+              </div>
             </div>
-            <div className="desc_template">
-              <pre className="title">롯데 안에서 쓰면 쓸수록 커지는 혜택<br />L.POINT 최대 13만P 지급 이벤트</pre>
-              <pre className="link_txt">
-                ✔️ 롯데 브랜드 최대 5% 특별 적립<br />
-                ✔️ 국내외 가맹점 0.5%~0.7% 기본적립
-              </pre>
+              <div className="flex flex-col mt-3 gap-2">
+                <button className="bg-blue-100 px-4 py-2 rounded text-sm">이벤트 자세히 보기</button>
+                <button className="bg-blue-100 px-4 py-2 rounded text-sm">브랜드별 프로모션</button>
+              </div>
+              <div className="mt-3 flex items-center gap-2">
+                <Image
+                  src="/icon.jpg"
+                  width={40}
+                  height={40}
+                  alt="LPOINT"
+                  className="rounded-full"
+                />
+                <span className="text-sm font-semibold">LPOINT</span>
+              </div>
             </div>
-          </div>
-            <div className="flex flex-col mt-3 gap-2">
-              <button className="bg-blue-100 px-4 py-2 rounded text-sm">이벤트 자세히 보기</button>
-              <button className="bg-blue-100 px-4 py-2 rounded text-sm">브랜드별 프로모션</button>
-            </div>
-            <div className="mt-3 flex items-center gap-2">
-              <Image
-                src="/icon.jpg"
-                width={40}
-                height={40}
-                alt="LPOINT"
-                className="rounded-full"
-              />
-              <span className="text-sm font-semibold">LPOINT</span>
-            </div>
-          </div>
-       
+          </p>
 
         
       </div>
