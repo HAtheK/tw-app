@@ -106,7 +106,11 @@ const KakaoSharePage = () => {
             />
           </div>
         </div>
-
+      </section>
+      {/* 하단 컨텐츠 영역 */}
+      <div 
+        className="fixed top-0 left-0 w-full bg-black flex items-center justify-between px-5" 
+        style={{backgroundColor: 'black', borderRadius: '30px 30px 0px 0px'}}>
         {/* 설명 텍스트 */}
         <div className="w-full space-y-3 text-[0.85em] leading-snug">
           <p>
@@ -173,22 +177,8 @@ const KakaoSharePage = () => {
           </div>
        
 
-        {/* 공유 버튼 */}
-        <button
-          onClick={shareToKakao}
-          className="flex items-center justify-center gap-2 bg-[#FEE500] hover:bg-[#f7d800] text-black w-[240px] px-4 py-3 rounded-md text-sm font-semibold shadow transition"
-        >
-          <RiKakaoTalkFill size={20} /> 친구에게 공유하기
-        </button>
-
-        {/* 게임 이동 버튼 */}
-        <button
-          onClick={() => router.push('/sharegame')}
-          className="flex items-center justify-center gap-2 bg-[#009BFA] hover:bg-[#0089dd] text-white w-[240px] px-4 py-3 rounded-md text-sm font-semibold shadow transition"
-        >
-          <RiGamepadFill size={20} /> 공유하기 챌린지
-        </button>
-      </section>
+        
+      </div>
 
       {/* 푸터 */}
       <footer className="fixed bottom-0 left-0 w-full h-[30px] text-white flex items-center justify-center">
