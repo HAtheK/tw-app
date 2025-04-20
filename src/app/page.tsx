@@ -50,7 +50,7 @@ const KakaoSharePage = () => {
       </header>
 
       {/* 콘텐츠 */}
-      <section className="pb-14 flex flex-col items-center space-y-6 w-full px-4 max-w-2xl mx-auto overflow-y-auto">
+      <section className="flex flex-col items-center space-y-6 w-full px-4 max-w-2xl mx-auto overflow-y-auto">
         {/* 콘텐츠 상위 영역 */}
         <div style={{ width: '100%', minHeight: '1px', height: '60px' }}></div>
         <div className="text-table">
@@ -109,7 +109,7 @@ const KakaoSharePage = () => {
       </section>
       {/* 하단 컨텐츠 영역 */}
       <div 
-        className="fixed top-0 left-0 w-full bg-black flex items-center justify-between px-5" 
+        className="top-0 left-0 w-full bg-black flex items-center justify-between px-5" 
         style={{backgroundColor: 'black', borderRadius: '30px 30px 0px 0px'}}>
         {/* 설명 텍스트 */}
         <div className="w-full space-y-3 text-[0.85em] leading-snug">
