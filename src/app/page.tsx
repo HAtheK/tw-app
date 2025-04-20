@@ -58,7 +58,7 @@ const KakaoSharePage = () => {
             <p style={{ textAlign: 'center', lineHeight: 1, height: '25px' }}>
               <span style={{ fontSize: '16px' }}>
                 <span style={{ color: 'rgb(255, 255, 255)' }}>
-                  <strong>좋은 정보, 쉽게 전달하세요</strong>
+                  <strong>롯데멤버스 카드!</strong> 좋은 정보, 쉽게 전달하세요
                 </span>
               </span>
             </p>
