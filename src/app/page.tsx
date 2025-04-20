@@ -50,7 +50,7 @@ const KakaoSharePage = () => {
       </header>
 
       {/* 콘텐츠 */}
-      <section className="pt-20 pb-14 flex flex-col items-center space-y-6 w-full px-4 max-w-2xl mx-auto overflow-y-auto">
+      <section className="pb-14 flex flex-col items-center space-y-6 w-full px-4 max-w-2xl mx-auto overflow-y-auto">
         {/* 콘텐츠 상위 영역 */}
         <div style={{ width: '100%', minHeight: '1px', height: '60px' }}></div>
         <div className="text-table">
@@ -78,7 +78,7 @@ const KakaoSharePage = () => {
             </p>
           </div>
         </div>
-        <div  style={{ width: '100%', minHeight: '1px', height: '303px' }}>
+        <div style={{ width: '100%', minHeight: '1px', height: '303px' }}>
           <Image 
             src="/main.png"
             height={431}
