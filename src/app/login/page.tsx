@@ -46,9 +46,9 @@ const LoginPage = () => {
          {/* 로그인 버튼 */}
         <button
           onClick={handleKakaoLogin}
-          className="flex items-center justify-center gap-2 bg-[#FEE500] hover:bg-[#f7d800] text-black w-[240px] px-4 py-3 rounded-md text-[0.5em] font-semibold shadow transition"
+          className="flex items-center justify-center gap-2 bg-[#FEE500] hover:bg-[#f7d800] text-black w-[300px] px-4 py-3 rounded-md text-[1em] font-semibold shadow transition"
         >
-          <RiKakaoTalkFill size={20} />
+          <RiKakaoTalkFill size={30} />
           카카오로 로그인
         </button>
        
