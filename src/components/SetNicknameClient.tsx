@@ -77,7 +77,7 @@ const SetNicknameClient = ({ userId }: Props) => {
           </button>
         </div>
         <div style={{width:'100%', minHeight:'1px',height:'20px'}}></div>
-        <p className="text-sm text-left">
+        <p className="text-xs text-left px-4">
             ※ 닉네임은 자신을 나타내는 이름과 같습니다.<br/>
             ※ 불벅적이거나 타인에게 오해를 일으키고 불쾌감을 주는 닉네임은 변경/삭제될 수 있습니다.<br/>
             ※ 닉네임음 최초 설정 하신 후, 변경할 수 없습니다.</p>
