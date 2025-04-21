@@ -90,15 +90,18 @@ export default function ShareClient({ userId, nickname, kakaoId }: ShareClientPr
         </header>
       {/* 콘텐츠 */}
       <section className="flex flex-col items-center space-y-6 w-full max-w-2xl mx-auto">
+        <div style={{width:'100%', minHeight:'1px',height:'60px'}}></div>
         {/* 공유 영역 */}
         <div className="share-client text-center mt-6">
           <Script src="https://developers.kakao.com/sdk/js/kakao.js" strategy="beforeInteractive" />
           <p className="text-xl font-semibold">👋 {nickname}님,<br/>친구에게 메시지를 공유해보세요!</p>
-          <button
-            className="flex items-center justify-center gap-2 bg-[#FEE500] hover:bg-[#f7d800] text-black w-[240px] px-4 py-3 rounded-md text-sl font-semibold shadow transition"
+        </div>
+        <div>
+        <button
+            className="flex items-center justify-center gap-2 bg-[#FEE500] hover:bg-[#f7d800] text-black w-[300px] px-4 py-3 rounded-full text-sm font-semibold shadow transition"
             onClick={handleShare}
           >
-            <RiKakaoTalkFill size={20} />
+            <RiKakaoTalkFill size={30} />
             친구에게 공유하기
           </button>
         </div>
