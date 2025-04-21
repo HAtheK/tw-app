@@ -101,7 +101,7 @@ export default function ShareClient({ userId, nickname, kakaoId }: ShareClientPr
             className="flex items-center justify-center gap-2 bg-[#FEE500] hover:bg-[#f7d800] text-black w-[300px] px-4 py-3 rounded-full text-base font-semibold shadow transition"
             onClick={handleShare}
           >
-            <RiKakaoTalkFill size={30} />
+            <RiKakaoTalkFill size={25} />
             친구에게 공유하기
           </button>
         </div>
