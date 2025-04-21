@@ -26,10 +26,21 @@ const LoginPage = () => {
 
   return (
     <div className="min-h-screen flex flex-col justify-between items-center px-4 py-6 bg-white text-center font-dgm">
+      {/* 헤더 */}
+      <header className="fixed top-0 left-0 w-full h-16 bg-black flex items-center justify-between px-5 z-10">
+        <div className="relative w-36 h-6 sm:w-40 sm:h-7">
+          <Image
+            src="/logo-white.png"
+            alt="logo"
+            fill
+            className="object-contain"
+          />
+        </div>
+      </header>
       <main className="flex flex-col gap-6 items-center mt-24">
-        <Image src="/logo.png" alt="로고" width={120} height={120} />
+        <Image src="/logo.png" alt="로고" width={330} height={100} />
         <p className="text-xl leading-relaxed font-medium">
-          카카오로 로그인하고<br />
+          간편하게 로그인하고<br />
           공유하기 챌린지에 참여해보세요
         </p>
          {/* 로그인 버튼 */}
@@ -43,8 +54,9 @@ const LoginPage = () => {
        
         
       </main>
-      <footer className="text-sm text-gray-500 mt-12">
-        © 2025 PLCC - Share Challenge
+      {/* 푸터 */}
+      <footer className="fixed bottom-0 left-0 w-full h-[30px] text-white flex items-center justify-center">
+        임직원 이용 목적으로 제작한 사이트 입니다. 문의사항은 언제든 PLCC셀로 연락주세요.
       </footer>
     </div>
   );
