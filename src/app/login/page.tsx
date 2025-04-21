@@ -55,7 +55,7 @@ const LoginPage = () => {
         
       </main>
       {/* 푸터 */}
-      <footer className="fixed bottom-0 left-0 w-full h-[30px] text-white flex items-center justify-center">
+      <footer className="fixed bottom-0 left-0 w-full h-[30px] text-white flex items-center justify-center font-ptd">
         임직원 이용 목적으로 제작한 사이트 입니다. 문의사항은 언제든 PLCC셀로 연락주세요.
       </footer>
     </div>
