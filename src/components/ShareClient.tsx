@@ -76,7 +76,7 @@ export default function ShareClient({ userId, nickname, kakaoId }: ShareClientPr
   };
 
   return (
-    <main className="min-h-screen grid grid-rows-[auto_1fr_auto] bg-gradient-to-r from-yellow-500 to-pink-500 text-center text-black px-4 py-6 font-dgm">
+    <main className="min-h-screen grid grid-rows-[auto_1fr_auto] bg-gradient-to-br from-yellow-500 to-pink-500 text-center text-black py-6 font-dgm">
       {/* 헤더 */}
       <header className="fixed top-0 left-0 w-full h-16 bg-black flex items-center justify-between px-5 z-10">
         <div className="relative w-36 h-6 sm:w-40 sm:h-7">
@@ -89,7 +89,7 @@ export default function ShareClient({ userId, nickname, kakaoId }: ShareClientPr
         </div>
         </header>
       {/* 콘텐츠 */}
-      <section className="flex flex-col items-center space-y-6 w-full max-w-2xl mx-auto">
+      <section className="flex flex-col items-center space-y-6 w-full max-w-2xl mx-auto px-4">
         <div style={{width:'100%', minHeight:'1px',height:'60px'}}></div>
         {/* 공유 영역 */}
         <div className="share-client text-center mt-6">
