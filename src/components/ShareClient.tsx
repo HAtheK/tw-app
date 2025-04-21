@@ -76,7 +76,7 @@ export default function ShareClient({ userId, nickname, kakaoId }: ShareClientPr
   };
 
   return (
-    <main className="min-h-screen grid grid-rows-[auto_1fr_auto] bg-gradient-to-br from-yellow-500 to-pink-500 text-center text-black py-6 font-dgm">
+    <main className="min-h-screen grid grid-rows-[auto_1fr_auto] bg-gradient-to-r from-cyan-500 to-blue-500 text-center text-black py-6 font-dgm">
       {/* 헤더 */}
       <header className="fixed top-0 left-0 w-full h-16 bg-black flex items-center justify-between px-5 z-10">
         <div className="relative w-36 h-6 sm:w-40 sm:h-7">
@@ -94,11 +94,11 @@ export default function ShareClient({ userId, nickname, kakaoId }: ShareClientPr
         {/* 공유 영역 */}
         <div className="share-client text-center mt-6">
           <Script src="https://developers.kakao.com/sdk/js/kakao.js" strategy="beforeInteractive" />
-          <p className="text-xl font-semibold">👋 {nickname}님,<br/>친구에게 메시지를 공유해보세요!</p>
+          <p className="text-xl text-white">👋<b> {nickname}</b>님,<br/>친구에게 메시지를 공유해보세요!</p>
         </div>
         <div>
         <button
-            className="flex items-center justify-center gap-2 bg-[#FEE500] hover:bg-[#f7d800] text-black w-[300px] px-4 py-3 rounded-full text-sm font-semibold shadow transition"
+            className="flex items-center justify-center gap-2 bg-[#FEE500] hover:bg-[#f7d800] text-black w-[300px] px-4 py-3 rounded-full text-base font-semibold shadow transition"
             onClick={handleShare}
           >
             <RiKakaoTalkFill size={30} />
@@ -143,7 +143,7 @@ export default function ShareClient({ userId, nickname, kakaoId }: ShareClientPr
 
           {/* 내 순위 하단 고정 표시 */}
           {myRank && (
-            <div className="mt-4 p-3 rounded-lg bg-gray-100 text-sm text-center shadow-inner">
+            <div className="mt-4 p-3 rounded-lg bg-gray-100 text-xs text-center shadow-inner">
               🙋‍♀️ <span className="font-medium">{nickname}</span>님의 현재 순위는{' '}
               <strong>{myRank.rank}위</strong> 입니다.
               <br />
