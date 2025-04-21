@@ -111,7 +111,7 @@ export default function ShareClient({ userId, nickname, kakaoId }: ShareClientPr
 
         {/* 📊 TOP10 순위 */}
         {/* 하단 컨텐츠 영역 */}
-        <div 
+        <section 
             className="top-0 left-0 w-full bg-black flex items-center justify-between px-5" 
             style={{backgroundColor: 'white', borderRadius: '30px 30px 0px 0px'}}
             >
@@ -153,7 +153,7 @@ export default function ShareClient({ userId, nickname, kakaoId }: ShareClientPr
             </div>
           )}
         </div>
-      </div>
+      </section>
 
       {/* 푸터 */}
       <footer className="fixed bottom-0 left-0 w-full h-[30px] text-white flex items-center justify-center font-ptd">

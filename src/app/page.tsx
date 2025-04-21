@@ -108,14 +108,14 @@ const KakaoSharePage = () => {
         </div>
       </section>
       {/* 하단 컨텐츠 영역 */}
-      <div 
+      <section 
         className="top-0 left-0 w-full bg-black flex items-center justify-between px-5" 
         style={{backgroundColor: 'black', borderRadius: '30px 30px 0px 0px'}}
         >
         
 
         
-      </div>
+      </section>
 
       {/* 푸터 */}
       <footer className="fixed bottom-0 left-0 w-full h-[30px] text-white flex items-center justify-center">
