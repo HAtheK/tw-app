@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Script from 'next/script';
 import { useEffect, useState } from 'react';
 import { HiOutlineRefresh } from 'react-icons/hi';
@@ -75,12 +76,18 @@ export default function ShareClient({ userId, nickname, kakaoId }: ShareClientPr
   };
 
   return (
-    <main className="min-h-screen grid grid-rows-[auto_1fr_auto] bg-white text-black px-4 text-dgm">
+    <main className="min-h-screen grid grid-rows-[auto_1fr_auto] bg-white text-center text-black px-4 py-6 font-dgm">
       {/* 헤더 */}
-      <header className="h-[40px] flex items-center justify-between bg-white text-black px-4 border-b">
-        <h1 className="text-base font-bold">📢롯데멤버스 카드-공유하기 챌린지🎮</h1>
-        <div className="w-[50px]" />
-      </header> 
+      <header className="fixed top-0 left-0 w-full h-16 bg-black flex items-center justify-between px-5 z-10">
+        <div className="relative w-36 h-6 sm:w-40 sm:h-7">
+          <Image
+            src="/logo-white.png"
+            alt="logo"
+            fill
+            className="object-contain"
+          />
+        </div>
+        </header>
       {/* 콘텐츠 */}
       <section className="flex flex-col items-center space-y-6 w-full max-w-2xl mx-auto">
         {/* 공유 영역 */}
@@ -137,8 +144,8 @@ export default function ShareClient({ userId, nickname, kakaoId }: ShareClientPr
       </section>
 
       {/* 푸터 */}
-      <footer className="text-sm text-gray-500 mt-6 text-center">
-        © 2025 LOTTE MEMBERS PLCC Cell
+      <footer className="fixed bottom-0 left-0 w-full h-[30px] text-white flex items-center justify-center font-ptd">
+        임직원 이용 목적으로 제작한 사이트 입니다. 문의사항은 언제든 PLCC셀로 연락주세요.
       </footer>
     </main>
   );
