@@ -22,6 +22,8 @@ function logRequestInfo(req: NextRequest, method: 'GET' | 'POST') {
 
 // ✅ POST 방식 처리 (콜백 + 기존 UUID 공유 처리)
 export async function POST(req: NextRequest) {
+  logRequestInfo(req, 'POST');
+
   const supabase = createClient();
   const body = await req.json();
 
