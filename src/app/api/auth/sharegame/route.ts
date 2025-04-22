@@ -3,6 +3,23 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
 
+
+// 🛠️ 공통: 요청 정보 로그 함수
+function logRequestInfo(req: NextRequest, method: 'GET' | 'POST') {
+  const ip = req.headers.get('x-forwarded-for')?.split(',')[0] || 'IP_NOT_FOUND';
+  const url = req.nextUrl.href;
+  const userAgent = req.headers.get('user-agent') || 'USER_AGENT_NOT_FOUND';
+  const referer = req.headers.get('referer') || 'REFERER_NOT_FOUND';
+
+  console.log(`📡 [${method}] 요청 정보`, {
+    ip,
+    url,
+    userAgent,
+    referer,
+  });
+}
+
+
 // ✅ POST 방식 처리 (콜백 + 기존 UUID 공유 처리)
 export async function POST(req: NextRequest) {
   const supabase = createClient();
