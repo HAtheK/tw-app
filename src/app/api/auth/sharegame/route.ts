@@ -118,6 +118,7 @@ export async function POST(req: NextRequest) {
 
 // ✅ GET 방식 처리 (카카오 공유 웹훅)
 export async function GET(req: NextRequest) {
+  logRequestInfo(req, 'POST');
   const supabase = createClient();
   const { searchParams } = new URL(req.url);
 
