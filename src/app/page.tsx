@@ -163,7 +163,26 @@ const KakaoSharePage = () => {
     </div>
       <div style={{ width: '100%', minHeight: '1px', height: '30px' }}></div>
    
-
+      <div className="text-table py-6">
+        <p style={{textAlign: 'center', lineHeight: '1.15', marginTop:'6px'}}>
+          <span style={{color: 'rgb(141, 141, 147)', fontSize: '13px'}}>
+            [롯썰TV] 롯데멤버스 카드 마케팅 담당자<br/>나는SOLO 25기 영숙
+          </span>
+        </p>
+      </div>
+     
+      <div className="w-full max-w-md aspect-video mx-auto">
+      <iframe
+        className="w-full h-full rounded-xl shadow-md"
+        src="https://www.youtube.com/embed/RAZRIYDdVRw?si=_r10oLv1kyEJNJAB"
+        title="YouTube video player"
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerPolicy="strict-origin-when-cross-origin"
+        allowFullScreen
+      ></iframe>
+    </div>
+      <div style={{ width: '100%', minHeight: '1px', height: '30px' }}></div>
 
 
         
