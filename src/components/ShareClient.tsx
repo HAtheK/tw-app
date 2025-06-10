@@ -127,9 +127,7 @@ export default function ShareClient({ userId, nickname, kakaoId }: ShareClientPr
 
           <div className="flex justify-between items-center mb-2">
             <h3 className="text-lg font-semibold">🏆 TOP10 공유 순위</h3>
-            <button onClick={fetchTop10} title="새로고침">
-              <HiOutlineRefresh className="text-gray-600 hover:text-black w-5 h-5" />
-            </button>
+            
           </div>
 
           <div className="rounded-lg shadow-md overflow-hidden bg-white divide-y divide-gray-200">
