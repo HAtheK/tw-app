@@ -119,10 +119,20 @@ export default function ShareClient({ userId, nickname, kakaoId }: ShareClientPr
         <div className="w-full mt-8">
           
           <div className="flex justify-between items-center mb-2">
-              <h3 className="text-lg font-semibold">🙇 많은 관심과 참여 감사합니다</h3>
+              <h3 className="text-lg font-semibold">🎬 롯데멤버스 카드 마케팅 담당자</h3>
           </div>
 
-
+          <div className="w-full max-w-md aspect-video mx-auto">
+            <iframe
+              className="w-full h-full rounded-xl shadow-md"
+              src="https://www.youtube.com/embed/RAZRIYDdVRw?si=_r10oLv1kyEJNJAB"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            ></iframe>
+          </div>
           <div style={{ width: '100%', minHeight: '1px', height: '30px' }}></div>
 
           <div className="flex justify-between items-center mb-2">
