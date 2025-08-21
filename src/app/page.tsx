@@ -145,7 +145,6 @@ const KakaoSharePage = () => {
         </p> 
         <p style={{textAlign: 'center', lineHeight: '1.15', marginTop:'6px'}}>
           <span style={{color: 'rgb(141, 141, 147)', fontSize: '13px'}}>
-            '롯데멤버스 고향사랑기부'관련 소식을 전달합니다.<br/><br/>
             (연합뉴스TV) 롯데멤버스 "고향사랑기부 참여 시 각종 혜택"
           </span>
         </p>
@@ -164,7 +163,22 @@ const KakaoSharePage = () => {
     </div>
       <div style={{ width: '100%', minHeight: '1px', height: '30px' }}></div>
    
-      
+    <div className="text-table py-6">
+        <p style={{textAlign: 'center'}}>
+          <span style={{color: 'rgb(255, 95, 56)', fontSize: '13px'}}>
+            <strong>고향사랑기부제 참여방법</strong>
+          </span>
+        </p> 
+        <p style={{textAlign: 'center', lineHeight: '1.15', marginTop:'6px'}}>
+          <span style={{color: 'rgb(141, 141, 147)', fontSize: '13px'}}>
+            1.<b>엘포인트 앱 접속:</b> 엘포인트 앱을 실행하고 고향사랑기부제 참여 메뉴를 선택합니다.<br/>
+            2.<b>기부하고자 하는 지자체 선택:</b> 전국 지자체 중 기부하고자 하는 곳을 선택합니다.<br/>
+            3.<b>기부금액 설정 및 결제:</b> 기부하고자 하는 금액을 설정하고 결제를 진행합니다.<br/>
+            4.<b>엘포인트 적립:</b> 결제 완료 후 기부금의 3.5%에 해당하는 엘포인트가 적립됩니다. 
+          </span>
+        </p>
+      </div>
+      <div style={{ width: '100%', minHeight: '1px', height: '30px' }}></div>
 
 
         
