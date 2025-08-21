@@ -43,7 +43,7 @@ const KakaoSharePage = () => {
         </div>
         <button
           onClick={() => router.push('/sharegame')}
-          className="flex items-center justify-center gap-2 bg-[#3182f6] hover:bg-[#0089dd] text-white px-4 py-2 rounded-full text-sm"
+          className="flex items-center justify-center gap-2 bg-[#fb1822] hover:bg-[#d9141d] text-white px-4 py-2 rounded-full text-sm"
         >
           <RiGamepadFill size={20} /> 공유하기 챌린지
         </button>
@@ -114,24 +114,24 @@ const KakaoSharePage = () => {
         >
       <div className="text-table py-6">
         <p style={{textAlign: 'center'}}>
-          <span style={{color: 'rgb(49, 130, 246)', fontSize: '13px'}}>
+          <span style={{color: 'rgb(255, 95, 56)', fontSize: '13px'}}>
             <strong>사이트 소개</strong>
           </span>
         </p>
         <p style={{textAlign: 'center',marginTop:'16px'}}>
           <span style={{color: 'rgb(255, 255, 255)', fontSize: '25px'}}>
-            <strong>롯데멤버스 카드를<br/>조금 더 편하게, 많이 알리기 위해<br/>제작하였습니다.</strong>
+            <strong>롯데멤버스의 소식을<br/>조금 더 편하게, 많이 알리기 위해<br/>제작하였습니다.</strong>
           </span>
         </p>
         <p style={{textAlign: 'center', lineHeight: '1.15', marginTop:'6px'}}>
           <span style={{color: 'rgb(141, 141, 147)', fontSize: '13px'}}>
-            불편하고 번거롭지 않게 "롯데멤버스 카드"를 알릴 수 있습니다.<br/>공유하기 챌린지 참여하여 TOP10이 되어 보세요!
+            불편하고 번거롭지 않게 "롯데멤버스의 소식"을 알릴 수 있습니다.<br/>공유하기 챌린지 참여하여 TOP10이 되어 보세요!
           </span>
         </p>
       </div>
       <button
           onClick={() => router.push('/sharegame')}
-          className="flex items-center justify-center gap-2 bg-[#3182f6] hover:bg-[#0089dd] text-white px-4 py-2 rounded-full text-sm"
+          className="flex items-center justify-center gap-2  bg-[#fb1822] hover:bg-[#d9141d] text-white px-4 py-2 rounded-full text-sm"
         >
           <RiGamepadFill size={20} /> 공유하기 챌린지
       </button>
@@ -139,13 +139,13 @@ const KakaoSharePage = () => {
 
       <div className="text-table py-6">
         <p style={{textAlign: 'center'}}>
-          <span style={{color: 'rgb(49, 130, 246)', fontSize: '13px'}}>
+          <span style={{color: 'rgb(255, 95, 56)', fontSize: '13px'}}>
             <strong>홍보 영상 소개</strong>
           </span>
         </p> 
         <p style={{textAlign: 'center', lineHeight: '1.15', marginTop:'6px'}}>
           <span style={{color: 'rgb(141, 141, 147)', fontSize: '13px'}}>
-            [롯데멤버스 카드] 롯데안에서 쓰면 쓸수록 커지는 혜택<br/>네 롯데로 사세요(30s)편
+            [롯데멤버스 고향사랑기부] 관련 소식을 전달합니다 
           </span>
         </p>
       </div>
@@ -153,7 +153,7 @@ const KakaoSharePage = () => {
       <div className="w-full max-w-md aspect-video mx-auto">
       <iframe
         className="w-full h-full rounded-xl shadow-md"
-        src="https://www.youtube.com/embed/hP2dg2TloX0?si=LICWQ-yuqmA_LtFj"
+        src="https://files.mtn.co.kr/2025/07/01/20250701_hot5_12_yyj_720p.mp4"
         title="YouTube video player"
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
