@@ -169,7 +169,7 @@ const KakaoSharePage = () => {
             <strong>고향사랑기부제 참여방법</strong>
           </span>
         </p> 
-        <p style={{textAlign: 'center', lineHeight: '1.15', marginTop:'6px'}}>
+        <p style={{textAlign: 'left', lineHeight: '1.15', marginTop:'6px'}}>
           <span style={{color: 'rgb(141, 141, 147)', fontSize: '13px'}}>
             1.<b>엘포인트 앱 접속:</b> 엘포인트 앱을 실행하고 고향사랑기부제 참여 메뉴를 선택합니다.<br/>
             2.<b>기부하고자 하는 지자체 선택:</b> 전국 지자체 중 기부하고자 하는 곳을 선택합니다.<br/>
