@@ -30,7 +30,7 @@ const KakaoSharePage = () => {
   };
 
   return (
-    <main className="min-h-screen bg-linear-to-r from-red-200 via-pink-400 to-rose-600 text-black font-ptd grid grid-rows-[auto_1fr_auto]">
+    <main className="min-h-screen bg-gradient-to-r from-cyan-500 to-blue-500 text-black font-ptd grid grid-rows-[auto_1fr_auto]">
       {/* 헤더 */}
       <header className="fixed top-0 left-0 w-full h-16 bg-black flex items-center justify-between px-5 z-10">
         <div className="relative w-36 h-6 sm:w-40 sm:h-7">
