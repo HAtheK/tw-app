@@ -24,7 +24,8 @@ const KakaoSharePage = () => {
   const shareToKakao = () => {
     if (window.Kakao) {
       window.Kakao.Share.sendCustom({
-        templateId: 119614,
+        //templateId: 119614, PLCC
+        templateId: 119837,
       });
     }
   };
