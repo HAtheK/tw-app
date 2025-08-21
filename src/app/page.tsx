@@ -125,7 +125,7 @@ const KakaoSharePage = () => {
         </p>
         <p style={{textAlign: 'center', lineHeight: '1.15', marginTop:'6px'}}>
           <span style={{color: 'rgb(141, 141, 147)', fontSize: '13px'}}>
-            불편하고 번거롭지 않게 "롯데멤버스의 소식"을 알릴 수 있습니다.<br/>공유하기 챌린지 참여하여 TOP10이 되어 보세요!
+            불편하고 번거롭지 않게 "롯데멤버스의 소식"을 알릴 수 있습니다.<br/><b>공유하기 챌린지 참여</b>하여 TOP10이 되어 보세요!
           </span>
         </p>
       </div>
