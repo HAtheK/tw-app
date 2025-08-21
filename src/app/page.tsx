@@ -145,7 +145,8 @@ const KakaoSharePage = () => {
         </p> 
         <p style={{textAlign: 'center', lineHeight: '1.15', marginTop:'6px'}}>
           <span style={{color: 'rgb(141, 141, 147)', fontSize: '13px'}}>
-            [롯데멤버스 고향사랑기부] 관련 소식을 전달합니다 
+            '롯데멤버스 고향사랑기부'관련 소식을 전달합니다.<br/><br/>
+            (연합뉴스TV) 롯데멤버스 "고향사랑기부 참여 시 각종 혜택"
           </span>
         </p>
       </div>
@@ -163,26 +164,7 @@ const KakaoSharePage = () => {
     </div>
       <div style={{ width: '100%', minHeight: '1px', height: '30px' }}></div>
    
-      <div className="text-table py-6">
-        <p style={{textAlign: 'center', lineHeight: '1.15', marginTop:'6px'}}>
-          <span style={{color: 'rgb(141, 141, 147)', fontSize: '13px'}}>
-            [롯썰TV] 롯데멤버스 카드 마케팅 담당자<br/>나는SOLO 25기 영숙
-          </span>
-        </p>
-      </div>
-     
-      <div className="w-full max-w-md aspect-video mx-auto">
-      <iframe
-        className="w-full h-full rounded-xl shadow-md"
-        src="https://www.youtube.com/embed/RAZRIYDdVRw?si=_r10oLv1kyEJNJAB"
-        title="YouTube video player"
-        frameBorder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerPolicy="strict-origin-when-cross-origin"
-        allowFullScreen
-      ></iframe>
-    </div>
-      <div style={{ width: '100%', minHeight: '1px', height: '30px' }}></div>
+      
 
 
         
@@ -190,7 +172,7 @@ const KakaoSharePage = () => {
 
       {/* 푸터 */}
       <footer className="fixed bottom-0 left-0 w-full h-[30px] text-white flex items-center justify-center">
-        임직원 이용 목적으로 제작한 사이트 입니다. 문의사항은 언제든 PLCC셀로 연락주세요.
+        임직원 이용 목적으로 제작한 사이트 입니다.
       </footer>
     </main>
   );
