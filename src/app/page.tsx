@@ -58,7 +58,7 @@ const KakaoSharePage = () => {
             <p style={{ textAlign: 'center', lineHeight: 1}}>
               <span style={{ fontSize: '16px' }}>
                 <span style={{ color: 'rgb(255, 255, 255)' }}>
-                  <strong>「롯데멤버스 카드」</strong>를 주변에 쉽게 전달하세요
+                  <strong> 롯데멤버스의「고향사랑기부」</strong>참여를 주변에 알려주세요!
                 </span>
               </span>
             </p>
