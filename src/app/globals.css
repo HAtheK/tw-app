@@ -103,7 +103,8 @@ header img.logo {
 }
 
 header .header-button {
-    background-color: #3182f6;
+    /*background-color: #3182f6;*/
+    background-color: #fb1822;
     color: #fff;
     font-size: 14px;
     padding: 0 16px;
@@ -200,7 +201,9 @@ a {
      7px 7px 20px 0px rgba(0,0,0,.1),
      4px 4px 5px 0px rgba(0,0,0,.1);
     outline: none;
-      background: rgb(238, 0, 0);
+      /*background: rgb(0,172,238);
+    background: linear-gradient(0deg, rgba(0,172,238,1) 0%, rgba(2,126,251,1) 100%);*/
+        background: rgb(238, 0, 0);
     background: linear-gradient(0deg, rgb(255, 101, 101) 0%, rgba(251,24,34,1) 100%);
     width: 130px;
     height: 40px;
@@ -210,7 +213,8 @@ a {
 }
 
 .button:hover {
-    background-color: #af0000;
+    /*background-color: #0084b4;*/
+    background-color: #af0000;  
 }
 
 
