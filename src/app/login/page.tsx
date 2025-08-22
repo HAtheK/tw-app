@@ -50,6 +50,7 @@ const LoginPage = () => {
               </span>
             </p>
         <Image src="/logo.png" alt="로고" width={100} height={100} />
+         <div style={{ width: '100%', minHeight: '1px', height: '60px' }}></div>
         <p className="text-xl leading-relaxed font-medium">
           <span style={{ color: 'rgb(255, 255, 255)' }}>
           간편하게 로그인하고<br />
