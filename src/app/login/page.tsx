@@ -27,7 +27,7 @@ const LoginPage = () => {
   return (
     <div className="relative min-h-screen flex flex-col justify-between items-center px-4 py-6 text-center font-dgm text-white
              bg-[url('/login_bg.jpg')] bg-cover bg-center bg-no-repeat bg-fixed">
-        <div className="absolute inset-0 bg-black/50 z-0" />
+        <div className="absolute inset-0 bg-black/80 z-0" />
       
     
       {/* 헤더 */}
