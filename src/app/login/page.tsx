@@ -44,8 +44,10 @@ const LoginPage = () => {
       <main className="flex flex-col gap-6 items-center mt-24">
         <Image src="/logo.png" alt="로고" width={240} height={240} />
         <p className="text-xl leading-relaxed font-medium">
+          <span style={{ color: 'rgb(255, 255, 255)' }}>
           간편하게 로그인하고<br />
           공유하기 챌린지에 참여해보세요
+          </span>
         </p>
          {/* 로그인 버튼 */}
         <button
