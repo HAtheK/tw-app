@@ -6,12 +6,12 @@ import KakaoInit from '@/components/KakaoInit'
 import type { Viewport } from 'next'
 
 export const viewport: Viewport = {
-  themeColor: '#3182f6',
+  themeColor: '#fb1822',
 };
 
 
 export const metadata = {
-  title: '롯데멤버스 카드',
+  title: '롯데멤버스',
   description: '공유하기 챌린지',
 };
 
