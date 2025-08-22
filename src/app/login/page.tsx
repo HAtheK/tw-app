@@ -45,11 +45,11 @@ const LoginPage = () => {
         <p style={{ textAlign: 'center', lineHeight: 1, marginTop: '6px' }}>
               <span style={{ fontSize: '36px' }}>
                 <span style={{ color: 'rgb(255, 255, 255)' }}>
-                  <strong>롯데멤버스 공유하기 챌린지</strong>
+                  <strong>SHARE Challenge</strong>
                 </span>
               </span>
             </p>
-        <Image src="/logo.png" alt="로고" width={120} height={120} />
+        <Image src="/logo.png" alt="로고" width={100} height={100} />
         <p className="text-xl leading-relaxed font-medium">
           <span style={{ color: 'rgb(255, 255, 255)' }}>
           간편하게 로그인하고<br />
