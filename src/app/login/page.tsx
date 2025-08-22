@@ -41,7 +41,7 @@ const LoginPage = () => {
           />
         </div>
       </header>
-      <main className="flex flex-col gap-6 items-center mt-24">
+      <main className="flex flex-col gap-6 items-center mt-24 relative z-10">
         <Image src="/logo.png" alt="로고" width={240} height={240} />
         <p className="text-xl leading-relaxed font-medium">
           <span style={{ color: 'rgb(255, 255, 255)' }}>
