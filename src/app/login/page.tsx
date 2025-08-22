@@ -25,7 +25,20 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-between items-center px-4 py-6 bg-gradient-to-br from-pink-500 via-red-500 to-orange-500 text-center font-dgm">
+    <div className="relative min-h-screen flex flex-col justify-between items-center px-4 py-6 text-center font-dgm text-white">
+      {/* 배경 이미지 */}
+      <div className="absolute inset-0">
+        <Image
+          src="/login_bg.jpg"
+          alt="배경"
+          fill
+          priority
+          className="object-cover"
+        />
+        {/* 어두운 오버레이 */}
+        <div className="absolute inset-0 bg-black/50" />
+      </div>
+    
       {/* 헤더 */}
       <header className="fixed top-0 left-0 w-full h-16 bg-black flex items-center justify-between px-5 z-10">
         <div className="relative w-36 h-6 sm:w-40 sm:h-7">
