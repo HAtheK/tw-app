@@ -8,7 +8,7 @@ export default async function SetNicknamePage() {
   const cookieStore = cookies();
   const kakaoId = cookieStore.get('kakao_id')?.value;
   const kakaoToken = cookieStore.get('kakao_token')?.value;
-   console.log('✅ set/nickname/page진입:');
+  console.log('✅ set/nickname/page진입:',kakaoId,kakaoToken);
   if (!kakaoId || !kakaoToken) {
     console.warn('❌ 쿠키 없음 → /login');
     redirect('/login');
@@ -20,6 +20,8 @@ export default async function SetNicknamePage() {
     .select('id, nickname')
     .eq('kakao_id', kakaoId)
     .single();
+
+   console.log('✅ supabse',user,error);
 
   if (error || !user) {
     console.warn('❌ 사용자 DB 없음 → /login');
