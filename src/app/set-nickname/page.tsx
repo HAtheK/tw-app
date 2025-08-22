@@ -8,7 +8,7 @@ export default async function SetNicknamePage() {
   const cookieStore = cookies();
   const kakaoId = cookieStore.get('kakao_id')?.value;
   const kakaoToken = cookieStore.get('kakao_token')?.value;
-   console.log('✅ set/nickname/page진입:', apiResult);
+   console.log('✅ set/nickname/page진입:');
   if (!kakaoId || !kakaoToken) {
     console.warn('❌ 쿠키 없음 → /login');
     redirect('/login');
