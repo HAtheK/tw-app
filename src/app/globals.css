@@ -127,7 +127,7 @@ header p {
 
 
 main {
-    min-height: 100vh;
+    /*min-height: 100vh;*/
     display: flex;
     flex-direction: column;
     /* background:linear-gradient(90deg,#06b6d4,#3b82f6); */
