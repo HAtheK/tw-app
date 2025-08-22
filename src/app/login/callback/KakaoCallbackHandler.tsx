@@ -81,7 +81,9 @@ export default function KakaoCallbackHandler() {
         }
 
         // 4. 별명 설정 페이지로 이동
+         console.log('✅ 4.별명설정 이동:', apiResult);
         router.replace('/set-nickname');
+         console.log('✅ 4.라우터 호출 완료:', apiResult);
       } catch (error) {
         console.error('🔥 카카오 로그인 처리 실패:', error);
         router.replace('/');
