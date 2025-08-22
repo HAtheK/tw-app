@@ -27,7 +27,7 @@ const LoginPage = () => {
   return (
     <div className="relative min-h-screen flex flex-col justify-between items-center px-4 py-6 text-center font-dgm text-white">
       {/* 배경 이미지 */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 -z-10">
         <Image
           src="/login_bg.jpg"
           alt="배경"
