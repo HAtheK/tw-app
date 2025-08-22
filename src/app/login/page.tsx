@@ -42,6 +42,13 @@ const LoginPage = () => {
         </div>
       </header>
       <main className="flex flex-col gap-6 items-center mt-24 relative z-10">
+        <p style={{ textAlign: 'center', lineHeight: 1, marginTop: '6px' }}>
+              <span style={{ fontSize: '36px' }}>
+                <span style={{ color: 'rgb(255, 255, 255)' }}>
+                  <strong>롯데멤버스 공유하기 챌린지</strong>
+                </span>
+              </span>
+            </p>
         <Image src="/logo.png" alt="로고" width={120} height={120} />
         <p className="text-xl leading-relaxed font-medium">
           <span style={{ color: 'rgb(255, 255, 255)' }}>
