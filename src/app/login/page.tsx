@@ -25,7 +25,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-between items-center px-4 py-6 bg-white text-center font-dgm">
+    <div className="min-h-screen flex flex-col justify-between items-center px-4 py-6 bg-gradient-to-br from-pink-500 via-red-500 to-orange-500  text-center font-dgm">
       {/* 헤더 */}
       <header className="fixed top-0 left-0 w-full h-16 bg-black flex items-center justify-between px-5 z-10">
         <div className="relative w-36 h-6 sm:w-40 sm:h-7">
@@ -38,7 +38,7 @@ const LoginPage = () => {
         </div>
       </header>
       <main className="flex flex-col gap-6 items-center mt-24">
-        <Image src="/logo.png" alt="로고" width={330} height={100} />
+        <Image src="/logo.png" alt="로고" width={360} height={360} />
         <p className="text-xl leading-relaxed font-medium">
           간편하게 로그인하고<br />
           공유하기 챌린지에 참여해보세요
@@ -56,7 +56,7 @@ const LoginPage = () => {
       </main>
       {/* 푸터 */}
       <footer className="fixed bottom-0 left-0 w-full h-[30px] text-white flex items-center justify-center font-ptd">
-        임직원 이용 목적으로 제작한 사이트 입니다. 문의사항은 언제든 PLCC셀로 연락주세요.
+        임직원 이용 목적으로 제작한 사이트 입니다.
       </footer>
     </div>
   );
