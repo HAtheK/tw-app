@@ -76,7 +76,8 @@ export default function ShareClient({ userId, nickname, kakaoId }: ShareClientPr
   };
 
   return (
-    <main className="min-h-screen grid grid-rows-[auto_1fr_auto] bg-gradient-to-r from-cyan-500 to-blue-500 text-center text-black py-6 font-dgm">
+  
+    <main className="min-h-screen bg-gradient-to-br from-pink-500 via-red-500 to-orange-500 text-black font-ptd grid grid-rows-[auto_1fr_auto] font-dgm">
       {/* 헤더 */}
       <header className="fixed top-0 left-0 w-full h-16 bg-black flex items-center justify-between px-5 z-10">
         <div className="relative w-36 h-6 sm:w-40 sm:h-7">
@@ -107,6 +108,15 @@ export default function ShareClient({ userId, nickname, kakaoId }: ShareClientPr
         </div>
 
         <div style={{width:'100%', minHeight:'1px',height:'20px'}}></div>
+        <div>
+          <Image
+            src="/person.png"
+            alt=''
+            width={945} // 고정 px이 아닌, 최대 사이즈 제어
+            height={395}
+            className="object-contain"
+          />
+        </div>
         </section>
 
         {/* 📊 TOP10 순위 */}
