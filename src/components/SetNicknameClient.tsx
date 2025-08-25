@@ -79,13 +79,13 @@ const SetNicknameClient = ({ userId }: Props) => {
             type="text"
             value={nickname}
             onChange={(e) => setNickname(e.target.value)}
-            className="border px-2 py-1 w-full"
+            className="border justify-center gap-2 text-black w-[300px] px-4 py-3 rounded-md text-[1em] font-semibold"
             placeholder="한글 1~8자"
           />
           {error && <p className="text-red-500 mt-2">{error}</p>}
           <button
             onClick={handleSave}
-            className="mt-4 bg-blue-500 text-white px-4 py-2 rounded w-full"
+            className="flex items-center justify-center gap-2 bg-[#fb1822] hover:bg-[#f46600] text-black w-[300px] px-4 py-3 rounded-md text-[1em] font-semibold shadow transition"
           >
             등록하고 시작하기
           </button>
