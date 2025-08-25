@@ -95,13 +95,13 @@ const SetNicknameClient = ({ userId }: Props) => {
             ※ 닉네임은 자신을 나타내는 이름과 같습니다.<br/>
             ※ 불벅적이거나 타인에게 오해를 일으키고 불쾌감을 주는 닉네임은 변경/삭제될 수 있습니다.<br/>
             ※ 닉네임음 최초 설정 하신 후, 변경할 수 없습니다.</p>
-      
+      </main>
 
       {/* 푸터 */}
       <footer className="fixed bottom-0 left-0 w-full h-[30px] text-white flex items-center justify-center font-ptd">
         임직원 이용 목적으로 제작한 사이트 입니다.
       </footer>
-    </main>
+   
   </div>
   );
 };
