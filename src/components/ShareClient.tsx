@@ -115,7 +115,7 @@ export default function ShareClient({ userId, nickname, kakaoId }: ShareClientPr
             alt=""
             width={472} // 고정 px이 아닌, 최대 사이즈 제어
             height={467}
-            className="object-contain mt-[28px]"
+            className="object-contain mt-28px"
           />
         </div>
         </section>
