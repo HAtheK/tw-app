@@ -110,10 +110,10 @@ export default function ShareClient({ userId, nickname, kakaoId }: ShareClientPr
         <div style={{width:'100%', minHeight:'1px',height:'20px'}}></div>
         <div>
           <Image
-            src="/person.png"
+            src="/persons.png"
             alt=''
-            width={945} // 고정 px이 아닌, 최대 사이즈 제어
-            height={395}
+            width={472} // 고정 px이 아닌, 최대 사이즈 제어
+            height={467}
             className="object-contain"
           />
         </div>
