@@ -71,7 +71,7 @@ const SetNicknameClient = ({ userId }: Props) => {
       <div style={{ width: '100%', minHeight: '1px', height: '60px' }}></div>
       <p className="text-xl leading-relaxed font-medium">
           <span style={{ color: 'rgb(255, 255, 255)' }}>
-          챌린지에서 사용할 닉네임을 입력해주세요
+          사용할 닉네임을 입력해주세요
           </span>
         </p>
         {/* 닉네임 입력창 및 설정 버튼 */}
