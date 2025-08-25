@@ -43,7 +43,10 @@ const SetNicknameClient = ({ userId }: Props) => {
   };
 
   return (
-    <main className="min-h-screen grid grid-rows-[auto_1fr_auto] bg-white text-center text-black px-4 py-6 font-dgm">
+    <div className="relative min-h-screen flex flex-col justify-between items-center px-4 py-6 text-center font-dgm text-white
+             bg-[url('/login_bg.jpg')] bg-cover bg-center bg-no-repeat bg-fixed">
+        <div className="absolute inset-0 bg-black/80 z-0" />  
+    
       {/* 헤더 */}
       <header className="fixed top-0 left-0 w-full h-16 bg-black flex items-center justify-between px-5 z-10">
         <div className="relative w-36 h-6 sm:w-40 sm:h-7">
@@ -55,7 +58,7 @@ const SetNicknameClient = ({ userId }: Props) => {
           />
         </div>
         </header>
-
+      <main className="flex flex-col gap-6 items-center mt-24 relative z-10">
       {/* 콘텐츠 */}
       <section className="flex flex-col items-center justify-center space-y-6">
         <div style={{width:'100%', minHeight:'1px',height:'60px'}}></div>
@@ -88,6 +91,7 @@ const SetNicknameClient = ({ userId }: Props) => {
         임직원 이용 목적으로 제작한 사이트 입니다. 문의사항은 언제든 PLCC셀로 연락주세요.
       </footer>
     </main>
+  </div>
   );
 };
 
