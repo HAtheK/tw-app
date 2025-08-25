@@ -66,7 +66,8 @@ export default function ShareClient({ userId, nickname, kakaoId }: ShareClientPr
     }
 
     window.Kakao.Share.sendCustom({
-      templateId: 119614,
+       //templateId: 119614, PLCC
+        templateId: 119837,
       serverCallbackArgs: JSON.stringify({
         userId,
         kakaoId,
@@ -77,7 +78,7 @@ export default function ShareClient({ userId, nickname, kakaoId }: ShareClientPr
 
   return (
   
-    <main className="min-h-screen bg-gradient-to-br from-pink-500 via-red-500 to-orange-500 text-black font-ptd grid grid-rows-[auto_1fr_auto] font-dgm">
+    <main className="min-h-screen bg-gradient-to-br from-pink-500 via-red-500 to-orange-500 text-black grid grid-rows-[auto_1fr_auto] font-dgm">
       {/* 헤더 */}
       <header className="fixed top-0 left-0 w-full h-16 bg-black flex items-center justify-between px-5 z-10">
         <div className="relative w-36 h-6 sm:w-40 sm:h-7">
@@ -114,7 +115,7 @@ export default function ShareClient({ userId, nickname, kakaoId }: ShareClientPr
             alt=""
             width={472} // 고정 px이 아닌, 최대 사이즈 제어
             height={467}
-            className="object-contain"
+            className="object-contain mt-[28px]"
           />
         </div>
         </section>
@@ -126,15 +127,7 @@ export default function ShareClient({ userId, nickname, kakaoId }: ShareClientPr
             style={{backgroundColor: 'white', borderRadius: '30px 30px 0px 0px'}}
             >
       
-        <div className="w-full mt-8">
-          
-          <div className="flex justify-between items-center mb-2">
-              <h3 className="text-lg font-semibold">🎬 롯데멤버스 카드 마케팅 담당자</h3>
-          </div>
-
-          
-          <div style={{ width: '100%', minHeight: '1px', height: '30px' }}></div>
-
+        <div className="w-full mt-8">  
           <div className="flex justify-between items-center mb-2">
             <h3 className="text-lg font-semibold">🏆 TOP10 공유 순위</h3>
             <button onClick={fetchTop10} title="새로고침">
@@ -175,7 +168,7 @@ export default function ShareClient({ userId, nickname, kakaoId }: ShareClientPr
 
       {/* 푸터 */}
       <footer className="fixed bottom-0 left-0 w-full h-[30px] text-white flex items-center justify-center font-ptd">
-        임직원 이용 목적으로 제작한 사이트 입니다. 문의사항은 언제든 PLCC셀로 연락주세요.
+        임직원 이용 목적으로 제작한 사이트 입니다.
       </footer>
     </main>
   );
