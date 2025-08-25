@@ -60,6 +60,8 @@ const SetNicknameClient = ({ userId }: Props) => {
         </header>
       <main className="flex flex-col gap-6 items-center mt-24 relative z-10">
       {/* 콘텐츠 */}
+      <Image src="/nick.png" alt="로고" width={100} height={100} />
+      <div style={{ width: '100%', minHeight: '1px', height: '60px' }}></div>
       <section className="flex flex-col items-center justify-center space-y-6">
         <div style={{width:'100%', minHeight:'1px',height:'60px'}}></div>
         <div className="p-4 w-full max-w-md">
