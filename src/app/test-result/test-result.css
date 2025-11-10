@@ -6,6 +6,7 @@
   padding: 2rem;
   height: 100vh;
   text-align: center;
+  background: #fff;
 }
 
 .test-result-banner {
@@ -20,20 +21,21 @@
   font-size: 1.8rem;
   font-weight: 700;
   margin-bottom: 0.75rem;
+  color: #111;
 }
 
 .test-result-desc {
   font-size: 1rem;
   margin-bottom: 2rem;
+  color: #333;
 }
 
 .test-result-button {
   padding: 0.9rem 2rem;
-  border-radius: 9999px;
+  border-radius: 12px;
   background-color: #000;
   color: #fff;
   font-weight: 600;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
   transition: all 0.25s;
 }
 

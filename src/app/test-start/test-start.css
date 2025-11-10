@@ -1,27 +1,38 @@
 .test-start-wrapper {
-  padding: 2rem;
-}
-
-h2 {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-}
-
-.options {
   display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #fff;
 }
 
-.options button {
-  padding: 0.75rem 1.5rem;
-  border-radius: 9999px;
-  border: 1px solid #ccc;
-  background-color: #fff;
-  font-weight: 500;
-  transition: all 0.2s;
+.test-start-inner {
+  text-align: center;
+  padding: 1rem;
+  max-width: 400px;
 }
 
-.options button:hover {
-  background-color: #f0f0f0;
+.test-start-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 1.5rem;
+}
+
+.test-btn {
+  display: block;
+  width: 100%;
+  background: #f3f3f3;
+  color: #111;
+  border: none;
+  border-radius: 12px;
+  padding: 0.9rem;
+  margin-bottom: 0.8rem;
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+.test-btn:hover {
+  background: #000;
+  color: #fff;
 }
