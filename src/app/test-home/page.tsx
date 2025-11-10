@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import "./test-style.css";
+import "./test-home.css";
 
 export default function TestHomePage() {
   const router = useRouter();
