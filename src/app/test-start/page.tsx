@@ -10,30 +10,27 @@ export default function TestStartPage() {
   const [answers, setAnswers] = useState<{ [key: string]: string }>({});
 
   const handleSelect = (qId: string, value: string) => {
-    const updated = { ...answers, [qId]: value };
-    setAnswers(updated);
+    setAnswers((prev) => ({ ...prev, [qId]: value }));
   };
 
-  // 자동 결과 판정
   useEffect(() => {
     if (Object.keys(answers).length > 0) {
       const resultType = getResultType(answers);
       if (resultType) {
         router.push(`/test-result?type=${resultType}`);
       } else {
-        setStep((prev) => prev + 1); // 다음 문항 진행
+        setStep((prev) => prev + 1);
       }
     }
   }, [answers]);
 
   const getResultType = (ans: Record<string, string>) => {
-    // 6가지 결과 기준 로직
     if (ans.nationality === "foreign") return "tourist";
     if (ans.spend === "over100") return "premium";
     if (ans.spend === "over50" && ans.brandUse === "high") return "plcc";
     if (ans.spend === "under50" && ans.payMethod === "simple") return "lpay";
     if (ans.spend === "under50" && ans.payMethod === "account") return "point-charge";
-    return null; // 아직 결정되지 않음
+    return null;
   };
 
   return (
