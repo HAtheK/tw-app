@@ -1,97 +1,83 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 import "./test-start.css";
 
 export default function TestStartPage() {
   const router = useRouter();
   const [step, setStep] = useState(1);
-  const [answers, setAnswers] = useState({
-    isMember: false,
-    isForeigner: false,
-    spend: 0,
-    payType: "",
-    brandUse: 0,
-  });
+  const [answers, setAnswers] = useState<{ [key: string]: string }>({});
 
-  const next = (newData: any) => {
-    setAnswers({ ...answers, ...newData });
-    setStep(step + 1);
+  const handleSelect = (qId: string, value: string) => {
+    const updated = { ...answers, [qId]: value };
+    setAnswers(updated);
   };
 
-  const finish = () => {
-    let resultType = "app-install";
-
-    if (answers.isForeigner) resultType = "tourist";
-    else if (!answers.isMember) resultType = "app-install";
-    else if (answers.payType === "account") resultType = "point-charge";
-    else if (answers.spend >= 100) resultType = "premium";
-    else if (answers.spend >= 50) resultType = "plcc";
-    else if (answers.spend < 50) resultType = "lpay";
-
-    if (answers.brandUse <= 2 && resultType === "plcc") {
-      resultType = "lpay";
+  // 자동 결과 판정
+  useEffect(() => {
+    if (Object.keys(answers).length > 0) {
+      const resultType = getResultType(answers);
+      if (resultType) {
+        router.push(`/test-result?type=${resultType}`);
+      } else {
+        setStep((prev) => prev + 1); // 다음 문항 진행
+      }
     }
+  }, [answers]);
 
-    router.push(`/test-result?type=${resultType}`);
+  const getResultType = (ans: Record<string, string>) => {
+    // 6가지 결과 기준 로직
+    if (ans.nationality === "foreign") return "tourist";
+    if (ans.spend === "over100") return "premium";
+    if (ans.spend === "over50" && ans.brandUse === "high") return "plcc";
+    if (ans.spend === "under50" && ans.payMethod === "simple") return "lpay";
+    if (ans.spend === "under50" && ans.payMethod === "account") return "point-charge";
+    return null; // 아직 결정되지 않음
   };
 
   return (
     <div className="test-start-wrapper">
-      <div className="test-start-inner">
-        {step === 1 && (
-          <>
-            <h2 className="test-start-title">롯데멤버스 회원이신가요?</h2>
-            <button onClick={() => next({ isMember: true })} className="test-btn">
-              네, 회원이에요
-            </button>
-            <button onClick={() => next({ isMember: false })} className="test-btn">
-              아니요
-            </button>
-          </>
-        )}
+      {step === 1 && (
+        <>
+          <h2>Q1. 국적을 선택해주세요.</h2>
+          <div className="options">
+            <button onClick={() => handleSelect("nationality", "korean")}>한국인</button>
+            <button onClick={() => handleSelect("nationality", "foreign")}>외국인</button>
+          </div>
+        </>
+      )}
 
-        {step === 2 && answers.isMember && (
-          <>
-            <h2 className="test-start-title">한국인이신가요?</h2>
-            <button onClick={() => next({ isForeigner: false })} className="test-btn">
-              네
-            </button>
-            <button onClick={() => next({ isForeigner: true })} className="test-btn">
-              아니요
-            </button>
-          </>
-        )}
+      {step === 2 && (
+        <>
+          <h2>Q2. 월 평균 카드 사용 금액은 얼마인가요?</h2>
+          <div className="options">
+            <button onClick={() => handleSelect("spend", "over100")}>100만원 이상</button>
+            <button onClick={() => handleSelect("spend", "over50")}>50~100만원</button>
+            <button onClick={() => handleSelect("spend", "under50")}>50만원 미만</button>
+          </div>
+        </>
+      )}
 
-        {step === 3 && !answers.isForeigner && (
-          <>
-            <h2 className="test-start-title">월 평균 카드 이용 금액은?</h2>
-            <button onClick={() => next({ spend: 30 })} className="test-btn">50만원 미만</button>
-            <button onClick={() => next({ spend: 70 })} className="test-btn">50~100만원</button>
-            <button onClick={() => next({ spend: 120 })} className="test-btn">100만원 이상</button>
-          </>
-        )}
+      {step === 3 && (
+        <>
+          <h2>Q3. 주로 사용하는 결제 방식은?</h2>
+          <div className="options">
+            <button onClick={() => handleSelect("payMethod", "account")}>계좌 기반 / 충전형</button>
+            <button onClick={() => handleSelect("payMethod", "simple")}>간편결제(L.PAY 등)</button>
+          </div>
+        </>
+      )}
 
-        {step === 4 && (
-          <>
-            <h2 className="test-start-title">결제 방식은?</h2>
-            <button onClick={() => next({ payType: "card" })} className="test-btn">신용카드</button>
-            <button onClick={() => next({ payType: "account" })} className="test-btn">계좌/충전형</button>
-          </>
-        )}
-
-        {step === 5 && (
-          <>
-            <h2 className="test-start-title">최근 한 달 롯데 브랜드 이용 횟수는?</h2>
-            <button onClick={() => next({ brandUse: 1 })} className="test-btn">1~2회</button>
-            <button onClick={() => next({ brandUse: 3 })} className="test-btn">3회 이상</button>
-            <button onClick={finish} className="test-btn mt-6 bg-black text-white">
-              결과 보기
-            </button>
-          </>
-        )}
-      </div>
+      {step === 4 && (
+        <>
+          <h2>Q4. 롯데 브랜드 이용 횟수는 얼마나 되나요?</h2>
+          <div className="options">
+            <button onClick={() => handleSelect("brandUse", "high")}>자주 이용(3회 이상)</button>
+            <button onClick={() => handleSelect("brandUse", "low")}>가끔 이용(1~2회)</button>
+          </div>
+        </>
+      )}
     </div>
   );
 }
