@@ -9,7 +9,7 @@ export default function TestHomePage() {
 
   return (
     <div className="test-home-wrapper">
-      <div className="test-home-bg">      
+      <div className="test-home-bg"/>      
 
       <div className="test-home-content">
         <h1 className="test-home-title">내게 맞는 혜택 테스트</h1>
@@ -19,8 +19,6 @@ export default function TestHomePage() {
         >
           시작하기
         </button>
-      </div>
-      
       </div>
     </div>
   );
