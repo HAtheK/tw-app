@@ -9,13 +9,7 @@ export default function TestHomePage() {
 
   return (
     <div className="test-home-wrapper">
-      <Image
-        src="/images/test-home-bg.jpg"
-        alt="테스트 홈 배경"
-        fill
-        priority
-        className="test-home-bg"
-      />
+      
       <div className="test-home-overlay"></div>
 
       <div className="test-home-content">
