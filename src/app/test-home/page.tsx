@@ -15,7 +15,7 @@ export default function TestHome() {
         className="test-home-bg"
       />
       <button
-        className="test-home-button"
+        className="test-home-start"
         onClick={() => router.push("/test-start")}
       >
         시작하기
