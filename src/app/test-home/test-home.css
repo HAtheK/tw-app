@@ -17,6 +17,7 @@
   width: 100vw;
   overflow: hidden;
   background-color: #fb1822;
+  background-image: linear-gradient(to right bottom,#fb1822 30% #ff9999 60%, #ffcccc 80%);
   /* 중앙 0%에서 빨강, 30%까지 노랑, 70%까지 파랑, 끝까지 검정 
   background-image: radial-gradient(circle, 
     #ffcccc 0%,      
@@ -29,11 +30,11 @@
   /*object-fit: cover;
   object-position: center;*/
   background-image: url('/images/test-home.jpg');
-  background-position: bottom center; 
+  background-position: bottom right; 
   background-repeat: no-repeat;       
   background-size: cover;             
-  width: 100%;
-  height: auto;
+  width: 392px;
+  height: 244px;
 }
 
 .test-home-overlay {
