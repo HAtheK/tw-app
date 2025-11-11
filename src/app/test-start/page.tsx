@@ -40,10 +40,10 @@ export default function TestStartPage() {
           <>
             <h2 className="test-start-title">Q1.참여자님은 한국에...</h2>
             <button className="test-btn" onClick={() => handleSelect("nationality", "korean")}>
-              거주 중이에요 (한국인 및 국내거주 외국인)
+              🏠거주 중이에요 
             </button>
             <button className="test-btn" onClick={() => handleSelect("nationality", "foreign")}>
-              여행 중이에요 (외국인 관광객)
+              🛫여행 중이에요 (외국인 관광객)
             </button>
           </>
         )}
