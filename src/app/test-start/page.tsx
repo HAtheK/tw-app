@@ -50,39 +50,39 @@ export default function TestStartPage() {
 
         {step === 2 && (
           <>
-            <h2 className="test-start-title">Q2. 월 평균 카드 사용 금액은 얼마인가요?</h2>
+            <h2 className="test-start-title">Q2.대략적인 소비 금액대를 선택해주세요. </h2>
             <button className="test-btn" onClick={() => handleSelect("spend", "over100")}>
-              100만원 이상
+              1️⃣ 100만원 이상
             </button>
             <button className="test-btn" onClick={() => handleSelect("spend", "over50")}>
-              50~100만원
+              2️⃣ 50~100만원
             </button>
             <button className="test-btn" onClick={() => handleSelect("spend", "under50")}>
-              50만원 미만
+              3️⃣ 50만원 미만
             </button>
           </>
         )}
 
         {step === 3 && (
           <>
-            <h2 className="test-start-title">Q3. 주로 사용하는 결제 방식은?</h2>
+            <h2 className="test-start-title">Q3.결제할 때 어떤 방식이 더 편하세요?</h2>
             <button className="test-btn" onClick={() => handleSelect("payMethod", "account")}>
-              계좌 기반 / 충전형
+              💸현금/🏧계좌이체
             </button>
             <button className="test-btn" onClick={() => handleSelect("payMethod", "simple")}>
-              간편결제(L.PAY 등)
+              💳️카드 결제
             </button>
           </>
         )}
 
         {step === 4 && (
           <>
-            <h2 className="test-start-title">Q4. 롯데 브랜드 이용 횟수는 얼마나 되나요?</h2>
+            <h2 className="test-start-title">Q4.롯데 브랜드 이용 횟수는 얼마나 되나요?</h2>
             <button className="test-btn" onClick={() => handleSelect("brandUse", "high")}>
-              자주 이용(3회 이상)
+              ⌛ 자주 이용(3회 이상)
             </button>
             <button className="test-btn" onClick={() => handleSelect("brandUse", "low")}>
-              가끔 이용(1~2회)
+              ⏳ 가끔 이용(1~2회)
             </button>
           </>
         )}
