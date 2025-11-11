@@ -1,3 +1,12 @@
+  @font-face {
+    font-family: 'Pretendard';
+    src: url('/fonts/Pretendard-Regular.woff2') format('woff2'),
+         url('/fonts/Pretendard-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
 .test-home-wrapper {
   position: relative;
   display: flex;
@@ -12,7 +21,7 @@
   background-image: radial-gradient(circle, 
     #ffcccc 0%,      
     #ff9999 40%,    
-    #fb1822 80%,    
+    #fb1822 80%    
   );
 }
 
