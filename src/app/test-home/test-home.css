@@ -8,9 +8,12 @@
   width: 100vw;
   overflow: hidden;
   /*background-color: #000;*/
-   background-image: linear-gradient(to right, rgba(255, 204, 204, 1), rgba(255, 153, 154, 1)), 
-                    linear-gradient(to top, #fb1822, #ff9999); 
-}
+  /* 중앙 0%에서 빨강, 30%까지 노랑, 70%까지 파랑, 끝까지 검정 */
+  background-image: radial-gradient(circle, 
+    #ffcccc 0%,      
+    #ff9999 40%,    
+    #fb1822 80%,    
+  );
 
 .test-home-bg {
   object-fit: cover;
