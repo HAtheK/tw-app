@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: #fff;
+  background: #ffcccc;
 }
 
 .test-start-inner {
@@ -22,8 +22,8 @@
 .test-btn {
   display: block;
   width: 100%;
-  background: #ffcccc;
-  color: #111;
+  background: #ffffff;
+  color: #222222;
   border: none;
   border-radius: 12px;
   padding: 0.9rem;

@@ -50,7 +50,7 @@ export default function TestStartPage() {
 
         {step === 2 && (
           <>
-            <h2 className="test-start-title">Q2.한 달 소비 금액대를 선택해주세요.
+            <h2 className="test-start-title">Q2.월 소비 금액대를 선택해주세요.
              </h2>
             <button className="test-btn" onClick={() => handleSelect("spend", "over100")}>
               1️⃣ 100만원 이상

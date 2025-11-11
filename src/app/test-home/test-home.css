@@ -24,12 +24,12 @@
   z-index: 10;
   padding: 1rem 2rem;
   font-size: 1.2rem;
-  border-radius: 9999px;
+  border-radius: 20px;
   background-color: #FB1822;
   color: white;
   font-weight: 600;
   box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-  transition: all 0.25s;
+  transition: all 0.25s ease;
 }
 
 .test-home-start:hover {

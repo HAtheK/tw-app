@@ -18,7 +18,7 @@ export default function TestHome() {
         className="test-home-start"
         onClick={() => router.push("/test-start")}
       >
-        시작하기
+        시작 하기
       </button>
     </div>
   );
