@@ -26,8 +26,13 @@
 }
 
 .test-home-bg {
-  object-fit: cover;
-  object-position: center;
+  /*object-fit: cover;
+  object-position: center;*/
+  background-image: url('/images/test-home.jpg');
+  background-position: bottom center; 
+  background-repeat: no-repeat;       
+  background-size: cover;             
+  width: 100%;
 }
 
 .test-home-overlay {
