@@ -6,7 +6,7 @@
   padding: 2rem;
   height: 100vh;
   text-align: center;
-  background: #fff;
+  background: #ffcccc;
 }
 
 .test-result-banner {
@@ -18,16 +18,17 @@
 }
 
 .test-result-title {
-  font-size: 1.8rem;
-  font-weight: 700;
+  font-size: 1.2rem;
+  font-weight: 300;
   margin-bottom: 0.75rem;
-  color: #111;
+  color: #333;
 }
 
 .test-result-desc {
-  font-size: 1rem;
+  font-size: 1.8rem;
+  font-weight: 700;
   margin-bottom: 2rem;
-  color: #333;
+  color: #111;
 }
 
 .test-result-button {
