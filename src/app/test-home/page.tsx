@@ -53,7 +53,15 @@ export default function TestHome() {
                 </button>
             </div>
           </section>
-    
+          {/* 우측 하단 이미지 */}
+          <div className="absolute bottom-[30px] right-0 w-[200px] h-[180px] sm:w-[260px] sm:h-[220px] pointer-events-none">
+            <Image
+              src="/main_lppy.png"
+              alt="lppy character"
+              fill
+              className="object-contain object-bottom-right"
+            />
+          </div>
           {/* 푸터 */}
           <footer className="fixed bottom-0 left-0 w-full h-[30px] text-white flex items-center justify-center">
             <div className="relative w-36 h-5 sm:w-40 sm:h-7">
