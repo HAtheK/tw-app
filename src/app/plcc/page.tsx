@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import "./plcc.css";
 
 
 export default function PLCCHome() {
