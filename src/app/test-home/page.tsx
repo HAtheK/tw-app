@@ -54,7 +54,7 @@ export default function TestHome() {
             </div>
           </section>
           {/* 우측 하단 이미지 */}
-          <div className="absolute bottom-[30px] right-0 w-[200px] h-[180px] sm:w-[260px] sm:h-[220px] pointer-events-none">
+          <div className="absolute bottom-0 right-0 w-[200px] h-[180px] sm:w-[260px] sm:h-[220px] pointer-events-none z-0">
             <Image
               src="/main_lppy.png"
               alt="lppy character"
