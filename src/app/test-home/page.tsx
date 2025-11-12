@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import "./test-home.css";
-import '/globals.css';
+import "../globals.css";
 
 export default function TestHome() {
   const router = useRouter();
