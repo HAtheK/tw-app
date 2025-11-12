@@ -12,8 +12,8 @@
 .test-result-banner {
   position: relative;
   width: 100%;
-  max-width: 400px;
-  height: 400px;
+  max-width: 360px;
+  height: 360px;
   margin-bottom: 1.5rem;
 }
 
