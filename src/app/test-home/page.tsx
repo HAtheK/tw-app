@@ -53,9 +53,9 @@ export default function TestHome() {
                 </button>
             </div>
           </section>
-          <section className="fixed bottom-0 left-0 w-full h-[360px] text-white flex items-center justify-center">
+          <section className="fixed bottom-0 left-0 w-full h-[300px] text-white flex items-center justify-center">
           {/* 우측 하단 이미지 */}
-          <div className="w-full flex justify-center items-center px-4 pointer-events-none z-0">
+          <div className="w-full flex px-4 pointer-events-none z-0">
             <Image
               src="/main_lppy.png"
               alt="lppy character"
