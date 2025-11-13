@@ -9,7 +9,7 @@ import { RiSurveyFill } from "react-icons/ri";
 export default function TestHome() {
   const router = useRouter();
   return (
-    <main className="min-h-screen bg-gradient-to-br from-pink-500 via-red-500 to-orange-500 text-black font-ptd grid grid-rows-[auto_1fr_auto] relative overflow-hidden">
+    <main className="min-h-screen bg-gradient-to-br from-pink-500 via-red-500 to-orange-500 text-black font-ptd grid grid-rows-[auto_1fr_auto] overflow-hidden">
       {/* 헤더 */}
       <header className="fixed top-0 left-0 w-full h-16 bg-black flex items-center justify-between px-5 z-20">
         <div className="relative w-36 h-6 sm:w-40 sm:h-7">
@@ -23,18 +23,16 @@ export default function TestHome() {
       </header>
 
       {/* 콘텐츠 */}
-      <section className="flex flex-col items-center space-y-6 w-full px-4 max-w-2xl mx-auto overflow-y-auto z-10">
-        <div style={{ width: "100%", minHeight: "1px", height: "140px" }}></div>
-        <div className="text-table">
-          <p style={{ textAlign: "center", lineHeight: 1 }}>
-            <span style={{ fontSize: "16px", color: "#fff" }}>
-              나에게 딱 맞는 <strong>「롯데멤버스」서비스</strong>는?!
-            </span>
+      <section className="flex flex-col items-center space-y-6 w-full px-4 max-w-2xl mx-auto overflow-y-auto">
+        {/* 상단 여백 */}
+        <div style={{ width: "100%", height: "140px" }}></div>
+
+        <div className="text-table text-center text-white">
+          <p style={{ fontSize: "16px", lineHeight: 1 }}>
+            나에게 딱 맞는 <strong>「롯데멤버스」서비스</strong>는?!
           </p>
-          <p style={{ textAlign: "center", lineHeight: 1, marginTop: "6px" }}>
-            <span style={{ fontSize: "36px", color: "#fff" }}>
-              <strong>Just Tap and Match</strong>
-            </span>
+          <p style={{ fontSize: "36px", lineHeight: 1, marginTop: "6px" }}>
+            <strong>Just Tap and Match</strong>
           </p>
         </div>
 
@@ -48,27 +46,31 @@ export default function TestHome() {
         </div>
       </section>
 
-      {/* 우측 하단 이미지 (화면 고정, 비율 자동 조정) */}
-      <div className="fixed bottom-0 right-0 w-auto h-auto max-w-[40vw] max-h-[40vh] sm:max-w-[30vw] sm:max-h-[35vh] md:max-w-[25vw] md:max-h-[30vh] pointer-events-none z-0">
-        <Image
-          src="/main_lppy.png"
-          alt="lppy character"
-          width={500}
-          height={500}
-          className="object-contain w-full h-full"
-          priority
-        />
-      </div>
+      {/* 푸터 & 캐릭터 이미지 */}
+      <footer className="fixed bottom-0 left-0 w-full flex flex-col items-center z-10">
+        {/* 캐릭터 이미지 */}
+        <div className="relative w-full flex justify-end items-end h-[30vh] sm:h-[35vh] md:h-[40vh] pointer-events-none">
+          <div className="relative w-[45vw] max-w-[300px] aspect-[1/1]">
+            <Image
+              src="/main_lppy.png"
+              alt="lppy character"
+              fill
+              className="object-contain object-bottom-right"
+              priority
+            />
+          </div>
+        </div>
 
-      {/* 푸터 */}
-      <footer className="fixed bottom-0 left-0 w-full h-[30px] text-white flex items-center justify-center z-10 bg-black/70 backdrop-blur-sm">
-        <div className="relative w-36 h-5 sm:w-40 sm:h-7">
-          <Image
-            src="/logo-lottemembers-gray.png"
-            alt="logo"
-            fill
-            className="object-contain"
-          />
+        {/* 로고 영역 */}
+        <div className="w-full h-[30px] bg-black/70 flex items-center justify-center">
+          <div className="relative w-36 h-5 sm:w-40 sm:h-7">
+            <Image
+              src="/logo-lottemembers-gray.png"
+              alt="logo"
+              fill
+              className="object-contain"
+            />
+          </div>
         </div>
       </footer>
     </main>
