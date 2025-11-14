@@ -27,13 +27,13 @@ export default function TestHome() {
         <div style={{ width: "100%", minHeight: "1px", height: "100px" }}></div>
         <div className="text-table">
           <p style={{ textAlign: "center", lineHeight: 1 }}>
-            <span style={{ fontSize: "16px", color: "#fff" }}>
-              나에게 딱 맞는 <strong>「롯데멤버스」서비스</strong>는?!
+            <span style={{ fontSize: "30px", color: "#fff" }}>
+              나에게 딱 맞는 <strong>「롯데멤버스」서비스</strong>는?
             </span>
           </p>
           <p style={{ textAlign: "center", lineHeight: 1, marginTop: "6px" }}>
-            <span style={{ fontSize: "36px", color: "#fff" }}>
-              <strong>Just Tap and Match</strong>
+            <span style={{ fontSize: "28px", color: "#ffBBBB" }}>
+              Find the service that fits you best!
             </span>
           </p>
         </div>
@@ -45,6 +45,19 @@ export default function TestHome() {
           >
             <RiSurveyFill size={20} /> 테스트 시작하기
           </button>
+        </div>
+        <div className="text-table text-[0.85em]">
+          <div>
+            <p style={{ textAlign: 'center', lineHeight: 1, marginTop: '-12px' }}>
+              <span className="text-yellow-300">
+                <strong>※ 주의 사항: </strong>
+              </span>
+              <span className="text-white">
+                현재 화면의 <u>공유하기는 횟수에 집계되지 않습니다.</u><br/>
+                챌린지 참여는 [공유하기 챌린지]에서 메시지를 공유해주세요.
+              </span>
+            </p>
+          </div>
         </div>
       </section>
 
