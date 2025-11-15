@@ -73,11 +73,36 @@ export default function TestHome() {
             />
           </div>
         </div>
-
-
-
-
       </section>
+
+{/* 하단 컨텐츠 영역 */}
+      <section 
+        className="top-0 left-0 w-full bg-black flex items-center justify-between py-6 px-5" 
+        style={{backgroundColor: 'black', borderRadius: '30px 30px 0px 0px'}}
+        >
+      <div className="text-table py-6">
+        <p style={{textAlign: 'center'}}>
+          <span style={{color: 'rgb(255, 95, 56)', fontSize: '13px'}}>
+            <strong>사이트 소개</strong>
+          </span>
+        </p>
+        <p style={{textAlign: 'center',marginTop:'16px'}}>
+          <span style={{color: 'rgb(255, 255, 255)', fontSize: '25px'}}>
+            <strong>롯데멤버스의 소식을<br/>조금 더 편하게, 많이 알리기 위해<br/>제작하였습니다.</strong>
+          </span>
+        </p>
+        <p style={{textAlign: 'center', lineHeight: '1.15', marginTop:'6px'}}>
+          <span style={{color: 'rgb(141, 141, 147)', fontSize: '13px'}}>
+            불편하고 번거롭지 않게 "롯데멤버스의 소식"을 알릴 수 있습니다.<br/><b>공유하기 챌린지 참여</b>하여 TOP10이 되어 보세요!
+          </span>
+        </p>
+      </div>
+      
+      <div style={{ width: '100%', minHeight: '1px', height: '60px' }}></div>
+
+      
+      </section>
+
 
       {/* 우측 하단 이미지 (화면 고정, 비율 자동 조정) */}
       <div className="fixed bottom-[30px] right-0 w-auto h-auto max-w-[40vw] max-h-[40vh] sm:max-w-[30vw] sm:max-h-[35vh] md:max-w-[25vw] md:max-h-[30vh] pointer-events-none z-0">
