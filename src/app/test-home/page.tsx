@@ -104,7 +104,7 @@ export default function TestHome() {
       </section>
 
 
-      {/* 우측 하단 이미지 (화면 고정, 비율 자동 조정) */}
+      {/* 우측 하단 이미지 (화면 고정, 비율 자동 조정) 
       <div className="fixed bottom-[30px] right-0 w-auto h-auto max-w-[40vw] max-h-[40vh] sm:max-w-[30vw] sm:max-h-[35vh] md:max-w-[25vw] md:max-h-[30vh] pointer-events-none z-0">
         <Image
           src="/main_lppy.png"
@@ -114,8 +114,8 @@ export default function TestHome() {
           className="object-contain w-full h-full"
           priority
         />
-      </div>
-
+      </div>*/}
+      
       {/* 푸터 */}
       <footer className="fixed bottom-0 left-0 w-full h-[30px] text-white flex items-center justify-center z-10 bg-black/70 backdrop-blur-sm">
         <div className="relative w-36 h-5 sm:w-40 sm:h-7">
