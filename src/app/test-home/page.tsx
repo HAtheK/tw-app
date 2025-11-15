@@ -27,12 +27,12 @@ export default function TestHome() {
         <div style={{ width: "100%", minHeight: "1px", height: "100px" }}></div>
         <div className="text-table">
           <p style={{ textAlign: "center", lineHeight: 1 }}>
-            <span style={{ fontSize: "16px", color: "#fff" }}>
+            <span style={{ fontSize: "36px", color: "#fff" }}>
               나에게 딱 맞는 <strong>「롯데멤버스」서비스</strong>는?
             </span>
           </p>
           <p style={{ textAlign: "center", lineHeight: 1, marginTop: "6px" }}>
-            <span style={{ fontSize: "36px", color: "#ffBBBB" }}>
+            <span style={{ fontSize: "16px", color: "#ffBBBB" }}>
               Find the service that fits you best!
             </span>
           </p>
