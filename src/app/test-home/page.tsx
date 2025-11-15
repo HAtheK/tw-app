@@ -47,7 +47,7 @@ export default function TestHome() {
           </button>
         </div>
         
-        <div className="text-table text-[0.85em]">
+        <div className="text-table text-xl font-normal">
           <div>
             <p style={{ textAlign: 'center', lineHeight: 1, marginTop: '-12px' }}>
               <span className="text-white">
