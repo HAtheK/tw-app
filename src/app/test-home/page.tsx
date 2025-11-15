@@ -10,7 +10,7 @@ export default function TestHome() {
   const router = useRouter();
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-pink-500 via-red-500 to-orange-500 text-black font-ptd grid grid-rows-[auto_1fr_auto] relative overflow-hidden">
+    <main className="min-h-screen bg-gradient-to-br from-pink-500 via-red-500 to-orange-500 text-black font-ptd relative overflow-hidden">
 
       {/* 헤더 */}
       <header className="fixed top-0 left-0 w-full h-16 bg-black flex items-center justify-between px-5 z-20">
@@ -25,9 +25,17 @@ export default function TestHome() {
       </header>
 
       {/* 콘텐츠 */}
-      <section className="flex flex-col justify-between w-full px-4 max-w-2xl mx-auto overflow-y-auto z-10 pt-24 pb-10">
-
-        {/* 상단 텍스트/버튼 */}
+      <section
+        className="
+          flex flex-col 
+          w-full max-w-2xl mx-auto
+          overflow-y-auto 
+          z-10
+          pt-24
+          min-h-[calc(100vh-64px-30px)]
+        "
+      >
+        {/* 텍스트 + 버튼 */}
         <div className="flex flex-col items-center space-y-6 w-full">
           <div className="text-table">
             <p className="text-center leading-none">
@@ -62,8 +70,8 @@ export default function TestHome() {
           </div>
         </div>
 
-        {/* 🔥 이미지 영역 (푸터 위 정렬) */}
-        <div className="w-full flex justify-center items-center px-4 mt-auto mb-[40px]">
+        {/* 🔥 이미지 영역 — footer 위 딱 붙게 */}
+        <div className="w-full flex justify-center items-center px-4 mt-auto mb-[30px]">
           <div className="w-full max-w-md">
             <Image
               src="/main_test.png"
@@ -75,7 +83,6 @@ export default function TestHome() {
             />
           </div>
         </div>
-
       </section>
 
       {/* 푸터 */}
