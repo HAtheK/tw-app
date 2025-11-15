@@ -76,37 +76,7 @@ export default function TestHome() {
       </section>
 
 
-{/* 하단 컨텐츠 영역 */}
-      <section 
-        className="top-0 left-0 w-full bg-black flex items-center justify-between py-6 px-5" 
-        style={{backgroundColor: 'black', borderRadius: '30px 30px 0px 0px'}}
-        >
-          {/*
-      <div className="text-table py-6">
-        <p style={{textAlign: 'center'}}>
-          <span style={{color: 'rgb(255, 95, 56)', fontSize: '16px'}}>
-            <strong>사이트 소개</strong>
-          </span>
-        </p>
-        <p style={{textAlign: 'center',marginTop:'16px'}}>
-          <span style={{color: 'rgb(255, 255, 255)', fontSize: '25px'}}>
-            <strong>간단한 질문을 통해 나와 성향이<br/>가장 잘 맞는 </strong>
-          </span>
-          <span style={{color: 'rgba(255, 168, 87, 1)', fontSize: '25px'}}>
-            <strong>서비스를 찾아보세요<br/></strong>
-          </span>
-        </p>
-        <p style={{textAlign: 'center', lineHeight: '1.15', marginTop:'6px'}}>
-          <span style={{color: 'rgb(141, 141, 147)', fontSize: '13px'}}>
-            L.POINT APP, L.PAY, 포인트 충전결제, 롯데멤버스카드, 외국인 카드 등의<br/> "롯데멤버스의 서비스"를 안내합니다.<br/>
-          </span>
-        </p>
-      </div>
-      
-      <div style={{ width: '100%', minHeight: '1px', height: '60px' }}></div>
-       */}     
-      
-      </section>
+
 
 
       {/* 우측 하단 이미지 (화면 고정, 비율 자동 조정) 
