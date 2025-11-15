@@ -32,7 +32,7 @@ export default function TestHome() {
             </span>
           </p>
           <p style={{ textAlign: "center", lineHeight: 1, marginTop: "6px" }}>
-            <span style={{ fontSize: "16px", color: "#ffBBBB" }}>
+            <span style={{ fontSize: "24px", color: "#ffBBBB" }}>
               Find the service that fits you best!
             </span>
           </p>
@@ -41,9 +41,9 @@ export default function TestHome() {
         <div className="w-full flex justify-center items-center px-4">
           <button
             onClick={() => router.push("/test-start")}
-            className="flex items-center justify-center gap-2 bg-transparent border border-white hover:bg-gray-100 text-white px-5 py-3 rounded-full text-sm"
+            className="flex items-center justify-center gap-2 bg-transparent border border-white hover:bg-gray-100 text-white px-5 py-3 rounded-full text-2xl font-semibold"
           >
-            <RiSurveyFill size={20} /> 테스트 시작하기
+            <RiSurveyFill size={30} /> 테스트 시작하기
           </button>
         </div>
         
@@ -115,7 +115,7 @@ export default function TestHome() {
           priority
         />
       </div>*/}
-      
+
       {/* 푸터 */}
       <footer className="fixed bottom-0 left-0 w-full h-[30px] text-white flex items-center justify-center z-10 bg-black/70 backdrop-blur-sm">
         <div className="relative w-36 h-5 sm:w-40 sm:h-7">
