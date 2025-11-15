@@ -80,6 +80,7 @@ export default function TestHome() {
         className="top-0 left-0 w-full bg-black flex items-center justify-between py-6 px-5" 
         style={{backgroundColor: 'black', borderRadius: '30px 30px 0px 0px'}}
         >
+          {/*
       <div className="text-table py-6">
         <p style={{textAlign: 'center'}}>
           <span style={{color: 'rgb(255, 95, 56)', fontSize: '16px'}}>
@@ -102,7 +103,7 @@ export default function TestHome() {
       </div>
       
       <div style={{ width: '100%', minHeight: '1px', height: '60px' }}></div>
-
+       */}     
       
       </section>
 
