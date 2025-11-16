@@ -49,7 +49,7 @@ export default function TestHome() {
               </span>
             </p>
           </div>
-
+          <div style={{ width: '100%', minHeight: '1px', height: '40px' }}></div>
           <div className="w-full flex justify-center items-center px-4">
             <button
               onClick={() => router.push("/test-start")}
@@ -63,7 +63,7 @@ export default function TestHome() {
             <span className="text-white">
               간단한 질문을 통행 나와 성향이 <br />
               가장 잘 맞는
-            </span>{" "}
+            </span>
             <span className="text-yellow-300">
               <strong> 서비스를 찾아보세요 </strong>
             </span>
@@ -71,7 +71,7 @@ export default function TestHome() {
         </div>
 
         {/* 🔥 이미지 영역 — footer 위 딱 붙게 */}
-        <div className="w-full flex justify-center items-center px-4 mt-auto mb-[30px]">
+        <div className="w-full flex justify-center items-center px-4 mt-auto">
           <div className="w-full max-w-md">
             <Image
               src="/main_test.png"
