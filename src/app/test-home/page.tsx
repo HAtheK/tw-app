@@ -36,7 +36,7 @@ export default function TestHome() {
         "
       >
         {/* 텍스트 + 버튼 */}
-        <div style={{ width: '100%', minHeight: '1px', height: '50px' }}></div>
+        <div style={{ width: '100%', minHeight: '1px', height: '100px' }}></div>
         <div className="flex flex-col items-center space-y-6 w-full">
           <div className="text-table">
             <p className="text-center leading-none">
