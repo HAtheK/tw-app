@@ -70,18 +70,18 @@ export default function TestStartPage() {
       <div className="test-start-inner">
         {step === 1 && (
           <>
-            <h2 className="test-start-title">Q1. 참여자님은 한국에...</h2>
+            <h2 className="test-start-title">Q1.참여자님은 한국에...(Are you currently in Korea for...)</h2>
             <button
               className="test-btn"
               onClick={() => handleSelect("nationality", "korean")}
             >
-              🏠 거주 중이에요
+              🏠 거주 중이에요 (I live in Korea)
             </button>
             <button
               className="test-btn"
               onClick={() => handleSelect("nationality", "foreign")}
             >
-              🛫 여행 중이에요 (외국인 관광객)
+              🛫 여행 중이에요 (I am traveling in Korea)
             </button>
           </>
         )}
